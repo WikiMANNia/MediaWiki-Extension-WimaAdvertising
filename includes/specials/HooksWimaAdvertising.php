@@ -164,7 +164,9 @@ class WimaAdvertisingHooks extends Hooks {
 	}
 
 	private static function isActive( $user_isLoggedIn ) {
-		return CustomAdvertisingSettings::isActive( $user_isLoggedIn );
+		return ( CustomAdvertisingSettings::isActive( $user_isLoggedIn ) ||
+			// If custom ad is not active, give google a chance
+			GoogleAdvertisingSettings::isActive( $user_isLoggedIn ) );
 	}
 
 	private static function isPresentAd( $user_isLoggedIn, $type ) {
@@ -174,6 +176,10 @@ class WimaAdvertisingHooks extends Hooks {
 		if ( CustomAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
 			// Defined ad should be only used, if custom ad is activated
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
+		}
+		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+			// If custom ad is not defined or not activated, give google a chance
+			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
 		}
 		return $present_ad_found;
 	}
@@ -188,6 +194,13 @@ class WimaAdvertisingHooks extends Hooks {
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
 			if ( $present_ad_found ) {
 				$return_value = CustomAdvertisingSettings::getAdCode( $type );
+			}
+		}
+		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+			// If custom ad is not defined or not activated, give google a chance
+			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
+			if ( $present_ad_found ) {
+				$return_value = GoogleAdvertisingSettings::getAdCode( $type );
 			}
 		}
 		return $return_value;
@@ -206,6 +219,13 @@ class WimaAdvertisingHooks extends Hooks {
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
 			if ( $present_ad_found ) {
 				$return_value = CustomAdvertisingSettings::getAdType( $type );
+			}
+		}
+		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+			// If custom ad is not defined or not activated, give google a chance
+			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
+			if ( $present_ad_found ) {
+				$return_value = GoogleAdvertisingSettings::getAdType( $type );
 			}
 		}
 		return $return_value;

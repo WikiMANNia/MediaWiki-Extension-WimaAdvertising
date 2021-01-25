@@ -3,7 +3,7 @@
 	"author": "WikiMANNia",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
 	"config": {
@@ -17,12 +17,18 @@
 		"SidebarAd1Type": "advertising",
 		"SidebarAd2Code": "",
 		"SidebarAd2Type": "advertising",
-		"WimaAdvertisingAnonOnly": false
+		"WimaAdvertisingAnonOnly": false,
+		"WimaGoogleAdSenseClient": "none",
+		"WimaGoogleAdSenseSlot": "none",
+		"WimaGoogleAdSenseSrc": "//pagead2.googlesyndication.com/pagead/show_ads.js",
+		"WimaGoogleAdSenseID": "none",
+		"WimaGoogleAdSenseAnonOnly": false
 	},
 	"manifest_version": 1,
 	"type": "other",
 	"AutoloadClasses": {
 		"CustomAdvertisingSettings": "includes/CustomAdvertisingSettings.php",
+		"GoogleAdvertisingSettings": "includes/GoogleAdvertisingSettings.php",
 		"WimaAdvertisingHooks": "includes/specials/HooksWimaAdvertising.php"
 	},
 	"Hooks": {
