@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiMANNia"
+		]
+	},
+	"wimaadvertising-msg": "Wima Publicidade",
+	"wimaadvertising-desc": "Adiciona quatro espaços publicitários possíveis para os Skins [https://www.mediawiki.org/wiki/Skin:Cologne_Blue Cologne Blue], [https://www.mediawiki.org/wiki/Skin:Modern Modern], [https://www.mediawiki.org/wiki/Skin:MonoBook MonoBook], e [https://www.mediawiki.org/wiki/Skin:Vector Vector] que são preenchidos pela LocalSettings.php.",
+	"wimaadvertising-advertising": "Publicidade",
+	"wimaadvertising-eventnote": "Evento",
+	"wimaadvertising-hint": "Nota",
+	"wimaadvertising-advertising2": "Publicidade",
+	"wimaadvertising-eventnote2": "Evento",
+	"wimaadvertising-hint2": "Nota"
+}

@@ -1,0 +1,27 @@
+/**
+ * CSS for CologneBlue
+ */
+
+#p-wimaadvertising-advertising p,
+#p-wimaadvertising-advertising2 p,
+#p-wimaadvertising-eventnote p,
+#p-wimaadvertising-eventnote2 p,
+#p-wimaadvertising-hint p,
+#p-wimaadvertising-hint2 p {
+	color: #333;
+	font-weight: normal;
+	line-height: 1.2em;
+	margin: 2pt 2pt 0 5pt;
+	word-wrap: break-word;
+}
+#quickbar .wima-adbox {
+	border: #68a solid 2px;
+	background-color: #fff;
+	margin-left: -4px;
+	padding-bottom: 4px;
+}
+#mw-data-after-content {
+	margin-left: 148px;
+	margin-right: 4px;
+	width: auto;
+}

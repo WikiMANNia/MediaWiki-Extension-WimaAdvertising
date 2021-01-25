@@ -1,0 +1,58 @@
+{
+	"name": "WimaAdvertising",
+	"author": "WikiMANNia",
+	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
+	"license-name": "GPL-2.0-or-later",
+	"version": "1.0.0",
+	"namemsg": "wimaadvertising-msg",
+	"descriptionmsg": "wimaadvertising-desc",
+	"config": {
+		"BannerBottomCode": "",
+		"BannerBottomStyle": "border:1px solid black; text-align:center;",
+		"BannerBottomType": "advertising",
+		"BannerTopCode": "",
+		"BannerTopStyle": "border:1px solid black; text-align:center;",
+		"BannerTopType": "advertising",
+		"SidebarAd1Code": "",
+		"SidebarAd1Type": "advertising",
+		"SidebarAd2Code": "",
+		"SidebarAd2Type": "advertising",
+		"WimaAdvertisingAnonOnly": false
+	},
+	"manifest_version": 1,
+	"type": "other",
+	"AutoloadClasses": {
+		"CustomAdvertisingSettings": "includes/CustomAdvertisingSettings.php",
+		"WimaAdvertisingHooks": "includes/specials/HooksWimaAdvertising.php"
+	},
+	"Hooks": {
+	    "BeforePageDisplay": "WimaAdvertisingHooks::onBeforePageDisplay",
+		"SidebarBeforeOutput": "WimaAdvertisingHooks::onSidebarBeforeOutput",
+		"SiteNoticeAfter": "WimaAdvertisingHooks::onSiteNoticeAfter",
+	    "SkinAfterContent": "WimaAdvertisingHooks::onSkinAfterContent"
+	},
+	"MessagesDirs": {
+		"WimaAdvertising": [ "i18n" ]
+	},
+	"ResourceModules": {
+		"ext.wimaadvertising.common": {
+			"styles": "css/Common.css"
+		},
+		"ext.wimaadvertising.cologneblue": {
+			"styles": "css/CologneBlue.css"
+		},
+		"ext.wimaadvertising.modern": {
+			"styles": "css/Modern.css"
+		},
+		"ext.wimaadvertising.monobook": {
+			"styles": "css/MonoBook.css"
+		},
+		"ext.wimaadvertising.vector": {
+			"styles": "css/Vector.css"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "WimaAdvertising/resources"
+	}
+}

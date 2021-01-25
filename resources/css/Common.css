@@ -1,0 +1,35 @@
+/**
+ * CSS for Common
+ */
+
+#p-wimaadvertising-advertising img,
+#p-wimaadvertising-advertising2 img,
+#p-wimaadvertising-eventnote img,
+#p-wimaadvertising-eventnote2 img,
+#p-wimaadvertising-hint img,
+#p-wimaadvertising-hint2 img {
+	height: auto;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+#p-wimaadvertising-advertising p.small,
+#p-wimaadvertising-advertising2 p.small,
+#p-wimaadvertising-eventnote p.small,
+#p-wimaadvertising-eventnote2 p.small,
+#p-wimaadvertising-hint p.small,
+#p-wimaadvertising-hint2 p.small {
+	font-size: 90%;
+}
+#p-wimaadvertising-advertising ul,
+#p-wimaadvertising-advertising2 ul,
+#p-wimaadvertising-eventnote ul,
+#p-wimaadvertising-eventnote2 ul,
+#p-wimaadvertising-hint ul,
+#p-wimaadvertising-hint2 ul {
+	margin: 0;
+	padding: 0;
+}
+#siteNotice p {
+	margin-bottom: 0 !important;
+}
