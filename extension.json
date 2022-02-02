@@ -3,7 +3,7 @@
 	"author": "WikiMANNia",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
 	"config": {
@@ -17,11 +17,13 @@
 		"SidebarAd1Type": "advertising",
 		"SidebarAd2Code": "",
 		"SidebarAd2Type": "advertising",
+		"WimaAdvertising": false,
 		"WimaAdvertisingAnonOnly": false,
 		"WimaGoogleAdSenseClient": "none",
 		"WimaGoogleAdSenseSlot": "none",
 		"WimaGoogleAdSenseSrc": "//pagead2.googlesyndication.com/pagead/show_ads.js",
 		"WimaGoogleAdSenseID": "none",
+		"WimaGoogleAdSense": false,
 		"WimaGoogleAdSenseAnonOnly": false
 	},
 	"manifest_version": 1,
@@ -45,13 +47,16 @@
 			"styles": "css/Common.css"
 		},
 		"ext.wimaadvertising.cologneblue": {
-			"styles": "css/CologneBlue.css"
+			"styles": "css/Cologneblue.css"
+		},
+		"ext.wimaadvertising.mobile": {
+			"styles": "css/Mobile.css"
 		},
 		"ext.wimaadvertising.modern": {
 			"styles": "css/Modern.css"
 		},
 		"ext.wimaadvertising.monobook": {
-			"styles": "css/MonoBook.css"
+			"styles": "css/Monobook.css"
 		},
 		"ext.wimaadvertising.vector": {
 			"styles": "css/Vector.css"
