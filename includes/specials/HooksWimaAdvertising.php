@@ -10,10 +10,11 @@ class WimaAdvertisingHooks extends Hooks {
 	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 
-		if ( !self::isActive( $skin->getUser()->isLoggedIn() ) )  return;
+		if ( !self::isActive( $skin->getUser() ) )  return;
 
 		$skinname = $skin->getSkinName();
 		$out->addModuleStyles( 'ext.wimaadvertising.common' );
+		$out->addModuleStyles( 'ext.wimaadvertising.mobile' );
 		if ( CustomAdvertisingSettings::isSupportedSkin( $skinname ) ) {
 			$out->addModuleStyles( 'ext.wimaadvertising.' . $skinname );
 		} else {
@@ -30,7 +31,7 @@ class WimaAdvertisingHooks extends Hooks {
 	public static function onSiteNoticeAfter( &$html, $skin ) {
 
 		$issetSitenoticeBox    = !empty( $html );
-		$issetAdvertisementBox =  self::isPresentAd( $skin->getUser()->isLoggedIn(), 'top' );
+		$issetAdvertisementBox =  self::isPresentAd( $skin->getUser(), 'top' );
 
 		if ( $issetSitenoticeBox && $issetAdvertisementBox ) {
 			if ( rand(0, 1) ) {
@@ -59,7 +60,7 @@ class WimaAdvertisingHooks extends Hooks {
 	 */
 	public static function onSkinAfterContent( &$data, $skin ) {
 
-		if ( self::isPresentAd( $skin->getUser()->isLoggedIn(), 'bottom' ) ) {
+		if ( self::isPresentAd( $skin->getUser(), 'bottom' ) ) {
 			$data .= self::getAdvertisementBox( 'bottom', $skin );
 		}
 		return true;
@@ -76,9 +77,9 @@ class WimaAdvertisingHooks extends Hooks {
 		array &$bar
 	) {
 
-		$user_isLoggedIn = $skin->getUser()->isLoggedIn();
+		$user = $skin->getUser();
 
-		if ( !self::isActive( $user_isLoggedIn ) ) {
+		if ( !self::isActive( $user ) ) {
 			// Wenn die Erweiterung deaktiviert wurde, bleibt als Aufgabe, die
 			// Marker 'AD1' und 'AD2' in der Sidebar zu deaktivieren:
 			$bar['AD1'] = false;
@@ -87,16 +88,16 @@ class WimaAdvertisingHooks extends Hooks {
 			return;
 		}
 
-		$_key1 = 'wimaadvertising-' . self::getAdType( $user_isLoggedIn, 'side1' );
-		$_key2 = 'wimaadvertising-' . self::getAdType( $user_isLoggedIn, 'side2' );
+		$_key1 = 'wimaadvertising-' . self::getAdType( $user, 'side1' );
+		$_key2 = 'wimaadvertising-' . self::getAdType( $user, 'side2' );
 		// Dirty hack:
 		$_key2 .= '2';
 
 		/*
 		 * Sonderbehandlung gemäß Skin.
 		 */
-		$_html1 = self::getAdCode( $user_isLoggedIn, 'side1' );
-		$_html2 = self::getAdCode( $user_isLoggedIn, 'side2' );
+		$_html1 = self::getAdCode( $user, 'side1' );
+		$_html2 = self::getAdCode( $user, 'side2' );
 
 		switch ( $skin->getSkinName() ) {
 			case 'cologneblue' :
@@ -115,16 +116,16 @@ class WimaAdvertisingHooks extends Hooks {
 		foreach ( $bar as $key => $value ) {
 			switch ( $key ) {
 				case 'AD1' :
-					if ( self::isPresentAd( $user_isLoggedIn, 'side1' ) ) {
+					if ( self::isPresentAd( $user, 'side1' ) ) {
 						$newbar[$_key1] = $_html1;
-						$_modified = true;
 					}
+					$_modified = true;
 				break;
 				case 'AD2' :
-					if ( self::isPresentAd( $user_isLoggedIn, 'side2' ) ) {
+					if ( self::isPresentAd( $user, 'side2' ) ) {
 						$newbar[$_key2] = $_html2;
-						$_modified = true;
 					}
+					$_modified = true;
 				break;
 				default:
 					$newbar[$key] = $value;
@@ -142,12 +143,12 @@ class WimaAdvertisingHooks extends Hooks {
 
 	private static function getAdvertisementBox( $type, $skin ) {
 
-		$user_isLoggedIn = $skin->getUser()->isLoggedIn();
+		$user = $skin->getUser();
 
-		if ( self::isPresentAd( $user_isLoggedIn, $type ) ) {
+		if ( self::isPresentAd( $user, $type ) ) {
 			$style1 = 'clear:both; margin-top:1em; text-align:left;';
 			$style2 = self::getAdStyle( $type );
-			$title  = self::getAdType( $user_isLoggedIn, $type );
+			$title  = self::getAdType( $user, $type );
 			$title  = $skin->msg( 'wimaadvertising-' . $title )->text();
 			$options['style'] = $style1;
 			if ( $type === 'bottom' ) {
@@ -156,47 +157,47 @@ class WimaAdvertisingHooks extends Hooks {
 
 			return Html::rawElement( 'div', $options,
 						Html::rawElement( 'p', [], $title . ':' ).
-						Html::rawElement( 'div', [ 'style' => $style2 ], self::getAdCode( $user_isLoggedIn, $type )
+						Html::rawElement( 'div', [ 'style' => $style2 ], self::getAdCode( $user, $type )
 					)
 				);
 		}
 		return '';
 	}
 
-	private static function isActive( $user_isLoggedIn ) {
-		return ( CustomAdvertisingSettings::isActive( $user_isLoggedIn ) ||
+	private static function isActive( $user ) {
+		return ( CustomAdvertisingSettings::isActive( $user ) ||
 			// If custom ad is not active, give google a chance
-			GoogleAdvertisingSettings::isActive( $user_isLoggedIn ) );
+			GoogleAdvertisingSettings::isActive( $user ) );
 	}
 
-	private static function isPresentAd( $user_isLoggedIn, $type ) {
+	private static function isPresentAd( $user, $type ) {
 
 		$present_ad_found = false;
 
-		if ( CustomAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			// Defined ad should be only used, if custom ad is activated
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
 		}
-		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
 			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
 		}
 		return $present_ad_found;
 	}
 
-	private static function getAdCode( $user_isLoggedIn, $type ) {
+	private static function getAdCode( $user, $type ) {
 
 		$return_value = '';
 		$present_ad_found = false;
 
-		if ( CustomAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			// Defined ad should be only used, if custom ad is activated
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
 			if ( $present_ad_found ) {
 				$return_value = CustomAdvertisingSettings::getAdCode( $type );
 			}
 		}
-		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
 			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
 			if ( $present_ad_found ) {
@@ -210,18 +211,18 @@ class WimaAdvertisingHooks extends Hooks {
 		return CustomAdvertisingSettings::getAdStyle( $type );
 	}
 
-	private static function getAdType( $user_isLoggedIn, $type ) {
+	private static function getAdType( $user, $type ) {
 
 		$return_value = '';
 		$present_ad_found = false;
 
-		if ( CustomAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
 			if ( $present_ad_found ) {
 				$return_value = CustomAdvertisingSettings::getAdType( $type );
 			}
 		}
-		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user_isLoggedIn ) ) {
+		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
 			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
 			if ( $present_ad_found ) {
