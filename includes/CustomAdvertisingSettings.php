@@ -117,10 +117,10 @@ class CustomAdvertisingSettings {
 	 * bool $user_LoggedIn
 	 * return: bool
 	 */
-	public static function isActive( $user_LoggedIn ) {
+	public static function isActive( $user ) {
 
  		if ( self::getInstance()->mActive ) {
-			return ( !$user_LoggedIn || !self::getInstance()->mAnonOnly );
+			return ( $user->isAnon() || !self::getInstance()->mAnonOnly );
  		}
 		return false;
 	}
