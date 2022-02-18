@@ -51,8 +51,6 @@ class WimaAdvertisingHooks extends Hooks {
 	 * article metadata. This hook should work in all skins. Set the &$data variable to
 	 * the text you're going to add.
 	 *
-	 * @since 1.35
-	 *
 	 * @param string &$data Text to be printed out directly (without parsing)
 	 * @param Skin $skin
 	 * @return bool|void True or no return value to continue or false to abort
@@ -68,6 +66,7 @@ class WimaAdvertisingHooks extends Hooks {
 
 	/**
 	 * Hook: SidebarBeforeOutput
+	 * @since 1.25
 	 * @param Skin $skin: Skin object
 	 * @param array &$bar: Sidebar contents
 	 * https://www.mediawiki.org/wiki/Manual:Hooks/SidebarBeforeOutput
