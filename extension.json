@@ -1,9 +1,9 @@
 {
 	"name": "WimaAdvertising",
-	"author": "WikiMANNia",
+	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.0.1",
+	"version": "2.0.3",
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
 	"config": {
@@ -17,13 +17,11 @@
 		"SidebarAd1Type": "advertising",
 		"SidebarAd2Code": "",
 		"SidebarAd2Type": "advertising",
-		"WimaAdvertising": false,
 		"WimaAdvertisingAnonOnly": false,
 		"WimaGoogleAdSenseClient": "none",
 		"WimaGoogleAdSenseSlot": "none",
 		"WimaGoogleAdSenseSrc": "//pagead2.googlesyndication.com/pagead/show_ads.js",
 		"WimaGoogleAdSenseID": "none",
-		"WimaGoogleAdSense": false,
 		"WimaGoogleAdSenseAnonOnly": false
 	},
 	"manifest_version": 1,
@@ -51,6 +49,9 @@
 		},
 		"ext.wimaadvertising.mobile": {
 			"styles": "css/Mobile.css"
+		},
+		"ext.wimaadvertising.minerva": {
+			"styles": "css/Minerva.css"
 		},
 		"ext.wimaadvertising.modern": {
 			"styles": "css/Modern.css"
