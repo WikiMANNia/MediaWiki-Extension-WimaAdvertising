@@ -8,7 +8,7 @@ El mantenimiento de la extensión de MediaWiki [WimaAdvertising](https://www.med
 
 ## Description
 
-Adds four possible advertising spaces for the Skins [Cologne Blue](https://www.mediawiki.org/wiki/Skin:Cologne_Blue), [Modern](https://www.mediawiki.org/wiki/Skin:Modern), [MonoBook](https://www.mediawiki.org/wiki/Skin:MonoBook), and [Vector](https://www.mediawiki.org/wiki/Skin:Vector) that are filled by LocalSettings.php.
+Adds four possible advertising spaces for the Skins [Cologne Blue](https://www.mediawiki.org/wiki/Skin:Cologne_Blue), [Modern](https://www.mediawiki.org/wiki/Skin:Modern), [MonoBook](https://www.mediawiki.org/wiki/Skin:MonoBook), [Minerva](https://www.mediawiki.org/wiki/Skin:Minerva), and [Vector](https://www.mediawiki.org/wiki/Skin:Vector) that are filled by LocalSettings.php.
 
 The advertising space 1 alternates randomly with Sitenotice. Advertising space 2 is located at the bottom of the article content. The advertising spaces 3 and 4 are located in the Sidebar. The exact positioning is determined with the entries “*AD1” and “*AD2” in the “MediaWiki:Sidebar”.
 
@@ -97,7 +97,7 @@ Advertising language. Default is $wgLanguageCode.
 * $wgWimaGoogleAdSenseLanguage = 'en';
 
 ## Compatibility
-This extension works from REL1_25 and has been tested up to MediaWiki version 1.36.3.
+This extension works from REL1_23 and has been tested up to MediaWiki version 1.36.3.
 
 In REL1_37, the [SkinBuildSidebar](https://www.mediawiki.org/wiki/Manual:Hooks/SkinBuildSidebar) hook no longer allows images and HTML code to be placed in the sidebar.
 A solution for this circumstance is not yet known.
