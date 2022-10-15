@@ -66,7 +66,6 @@ $wgExtensionCredits['specialpage'][] = array(
 	'author'         => 'WikiMANNia',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:WimaAdvertising',
 	'descriptionmsg' => 'wimaadvertising-desc',
-	'license-name'   => ''
 );
 
 $wgResourceModules['ext.wimaadvertising.common'] = array(

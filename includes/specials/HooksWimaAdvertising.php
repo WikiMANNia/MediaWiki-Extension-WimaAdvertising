@@ -16,7 +16,11 @@ class WimaAdvertisingHooks extends Hooks {
 		$out->addModuleStyles( 'ext.wimaadvertising.common' );
 		$out->addModuleStyles( 'ext.wimaadvertising.mobile' );
 		if ( CustomAdvertisingSettings::isSupportedSkin( $skinname ) ) {
-			$out->addModuleStyles( 'ext.wimaadvertising.' . $skinname );
+			if ( $skinname === 'vector-2022' ) {
+				$out->addModuleStyles( 'ext.wimaadvertising.' . 'vector' );
+			} else {
+				$out->addModuleStyles( 'ext.wimaadvertising.' . $skinname );
+			}
 		} else {
 			wfLogWarning( 'Skin ' . $skinname . ' not supported by WimaAdvertising.' . "\n" );
 		}

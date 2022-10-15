@@ -96,8 +96,14 @@ Text coding. Default is 'utf8'.
 Advertising language. Default is $wgLanguageCode.
 * $wgWimaGoogleAdSenseLanguage = 'en';
 
+## Versions
+1.0 - First public release
+2.0 - GoogleAdSense functionality added.
+2.1 - Support for 'vector-2022' added.
+
 ## Compatibility
-This extension works from REL1_23 and has been tested up to MediaWiki version 1.36.3.
+This extension works from REL1_23 and has been tested up to MediaWiki version 1.39.0-rc.1.
 
 In REL1_37, the [SkinBuildSidebar](https://www.mediawiki.org/wiki/Manual:Hooks/SkinBuildSidebar) hook no longer allows images and HTML code to be placed in the sidebar.
+So only the upper and lower add slots are still available.
 A solution for this circumstance is not yet known.
