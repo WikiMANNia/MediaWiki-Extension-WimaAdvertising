@@ -99,7 +99,8 @@ Advertising language. Default is $wgLanguageCode.
 ## Versions
 1.0 - First public release
 2.0 - GoogleAdSense functionality added.
-2.1 - Support for 'vector-2022' added.
+2.0.3 - Support added for REL1_23 and for skin Minerva.
+2.1 - Support for skin 'vector-2022' added.
 
 ## Compatibility
 This extension works from REL1_23 and has been tested up to MediaWiki version 1.39.0-rc.1.
