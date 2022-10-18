@@ -1,0 +1,33 @@
+/* CSS for Timeless */
+
+#p-wimaadvertising-advertising .portlet,
+#p-wimaadvertising-advertising2 .portlet,
+#p-wimaadvertising-eventnote .portlet,
+#p-wimaadvertising-eventnote2 .portlet,
+#p-wimaadvertising-hint .portlet,
+#p-wimaadvertising-hint2 .portlet {
+	margin: 0;
+	width: auto;
+}
+#p-wimaadvertising-advertising .pBody,
+#p-wimaadvertising-advertising2 .pBody,
+#p-wimaadvertising-eventnote .pBody,
+#p-wimaadvertising-eventnote2 .pBody,
+#p-wimaadvertising-hint .pBody,
+#p-wimaadvertising-hint2 .pBody {
+	background-color: #fff;
+	border: 1px solid #aaa;
+	padding: 0 0 0.3em 0;
+}
+#p-wimaadvertising-advertising p,
+#p-wimaadvertising-advertising2 p,
+#p-wimaadvertising-eventnote p,
+#p-wimaadvertising-eventnote2 p,
+#p-wimaadvertising-hint p,
+#p-wimaadvertising-hint2 p {
+	color: #333;
+	line-height: 1.1em;
+	margin: 0 0 0.5em;
+	padding: 0 0.2em 0 0.5em;
+	word-wrap: break-word;
+}

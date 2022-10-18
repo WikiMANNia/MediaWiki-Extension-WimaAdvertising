@@ -3,7 +3,7 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
 	"config": {
@@ -58,6 +58,9 @@
 		},
 		"ext.wimaadvertising.monobook": {
 			"styles": "css/Monobook.css"
+		},
+		"ext.wimaadvertising.timeless": {
+			"styles": "css/Timeless.css"
 		},
 		"ext.wimaadvertising.vector": {
 			"styles": "css/Vector.css"
