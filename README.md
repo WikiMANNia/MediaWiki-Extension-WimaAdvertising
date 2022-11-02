@@ -8,7 +8,7 @@ El mantenimiento de la extensión de MediaWiki [WimaAdvertising](https://www.med
 
 ## Description
 
-Adds four possible advertising spaces for the Skins [Cologne Blue](https://www.mediawiki.org/wiki/Skin:Cologne_Blue), [Modern](https://www.mediawiki.org/wiki/Skin:Modern), [MonoBook](https://www.mediawiki.org/wiki/Skin:MonoBook), [Minerva](https://www.mediawiki.org/wiki/Skin:Minerva), and [Vector](https://www.mediawiki.org/wiki/Skin:Vector) that are filled by LocalSettings.php.
+Adds four possible advertising spaces for the Skins [Cologne Blue](https://www.mediawiki.org/wiki/Skin:Cologne_Blue), [Modern](https://www.mediawiki.org/wiki/Skin:Modern), [MonoBook](https://www.mediawiki.org/wiki/Skin:MonoBook), [Minerva](https://www.mediawiki.org/wiki/Skin:Minerva), [Timeless](https://www.mediawiki.org/wiki/Skin:Timeless), and [Vector/Vector-2022](https://www.mediawiki.org/wiki/Skin:Vector) that are filled by LocalSettings.php.
 
 The advertising space 1 alternates randomly with Sitenotice. Advertising space 2 is located at the bottom of the article content. The advertising spaces 3 and 4 are located in the Sidebar. The exact positioning is determined with the entries “*AD1” and “*AD2” in the “MediaWiki:Sidebar”.
 
@@ -97,11 +97,14 @@ Advertising language. Default is $wgLanguageCode.
 * $wgWimaGoogleAdSenseLanguage = 'en';
 
 ## Versions
-1.0 - First public release
-2.0 - GoogleAdSense functionality added.
-2.0.3 - Support added for REL1_23 and for skin Minerva.
-2.1 - Support for skin 'vector-2022' added.
-2.2 - Support for skin 'timeless' added.
+* 1.0 - First public release
+* 2.0 - GoogleAdSense functionality added.
+* 2.0.1 - Support added for REL1_37 and for 'mobile'.
+* - Avoid warning: Use of "$skin->getUser()->isLoggedIn()" instead of "!$skin->getUser()->isAnon()".
+* 2.0.2 - Support added for skin 'minerva'.
+* 2.0.3 - Support added for REL1_23.
+* 2.1 - Support for skin 'vector-2022' added.
+* 2.2 - Support for skin 'timeless' and 'fallback' added.
 
 ## Compatibility
 This extension works from REL1_23 and has been tested up to MediaWiki version 1.39.0-rc.1.
