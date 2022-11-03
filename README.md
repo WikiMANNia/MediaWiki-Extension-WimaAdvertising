@@ -87,7 +87,7 @@ Add any of the optional settings below – if your settings deviate from the def
 This can be anything you like. Default is `none`.
 * `$wgWimaGoogleAdSenseID = 'none';`
 
-Source URL of the AdSense script. No need to change - it can't deviate from the defaults.
+Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
 * `$wgWimaGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/show_ads.js';`
 
 Text coding. Default is `utf8`.
@@ -108,11 +108,32 @@ This occurs in Skins Cologne Blue, Modern, MonoBook and Vector since REL1_37. Sk
 For Skins MonoBook and Vector in REL1_35 and REL1_36 see these [Hacks](https://www.mediawiki.org/wiki/Extension:WimaAdvertising#Hacks).
 
 ## Version history
-* 1.0 - First public release
-* 2.0 - GoogleAdSense functionality added.
-* 2.0.1 - Support added for REL1_37 and for 'mobile'.
-* - Avoid warning: Use of "$skin->getUser()->isLoggedIn()" instead of "!$skin->getUser()->isAnon()".
-* 2.0.2 - Support added for skin 'minerva'.
-* 2.0.3 - Support added for REL1_23.
-* 2.1 - Support for skin 'vector-2022' added.
-* 2.2 - Support for skin 'timeless' and 'fallback' added.
+
+1.0.0
+
+- First public release
+
+2.0.0
+
+- GoogleAdSense functionality added.
+
+2.0.1
+
+- Support added for REL1_37 and for 'mobile'.
+- Avoid warning: Use of `$skin->getUser()->isLoggedIn()` instead of `!$skin->getUser()->isAnon()`.
+
+2.0.2
+
+- Support for skin 'minerva' added.
+
+2.0.3
+
+- Support for REL1_23 added.
+
+2.1.0
+
+- Support for skin 'vector-2022' added.
+
+2.2.0
+
+- Support for skin 'timeless' and 'fallback' added.
