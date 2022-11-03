@@ -62,7 +62,7 @@ call_user_func(
 $wgExtensionCredits['specialpage'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'WimaAdvertising',
-	'version'        => '2.0.3',
+	'version'        => '2.2.0',
 	'author'         => 'WikiMANNia',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:WimaAdvertising',
 	'descriptionmsg' => 'wimaadvertising-desc',
@@ -110,6 +110,14 @@ $wgResourceModules['ext.wimaadvertising.modern'] = array(
 );
 $wgResourceModules['ext.wimaadvertising.monobook'] = array(
 	'styles' => 'resources/css/Monobook.css',
+	'localBasePath' => dirname( __FILE__ ),
+	'remoteExtPath' => 'WimaAdvertising',
+	'dependencies' => array(
+		'jquery.makeCollapsible',
+	),
+);
+$wgResourceModules['ext.wimaadvertising.timeless'] = array(
+	'styles' => 'resources/css/Timeless.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
 	'dependencies' => array(
@@ -176,7 +184,6 @@ function setupWimaAdvertisingExtension() {
 	}
 	elseif ( $wgDisableWimaAdvertising === false ) {
 		global $wgAvailableRights, $wgGroupPermissions, $wgLogTypes, $wgLogActionsHandlers;
-
 	}
 
 	return true;
