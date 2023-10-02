@@ -3,7 +3,7 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
 	"config": {
@@ -35,7 +35,8 @@
 	    "BeforePageDisplay": "WimaAdvertisingHooks::onBeforePageDisplay",
 		"SidebarBeforeOutput": "WimaAdvertisingHooks::onSidebarBeforeOutput",
 		"SiteNoticeAfter": "WimaAdvertisingHooks::onSiteNoticeAfter",
-	    "SkinAfterContent": "WimaAdvertisingHooks::onSkinAfterContent"
+	    "SkinAfterContent": "WimaAdvertisingHooks::onSkinAfterContent",
+	    "SkinAfterPortlet": "WimaAdvertisingHooks::onSkinAfterPortlet"
 	},
 	"MessagesDirs": {
 		"WimaAdvertising": [ "i18n" ]

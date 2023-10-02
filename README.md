@@ -97,15 +97,7 @@ Advertising language. Default is `$wgLanguageCode`.
 * `$wgWimaGoogleAdSenseLanguage = 'en';`
 
 ## Compatibility
-This extension works from REL1_23 and has been tested up to MediaWiki version `1.39.0-rc.1`.
-
-The [SkinBuildSidebar](https://www.mediawiki.org/wiki/Manual:Hooks/SkinBuildSidebar) hook of several skins no longer allows images and HTML code to be placed in the sidebar.
-
-A solution for this circumstance is not yet known.
-As a minimal solution, a simple text link to the donation page is now given.
-This occurs in Skins Cologne Blue, Modern, MonoBook and Vector since REL1_37. Skin Timeless still works as usual.
-
-For Skins MonoBook and Vector in REL1_35 and REL1_36 see these [Hacks](https://www.mediawiki.org/wiki/Extension:WimaAdvertising#Hacks).
+This extension works from REL1_35 and has been tested up to MediaWiki version `1.40.0`.
 
 ## Version history
 
@@ -137,3 +129,7 @@ For Skins MonoBook and Vector in REL1_35 and REL1_36 see these [Hacks](https://w
 2.2.0
 
 - Support for skin 'timeless' and 'fallback' added.
+
+2.3.0
+
+- Support for REL1_35+ added.

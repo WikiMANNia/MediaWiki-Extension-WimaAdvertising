@@ -69,6 +69,53 @@ class WimaAdvertisingHooks extends Hooks {
 	}
 
 	/**
+	 * This hook is called when generating portlets.
+	 * It allows injecting custom HTML after the portlet.
+	 *
+	 * @since 1.35
+	 *
+	 * @param Skin $skin
+	 * @param string $portletName
+	 * @param string &$html
+	 * @return bool|void True or no return value to continue or false to abort
+	 */
+	public static function onSkinAfterPortlet( $skin, $portletName, &$html ) {
+
+		$user = $skin->getUser();
+		$_html1 = self::getAdCode( $user, 'side1' );
+		$_html2 = self::getAdCode( $user, 'side2' );
+		$_key1 = 'wimaadvertising-' . self::getAdType( $user, 'side1' );
+		$_key2 = 'wimaadvertising-' . self::getAdType( $user, 'side2' );
+		// Dirty hack:
+		$_key2 .= '2';
+
+		/*
+		 * Sonderbehandlung gemäß Skin.
+		 */
+		switch ( $skin->getSkinName() ) {
+			case 'cologneblue' :
+			case 'vector' :
+				$_html1 = self::getAdBox( $_html1 );
+				$_html2 = self::getAdBox( $_html2 );
+			break;
+			case 'modern' :
+			case 'monobook' :
+			break;
+		}
+
+		$adds[$_key1] = $_html1;
+		$adds[$_key2] = $_html2;
+
+		if ( array_key_exists( $portletName, $adds ) ) {
+			$add = $adds[$portletName];
+			if ( !empty( $add ) ) {
+				$html = $add;
+				return true;
+			}
+		}
+	}
+
+	/**
 	 * Hook: SidebarBeforeOutput
 	 * @since 1.25
 	 * @param Skin $skin: Skin object
@@ -81,6 +128,10 @@ class WimaAdvertisingHooks extends Hooks {
 	) {
 
 		$user = $skin->getUser();
+		$_key1 = 'wimaadvertising-' . self::getAdType( $user, 'side1' );
+		$_key2 = 'wimaadvertising-' . self::getAdType( $user, 'side2' );
+		// Dirty hack:
+		$_key2 .= '2';
 
 		if ( !self::isActive( $user ) ) {
 			// Wenn die Erweiterung deaktiviert wurde, bleibt als Aufgabe, die
@@ -91,28 +142,6 @@ class WimaAdvertisingHooks extends Hooks {
 			return;
 		}
 
-		$_key1 = 'wimaadvertising-' . self::getAdType( $user, 'side1' );
-		$_key2 = 'wimaadvertising-' . self::getAdType( $user, 'side2' );
-		// Dirty hack:
-		$_key2 .= '2';
-
-		/*
-		 * Sonderbehandlung gemäß Skin.
-		 */
-		$_html1 = self::getAdCode( $user, 'side1' );
-		$_html2 = self::getAdCode( $user, 'side2' );
-
-		switch ( $skin->getSkinName() ) {
-			case 'cologneblue' :
-			case 'vector' :
-				$_html1 = self::getAdBox( $_html1 );
-				$_html2 = self::getAdBox( $_html2 );
-			break;
-			case 'modern' :
-			case 'monobook' :
-			break;
-		}
-
 		// Keys 'AD1' und 'AD2' umbenennen
 		$_modified = false;
 		$newbar = [];
@@ -120,13 +149,13 @@ class WimaAdvertisingHooks extends Hooks {
 			switch ( $key ) {
 				case 'AD1' :
 					if ( self::isPresentAd( $user, 'side1' ) ) {
-						$newbar[$_key1] = $_html1;
+						$newbar[$_key1] = $value;
 					}
 					$_modified = true;
 				break;
 				case 'AD2' :
 					if ( self::isPresentAd( $user, 'side2' ) ) {
-						$newbar[$_key2] = $_html2;
+						$newbar[$_key2] = $value;
 					}
 					$_modified = true;
 				break;
