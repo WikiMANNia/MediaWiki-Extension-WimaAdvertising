@@ -98,9 +98,6 @@ class WimaAdvertisingHooks extends Hooks {
 				$_html1 = self::getAdBox( $_html1 );
 				$_html2 = self::getAdBox( $_html2 );
 			break;
-			case 'modern' :
-			case 'monobook' :
-			break;
 		}
 
 		$adds[$_key1] = $_html1;
