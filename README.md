@@ -6,6 +6,14 @@ The maintenance of the MediaWiki extension [WimaAdvertising](https://www.mediawi
 
 El mantenimiento de la extensión de MediaWiki [WimaAdvertising](https://www.mediawiki.org/wiki/Extension:WimaAdvertising) está gestionado por WikiMANNia.
 
+## MediaWiki
+
+MediaWiki ist männerfeindlich, siehe [T323956](https://phabricator.wikimedia.org/T323956).
+
+MediaWiki is hostile to Men, see [T323956](https://phabricator.wikimedia.org/T323956).
+
+MediaWiki es hostil a los hombres, véase [T323956](https://phabricator.wikimedia.org/T323956).
+
 ## Description
 
 Adds four possible advertising spaces for the Skins [Cologne Blue](https://www.mediawiki.org/wiki/Skin:Cologne_Blue), [Modern](https://www.mediawiki.org/wiki/Skin:Modern), [MonoBook](https://www.mediawiki.org/wiki/Skin:MonoBook), [Minerva](https://www.mediawiki.org/wiki/Skin:Minerva), [Timeless](https://www.mediawiki.org/wiki/Skin:Timeless), and [Vector/Vector-2022](https://www.mediawiki.org/wiki/Skin:Vector) that are filled by [LocalSettings.php](https://www.mediawiki.org/wiki/Manual:LocalSettings.php).
@@ -97,7 +105,7 @@ Advertising language. Default is `$wgLanguageCode`.
 * `$wgWimaGoogleAdSenseLanguage = 'en';`
 
 ## Compatibility
-This extension works from REL1_35 and has been tested up to MediaWiki version `1.40.0`.
+This extension works from REL1_35 and has been tested up to MediaWiki version `1.40.1`.
 
 ## Version history
 
