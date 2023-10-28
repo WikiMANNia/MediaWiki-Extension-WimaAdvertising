@@ -30,38 +30,38 @@ class GoogleAdvertisingSettings {
 		global $wgLanguageCode;
 
 		// 1. Steuerung
-		global $wgWimaGoogleAdSense;
-		global $wgWimaGoogleAdSenseAnonOnly;
+		global $wmGoogleAdSense;
+		global $wmGoogleAdSenseAnonOnly;
 
-		$this->mActive   = empty( $wgWimaGoogleAdSense         ) ? false : ( ( $wgWimaGoogleAdSense         === true ) || ( $wgWimaGoogleAdSense         === 'true' ) );
-		$this->mAnonOnly = empty( $wgWimaGoogleAdSenseAnonOnly ) ? false : ( ( $wgWimaGoogleAdSenseAnonOnly === true ) || ( $wgWimaGoogleAdSenseAnonOnly === 'true' ) );
+		$this->mActive   = empty( $wmGoogleAdSense         ) ? false : ( ( $wmGoogleAdSense         === true ) || ( $wmGoogleAdSense         === 'true' ) );
+		$this->mAnonOnly = empty( $wmGoogleAdSenseAnonOnly ) ? false : ( ( $wmGoogleAdSenseAnonOnly === true ) || ( $wmGoogleAdSenseAnonOnly === 'true' ) );
 
 
 		// 2. Spezifische Variablen für jeden Werbeblock
-		global $wgWimaGoogleAdSense_Bottom;
-		global $wgWimaGoogleAdSense_Top;
-		global $wgWimaGoogleAdSense_AD1;
-		global $wgWimaGoogleAdSense_AD2;
+		global $wmGoogleAdSense_Bottom;
+		global $wmGoogleAdSense_Top;
+		global $wmGoogleAdSense_AD1;
+		global $wmGoogleAdSense_AD2;
 
 		$this->mDefaultType = 'advertising';
-		$Ad_Bottom = self::getAdConfigArray( $wgWimaGoogleAdSense_Bottom );
-		$Ad_Top    = self::getAdConfigArray( $wgWimaGoogleAdSense_Top );
-		$Ad_AD1    = self::getAdConfigArray( $wgWimaGoogleAdSense_AD1 );
-		$Ad_AD2    = self::getAdConfigArray( $wgWimaGoogleAdSense_AD2 );
+		$Ad_Bottom = self::getAdConfigArray( $wmGoogleAdSense_Bottom );
+		$Ad_Top    = self::getAdConfigArray( $wmGoogleAdSense_Top );
+		$Ad_AD1    = self::getAdConfigArray( $wmGoogleAdSense_AD1 );
+		$Ad_AD2    = self::getAdConfigArray( $wmGoogleAdSense_AD2 );
 
 
 		// 3. Allgemeine Variablen für alle Werbeblöcke
-		global $wgWimaGoogleAdSenseClient;
-		global $wgWimaGoogleAdSenseSrc;
-		global $wgWimaGoogleAdSenseID;
-		global $wgWimaGoogleAdSenseEncoding;
-		global $wgWimaGoogleAdSenseLanguage;
+		global $wmGoogleAdSenseClient;
+		global $wmGoogleAdSenseSrc;
+		global $wmGoogleAdSenseID;
+		global $wmGoogleAdSenseEncoding;
+		global $wmGoogleAdSenseLanguage;
 
-		$this->mConfigArray['ad_client']   = ( empty( $wgWimaGoogleAdSenseClient ) || ( $wgWimaGoogleAdSenseClient === 'none' ) ) ? false : $wgWimaGoogleAdSenseClient;
-		$this->mConfigArray['ad_src']      = !empty( $wgWimaGoogleAdSenseSrc      ) ? $wgWimaGoogleAdSenseSrc      : false;
-		$this->mConfigArray['ad_clientId'] = !empty( $wgWimaGoogleAdSenseID       ) ? $wgWimaGoogleAdSenseID       : 'ID 007';
-		$this->mConfigArray['ad_encoding'] = !empty( $wgWimaGoogleAdSenseEncoding ) ? $wgWimaGoogleAdSenseEncoding : 'utf8';
-		$this->mConfigArray['ad_language'] = !empty( $wgWimaGoogleAdSenseLanguage ) ? $wgWimaGoogleAdSenseLanguage : $wgLanguageCode;
+		$this->mConfigArray['ad_client']   = ( empty( $wmGoogleAdSenseClient ) || ( $wmGoogleAdSenseClient === 'none' ) ) ? false : $wmGoogleAdSenseClient;
+		$this->mConfigArray['ad_src']      = !empty( $wmGoogleAdSenseSrc      ) ? $wmGoogleAdSenseSrc      : false;
+		$this->mConfigArray['ad_clientId'] = !empty( $wmGoogleAdSenseID       ) ? $wmGoogleAdSenseID       : 'ID 007';
+		$this->mConfigArray['ad_encoding'] = !empty( $wmGoogleAdSenseEncoding ) ? $wmGoogleAdSenseEncoding : 'utf8';
+		$this->mConfigArray['ad_language'] = !empty( $wmGoogleAdSenseLanguage ) ? $wmGoogleAdSenseLanguage : $wgLanguageCode;
 
 
 		// HTML-Snippet für jeden Werbeblock, falls ungültige Parameter auftreten sollten, auf false setzen

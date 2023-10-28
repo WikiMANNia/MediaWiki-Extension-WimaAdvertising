@@ -3,43 +3,97 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.3.0",
+	"version": "2.4.0",
 	"requires": {
 		"MediaWiki": ">= 1.35.0"
 	},
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
+	"config_prefix": "wm",
 	"config": {
-		"BannerBottomCode": "",
-		"BannerBottomStyle": "border:1px solid black; text-align:center;",
-		"BannerBottomType": "advertising",
-		"BannerTopCode": "",
-		"BannerTopStyle": "border:1px solid black; text-align:center;",
-		"BannerTopType": "advertising",
-		"SidebarAd1Code": "",
-		"SidebarAd1Type": "advertising",
-		"SidebarAd2Code": "",
-		"SidebarAd2Type": "advertising",
-		"WimaAdvertisingAnonOnly": false,
-		"WimaGoogleAdSenseClient": "none",
-		"WimaGoogleAdSenseSlot": "none",
-		"WimaGoogleAdSenseSrc": "//pagead2.googlesyndication.com/pagead/show_ads.js",
-		"WimaGoogleAdSenseID": "none",
-		"WimaGoogleAdSenseAnonOnly": false
+		"BannerBottomCode": {
+			"type": "string",
+			"value": ""
+		},
+		"BannerBottomStyle": {
+			"type": "string",
+			"value": "border:1px solid black; text-align:center;"
+		},
+		"BannerBottomType": {
+			"type": "string",
+			"value": "advertising"
+		},
+		"BannerTopCode": {
+			"type": "string",
+			"value": ""
+		},
+		"BannerTopStyle": {
+			"type": "string",
+			"value": "border:1px solid black; text-align:center;"
+		},
+		"BannerTopType": {
+			"type": "string",
+			"value": "advertising"
+		},
+		"SidebarAd1Code": {
+			"type": "string",
+			"value": ""
+		},
+		"SidebarAd1Type": {
+			"type": "string",
+			"value": "advertising"
+		},
+		"SidebarAd2Code": {
+			"type": "string",
+			"value": ""
+		},
+		"SidebarAd2Type": {
+			"type": "string",
+			"value": "advertising"
+		},
+		"AdvertisingAnonOnly": {
+			"type": "boolean",
+			"value": false
+		},
+		"GoogleAdSenseClient": {
+			"type": "string",
+			"value": "none"
+		},
+		"GoogleAdSenseSlot": {
+			"type": "string",
+			"value": "none"
+		},
+		"GoogleAdSenseSrc": {
+			"type": "string",
+			"value": "//pagead2.googlesyndication.com/pagead/show_ads.js"
+		},
+		"GoogleAdSenseID": {
+			"type": "string",
+			"value": "none"
+		},
+		"GoogleAdSenseAnonOnly": {
+			"type": "boolean",
+			"value": false
+		}
 	},
-	"manifest_version": 1,
+	"manifest_version": 2,
 	"type": "other",
 	"AutoloadClasses": {
 		"CustomAdvertisingSettings": "includes/CustomAdvertisingSettings.php",
 		"GoogleAdvertisingSettings": "includes/GoogleAdvertisingSettings.php",
-		"WimaAdvertisingHooks": "includes/specials/HooksWimaAdvertising.php"
+		"WimaAdvertisingHooks": "includes/Hooks.php"
 	},
 	"Hooks": {
-	    "BeforePageDisplay": "WimaAdvertisingHooks::onBeforePageDisplay",
-		"SidebarBeforeOutput": "WimaAdvertisingHooks::onSidebarBeforeOutput",
-		"SiteNoticeAfter": "WimaAdvertisingHooks::onSiteNoticeAfter",
-	    "SkinAfterContent": "WimaAdvertisingHooks::onSkinAfterContent",
-	    "SkinAfterPortlet": "WimaAdvertisingHooks::onSkinAfterPortlet"
+	    "BeforePageDisplay": "main",
+		"SidebarBeforeOutput": "main",
+		"SiteNoticeAfter": "main",
+	    "SkinAfterContent": "main",
+	    "SkinAfterPortlet": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "WimaAdvertisingHooks"
+		}
 	},
 	"MessagesDirs": {
 		"WimaAdvertising": [ "i18n" ]

@@ -6,14 +6,6 @@ The maintenance of the MediaWiki extension [WimaAdvertising](https://www.mediawi
 
 El mantenimiento de la extensión de MediaWiki [WimaAdvertising](https://www.mediawiki.org/wiki/Extension:WimaAdvertising) está gestionado por WikiMANNia.
 
-## MediaWiki
-
-MediaWiki ist männerfeindlich, siehe [T323956](https://phabricator.wikimedia.org/T323956).
-
-MediaWiki is hostile to Men, see [T323956](https://phabricator.wikimedia.org/T323956).
-
-MediaWiki es hostil a los hombres, véase [T323956](https://phabricator.wikimedia.org/T323956).
-
 ## Description
 
 Adds four possible advertising spaces for the Skins [Cologne Blue](https://www.mediawiki.org/wiki/Skin:Cologne_Blue), [Modern](https://www.mediawiki.org/wiki/Skin:Modern), [MonoBook](https://www.mediawiki.org/wiki/Skin:MonoBook), [Minerva](https://www.mediawiki.org/wiki/Skin:Minerva), [Timeless](https://www.mediawiki.org/wiki/Skin:Timeless), and [Vector/Vector-2022](https://www.mediawiki.org/wiki/Skin:Vector) that are filled by [LocalSettings.php](https://www.mediawiki.org/wiki/Manual:LocalSettings.php).
@@ -23,33 +15,33 @@ The advertising space 1 alternates randomly with Sitenotice. Advertising space 2
 ## Custom Advertising
 
 Enable advertising. Default is `false`.
-* `$wgWimaAdvertising = true;`
+* `$wmWimaAdvertising = true;`
 
 Disable advertising for logged-in users. Default is `false`.
-* `$wgWimaAdvertisingAnonOnly = true;`
+* `$wmWimaAdvertisingAnonOnly = true;`
 
 Two advertising spaces can also be used as event information. These variables have to be set:
 
-* `$wgBannerTopType = 'advertising';`
-* `$wgBannerBottomType = 'advertising';`
-* `$wgSidebarAd1Type = 'eventnote';`
-* `$wgSidebarAd2Type = 'hint';`
+* `$wmBannerTopType = 'advertising';`
+* `$wmBannerBottomType = 'advertising';`
+* `$wmSidebarAd1Type = 'eventnote';`
+* `$wmSidebarAd2Type = 'hint';`
 
 The default value is `advertising`. These variables can therefore be omitted for advertising insertions.
 
 HTML code must be assigned to these variables:
 
-* `$wgBannerTopCode = '';`
-* `$wgBannerBottomCode = '';`
-* `$wgSidebarAd1Code = '';`
-* `$wgSidebarAd2Code = '';`
+* `$wmBannerTopCode = '';`
+* `$wmBannerBottomCode = '';`
+* `$wmSidebarAd1Code = '';`
+* `$wmSidebarAd2Code = '';`
 
 If a variable is not set or contains its string of zero length, the corresponding ad space remains unoccupied.
 
 These variables must be assigned CSS style specifications, for example:
 
-* `$wgBannerTopStyle = 'text-align:center;border:1px solid blue;';`
-* `$wgBannerBottomStyle = 'text-align:center;border:1px dotted red;';`
+* `$wmBannerTopStyle = 'text-align:center;border:1px solid blue;';`
+* `$wmBannerBottomStyle = 'text-align:center;border:1px dotted red;';`
 
 The advertising space 1 alternates randomly with Sitenotice. Advertising space 2 is located at the bottom of the article content. The advertising spaces 3 and 4 are located in the sitenotice. The exact positioning is determined with the entries `* AD1` and `* AD2` in the [Sidebar](https://www.mediawiki.org/wiki/MediaWiki:Sidebar).
 
@@ -59,7 +51,7 @@ Enable advertising. Default is `false`.
 
 Disable advertising for logged-in users. Default is `false`.
 
-* `$wgWimaAdvertisingAnonOnly = true;`
+* `$wmWimaAdvertisingAnonOnly = true;`
 
 The extension is localized for the languages "de", "en", "es", "fr", "it", "nl", "pt", and "ru".
 
@@ -69,22 +61,22 @@ Further skins may require additional adjustments, which would have to be made in
 ## Google AdSense
 
 Enable advertising. Default is `false`.
-* `$wgWimaGoogleAdSense = true;`
+* `$wmWimaGoogleAdSense = true;`
 
 Disable advertising for logged-in users. Default is `false`.
-* `$wgWimaGoogleAdSenseAnonOnly = true;`
+* `$wmWimaGoogleAdSenseAnonOnly = true;`
 
 ### Mandatory parameters
 Replace this with your own publisher ID (google_ad_client / data-ad-client)
-* `$wgWimaGoogleAdSenseClient = 'none';` // Client ID for your AdSense script (example: ca-pub-1234546403419693)
+* `$wmWimaGoogleAdSenseClient = 'none';` // Client ID for your AdSense script (example: ca-pub-1234546403419693)
 (You can get your publisher ID and ad unit ID from the "Get code" page: Get and copy the ad code.)
 
 ### Ad units
 Define up to four ad units:
-* `$wgWimaGoogleAdSense_AD1= [ 'slotid 1', 145, 260 ];`
-* `$wgWimaGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
-* `$wgWimaGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
-* `$wgWimaGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
+* `$wmWimaGoogleAdSense_AD1= [ 'slotid 1', 145, 260 ];`
+* `$wmWimaGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
+* `$wmWimaGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
+* `$wmWimaGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
 Replace the first value with your AdSense ad unit ID (google_ad_slot / data-ad-slot) for each ad unit. The Slot ID for your AdSense script is for example `1234580893`.
 
 Also specify the width and the height of the AdSense unit, specified in your AdSense account (google_ad_width / data-ad-width, google_ad_height / data-ad-height).
@@ -93,19 +85,19 @@ Also specify the width and the height of the AdSense unit, specified in your AdS
 Add any of the optional settings below – if your settings deviate from the defaults:
 
 This can be anything you like. Default is `none`.
-* `$wgWimaGoogleAdSenseID = 'none';`
+* `$wmWimaGoogleAdSenseID = 'none';`
 
 Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
-* `$wgWimaGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/show_ads.js';`
+* `$wmWimaGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/show_ads.js';`
 
 Text coding. Default is `utf8`.
-* `$wgWimaGoogleAdSenseEncoding = 'utf8';`
+* `$wmWimaGoogleAdSenseEncoding = 'utf8';`
 
-Advertising language. Default is `$wgLanguageCode`.
-* `$wgWimaGoogleAdSenseLanguage = 'en';`
+Advertising language. Default is `$wmLanguageCode`.
+* `$wmWimaGoogleAdSenseLanguage = 'en';`
 
 ## Compatibility
-This extension works from REL1_35 and has been tested up to MediaWiki version `1.40.1`.
+This extension works from REL1_35 and has been tested up to MediaWiki version `1.40.0`.
 
 ## Version history
 
@@ -141,3 +133,8 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 2.3.0
 
 - Support for REL1_35+ added.
+
+2.4.0
+
+- Changed "configuration schema", replaced manifest version 1 with version 2 and changed the prefix of the configuration variables from default to `wm`.
+- Replaced class “WimaAdvertisingHooks” extending class “Hooks” with class implementing interfaces.
