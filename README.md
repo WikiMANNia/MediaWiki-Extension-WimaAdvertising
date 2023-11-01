@@ -97,7 +97,8 @@ Advertising language. Default is `$wmLanguageCode`.
 * `$wmWimaGoogleAdSenseLanguage = 'en';`
 
 ## Compatibility
-This extension works from REL1_35 and has been tested up to MediaWiki version `1.40.0`.
+
+This extension works from REL1_35 and has been tested up to MediaWiki version `1.35.13`, `1.39.5` and `1.40.1`.
 
 ## Version history
 
