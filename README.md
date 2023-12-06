@@ -139,3 +139,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 
 - Changed "configuration schema", replaced manifest version 1 with version 2 and changed the prefix of the configuration variables from default to `wm`.
 - Replaced class “WimaAdvertisingHooks” extending class “Hooks” with class implementing interfaces.
+
+2.4.1
+
+- Dirty hack for skin [Timeless](https://www.mediawiki.org/wiki/Skin:Timeless).

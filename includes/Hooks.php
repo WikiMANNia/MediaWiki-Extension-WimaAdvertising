@@ -121,13 +121,13 @@ class WimaAdvertisingHooks implements
 			break;
 		}
 
-		$adds[$_key1] = $_html1;
-		$adds[$_key2] = $_html2;
+		$sidebar_elements[$_key1] = $_html1;
+		$sidebar_elements[$_key2] = $_html2;
 
-		if ( array_key_exists( $portletName, $adds ) ) {
-			$add = $adds[$portletName];
-			if ( !empty( $add ) ) {
-				$html = $add;
+		if ( array_key_exists( $portletName, $sidebar_elements ) ) {
+			$element = $sidebar_elements[$portletName];
+			if ( !empty( $element ) ) {
+				$html = $element;
 				return true;
 			}
 		}
@@ -164,12 +164,32 @@ class WimaAdvertisingHooks implements
 			switch ( $key ) {
 				case 'AD1' :
 					if ( self::isPresentAd( $user, 'side1' ) ) {
+						// Dirty hack for skin Timeless
+						if ( $skin->getSkinName() === 'timeless' ) {
+							$value = [
+								0 => [
+									'text'   => $skin->msg( 'wimaadvertising-advertising' )->text(),
+									'id'     => 'n-advertising',
+									'active' => true
+								]
+							];
+						}
 						$newbar[$_key1] = $value;
 					}
 					$_modified = true;
 				break;
 				case 'AD2' :
 					if ( self::isPresentAd( $user, 'side2' ) ) {
+						// Dirty hack for skin Timeless
+						if ( $skin->getSkinName() === 'timeless' ) {
+							$value = [
+								0 => [
+									'text'   => $skin->msg( 'wimaadvertising-advertising2' )->text(),
+									'id'     => 'n-advertising2',
+									'active' => true
+								]
+							];
+						}
 						$newbar[$_key2] = $value;
 					}
 					$_modified = true;
