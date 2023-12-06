@@ -62,7 +62,7 @@ call_user_func(
 $wgExtensionCredits['specialpage'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'WimaAdvertising',
-	'version'        => '2.2.0',
+	'version'        => '2.4.0',
 	'author'         => 'WikiMANNia',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:WimaAdvertising',
 	'descriptionmsg' => 'wimaadvertising-desc',
@@ -138,7 +138,7 @@ $wgMessagesDirs['WimaAdvertising'] = "$dtgIP/i18n";
 $wgExtensionMessagesFiles['WimaAdvertisingAliases'] = $dir . 'WimaAdvertising.alias.php';
 $wgAutoloadClasses['CustomAdvertisingSettings'] = "$dtgIP/includes/CustomAdvertisingSettings.php";
 $wgAutoloadClasses['GoogleAdvertisingSettings'] = "$dtgIP/includes/GoogleAdvertisingSettings.php";
-$wgAutoloadClasses['WimaAdvertisingHooks'] = "$dtgIP/includes/specials/HooksWimaAdvertising.php";
+$wgAutoloadClasses['WimaAdvertisingHooks'] = "$dtgIP/includes/Hooks.php";
 $wgHooks['BeforePageDisplay'][] = 'WimaAdvertisingHooks::onBeforePageDisplay';
 # Since the "SidebarBeforeOutput" hook was provided with REL1_25,
 # the hook "SkinBuildSidebar" is used as a workaround instead:

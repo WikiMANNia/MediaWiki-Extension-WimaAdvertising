@@ -1,4 +1,4 @@
-/* CSS for Timeless */
+/* CSS for Timeless skin */
 
 #p-wimaadvertising-advertising .portlet,
 #p-wimaadvertising-advertising2 .portlet,
@@ -30,4 +30,12 @@
 	margin: 0 0 0.5em;
 	padding: 0 0.2em 0 0.5em;
 	word-wrap: break-word;
+}
+#p-wimaadvertising-advertising .mw-portlet-body,
+#p-wimaadvertising-advertising2 .mw-portlet-body,
+#p-wimaadvertising-eventnote .mw-portlet-body,
+#p-wimaadvertising-eventnote2 .mw-portlet-body,
+#p-wimaadvertising-hint .mw-portlet-body,
+#p-wimaadvertising-hint2 .mw-portlet-body {
+	margin-bottom: 2em;
 }
