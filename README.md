@@ -61,22 +61,22 @@ Further skins may require additional adjustments, which would have to be made in
 ## Google AdSense
 
 Enable advertising. Default is `false`.
-* `$wmWimaGoogleAdSense = true;`
+* `$wmGoogleAdSense = true;`
 
 Disable advertising for logged-in users. Default is `false`.
-* `$wmWimaGoogleAdSenseAnonOnly = true;`
+* `$wmGoogleAdSenseAnonOnly = true;`
 
 ### Mandatory parameters
 Replace this with your own publisher ID (google_ad_client / data-ad-client)
-* `$wmWimaGoogleAdSenseClient = 'none';` // Client ID for your AdSense script (example: ca-pub-1234546403419693)
+* `$wmGoogleAdSenseClient = 'none';` // Client ID for your AdSense script (example: ca-pub-1234546403419693)
 (You can get your publisher ID and ad unit ID from the "Get code" page: Get and copy the ad code.)
 
 ### Ad units
 Define up to four ad units:
-* `$wmWimaGoogleAdSense_AD1= [ 'slotid 1', 145, 260 ];`
-* `$wmWimaGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
-* `$wmWimaGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
-* `$wmWimaGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
+* `$wmGoogleAdSense_AD1= [ 'slotid 1', 145, 260 ];`
+* `$wmGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
+* `$wmGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
 Replace the first value with your AdSense ad unit ID (google_ad_slot / data-ad-slot) for each ad unit. The Slot ID for your AdSense script is for example `1234580893`.
 
 Also specify the width and the height of the AdSense unit, specified in your AdSense account (google_ad_width / data-ad-width, google_ad_height / data-ad-height).
@@ -85,16 +85,16 @@ Also specify the width and the height of the AdSense unit, specified in your AdS
 Add any of the optional settings below – if your settings deviate from the defaults:
 
 This can be anything you like. Default is `none`.
-* `$wmWimaGoogleAdSenseID = 'none';`
+* `$wmGoogleAdSenseID = 'none';`
 
 Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
-* `$wmWimaGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/show_ads.js';`
+* `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/show_ads.js';`
 
 Text coding. Default is `utf8`.
-* `$wmWimaGoogleAdSenseEncoding = 'utf8';`
+* `$wmGoogleAdSenseEncoding = 'utf8';`
 
-Advertising language. Default is `$wmLanguageCode`.
-* `$wmWimaGoogleAdSenseLanguage = 'en';`
+Advertising language. Default is `$wgLanguageCode`.
+* `$wmGoogleAdSenseLanguage = 'en';`
 
 ## Compatibility
 

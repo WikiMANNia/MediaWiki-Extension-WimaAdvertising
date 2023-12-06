@@ -147,6 +147,11 @@ class WimaAdvertisingHooks implements
 		$_key2 = 'wimaadvertising-' . self::getAdType( $user, 'side2' );
 		// Dirty hack:
 		$_key2 .= '2';
+		$empty_item = [
+			'text'   => '',
+			'id'     => 'n-advertising',
+			'active' => true
+		];
 
 		if ( !self::isActive( $user ) ) {
 			// Wenn die Erweiterung deaktiviert wurde, bleibt als Aufgabe, die
@@ -166,13 +171,7 @@ class WimaAdvertisingHooks implements
 					if ( self::isPresentAd( $user, 'side1' ) ) {
 						// Dirty hack for skin Timeless
 						if ( $skin->getSkinName() === 'timeless' ) {
-							$value = [
-								0 => [
-									'text'   => ' ',
-									'id'     => 'n-advertising',
-									'active' => true
-								]
-							];
+							$value = [ $empty_item ];
 						}
 						$newbar[$_key1] = $value;
 					}
@@ -182,13 +181,7 @@ class WimaAdvertisingHooks implements
 					if ( self::isPresentAd( $user, 'side2' ) ) {
 						// Dirty hack for skin Timeless
 						if ( $skin->getSkinName() === 'timeless' ) {
-							$value = [
-								0 => [
-									'text'   => ' ',
-									'id'     => 'n-advertising2',
-									'active' => true
-								]
-							];
+							$value = [ $empty_item ];
 						}
 						$newbar[$_key2] = $value;
 					}
@@ -221,12 +214,12 @@ class WimaAdvertisingHooks implements
 			if ( $type === 'bottom' ) {
 				$options['id'] = 'siteNotice';
 			}
+			$html_code = self::getAdCode( $user, $type );
 
 			return Html::rawElement( 'div', $options,
 						Html::rawElement( 'p', [], $title . ':' ).
-						Html::rawElement( 'div', [ 'style' => $style2 ], self::getAdCode( $user, $type )
-					)
-				);
+						Html::rawElement( 'div', [ 'style' => $style2 ], $html_code )
+					);
 		}
 		return '';
 	}
