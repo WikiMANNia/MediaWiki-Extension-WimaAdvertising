@@ -168,7 +168,7 @@ class WimaAdvertisingHooks implements
 						if ( $skin->getSkinName() === 'timeless' ) {
 							$value = [
 								0 => [
-									'text'   => $skin->msg( 'wimaadvertising-advertising' )->text(),
+									'text'   => ' ',
 									'id'     => 'n-advertising',
 									'active' => true
 								]
@@ -184,7 +184,7 @@ class WimaAdvertisingHooks implements
 						if ( $skin->getSkinName() === 'timeless' ) {
 							$value = [
 								0 => [
-									'text'   => $skin->msg( 'wimaadvertising-advertising2' )->text(),
+									'text'   => ' ',
 									'id'     => 'n-advertising2',
 									'active' => true
 								]
