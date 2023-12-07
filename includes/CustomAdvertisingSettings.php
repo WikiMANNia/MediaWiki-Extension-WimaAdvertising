@@ -80,8 +80,8 @@ class CustomAdvertisingSettings {
 	}
 
 	/**
-	 * $type: string
-	 * return: string
+	 * @param string $key
+	 * @return string
 	 */
 	public static function getAdCode( $key ) {
 
@@ -97,8 +97,20 @@ class CustomAdvertisingSettings {
 	}
 
 	/**
-	 * $type: string
-	 * return: bool
+	 * @param bool $user_LoggedIn
+	 * @return bool
+	 */
+	public static function isActive( $user ) {
+
+ 		if ( self::getInstance()->mActive ) {
+			return ( $user->isAnon() || !self::getInstance()->mAnonOnly );
+ 		}
+		return false;
+	}
+
+	/**
+	 * @param string $key
+	 * @return bool
 	 */
 	public static function isPresentAd( $key ) {
 
@@ -114,20 +126,8 @@ class CustomAdvertisingSettings {
 	}
 
 	/**
-	 * bool $user_LoggedIn
-	 * return: bool
-	 */
-	public static function isActive( $user ) {
-
- 		if ( self::getInstance()->mActive ) {
-			return ( $user->isAnon() || !self::getInstance()->mAnonOnly );
- 		}
-		return false;
-	}
-
-	/**
-	 * $type: string
-	 * return: string
+	 * @param string $key
+	 * @return string
 	 */
 	public static function getAdStyle( $key ) {
 
@@ -144,8 +144,8 @@ class CustomAdvertisingSettings {
 	}
 
 	/**
-	 * $type: string
-	 * return: string
+	 * @param string $key
+	 * @return string
 	 */
 	public static function getAdType( $key ) {
 
@@ -162,8 +162,8 @@ class CustomAdvertisingSettings {
 	}
 
 	/**
-	 * $skinname: string
-	 * return: bool
+	 * $param string $key (skinname)
+	 * @return bool
 	 */
 	public static function isSupportedSkin( $key ) {
 		return in_array( $key, [ 'cologneblue', 'minerva', 'modern', 'monobook', 'timeless', 'vector', 'vector-2022' ] );
