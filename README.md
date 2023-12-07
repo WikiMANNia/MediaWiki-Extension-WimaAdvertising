@@ -143,3 +143,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 2.4.1
 
 - Dirty hack for skin [Timeless](https://www.mediawiki.org/wiki/Skin:Timeless).
+
+2.5.0
+
+- Place JavaScript for GoogleAdSense in `<head>` section.
