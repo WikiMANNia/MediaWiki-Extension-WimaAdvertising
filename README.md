@@ -71,16 +71,6 @@ Replace this with your own publisher ID (google_ad_client / data-ad-client)
 * `$wmGoogleAdSenseClient = 'none';` // Client ID for your AdSense script (example: ca-pub-1234546403419693)
 (You can get your publisher ID and ad unit ID from the "Get code" page: Get and copy the ad code.)
 
-### Ad units
-Define up to four ad units:
-* `$wmGoogleAdSense_AD1= [ 'slotid 1', 145, 260 ];`
-* `$wmGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
-* `$wmGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
-* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
-Replace the first value with your AdSense ad unit ID (google_ad_slot / data-ad-slot) for each ad unit. The Slot ID for your AdSense script is for example `1234580893`.
-
-Also specify the width and the height of the AdSense unit, specified in your AdSense account (google_ad_width / data-ad-width, google_ad_height / data-ad-height).
-
 ### Optional parameters
 Add any of the optional settings below – if your settings deviate from the defaults:
 
@@ -95,6 +85,16 @@ Text coding. Default is `utf8`.
 
 Advertising language. Default is `$wgLanguageCode`.
 * `$wmGoogleAdSenseLanguage = 'en';`
+
+### Ad units
+Define up to four ad units:
+* `$wmGoogleAdSense_AD1= [ 'slotid 1', 145, 260 ];`
+* `$wmGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
+* `$wmGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
+Replace the first value with your AdSense ad unit ID (google_ad_slot / data-ad-slot) for each ad unit. The Slot ID for your AdSense script is for example `1234580893`.
+
+Also specify the width and the height of the AdSense unit, specified in your AdSense account (google_ad_width / data-ad-width, google_ad_height / data-ad-height). Values such as 'auto', '100%', '60%' etc. are accepted.
 
 ## Compatibility
 This extension works from REL1_23 and has been tested up to MediaWiki version `1.37`.

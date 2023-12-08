@@ -105,8 +105,8 @@ class GoogleAdvertisingSettings {
 	}
 
 	/**
-	 * $type: string
-	 * return: string
+	 * @param string $key
+	 * @return string
 	 */
 	public static function getAdCode( $key ) {
 
@@ -123,8 +123,20 @@ class GoogleAdvertisingSettings {
 	}
 
 	/**
-	 * $type: string
-	 * return: bool
+	 * @param bool $user_LoggedIn
+	 * @return bool
+	 */
+	public static function isActive( $user ) {
+
+ 		if ( self::getInstance()->mActive ) {
+			return ( $user->isAnon() || !self::getInstance()->mAnonOnly );
+ 		}
+		return false;
+	}
+
+	/**
+	 * @param string $key
+	 * @return bool
 	 */
 	public static function isPresentAd( $key ) {
 
@@ -141,28 +153,16 @@ class GoogleAdvertisingSettings {
 	}
 
 	/**
-	 * bool $user_LoggedIn
-	 * return: bool
-	 */
-	public static function isActive( $user ) {
-
- 		if ( self::getInstance()->mActive ) {
-			return ( $user->isAnon() || !self::getInstance()->mAnonOnly );
- 		}
-		return false;
-	}
-
-	/**
-	 * $type: string
-	 * return: string
+	 * @param string $type
+	 * @return string
 	 */
 	private static function getAdStyle( $type ) {
 		return '';
 	}
 
 	/**
-	 * $type: string
-	 * return: string
+	 * @param string $type
+	 * @return string
 	 */
 	public static function getAdType( $type ) {
 
@@ -170,7 +170,8 @@ class GoogleAdvertisingSettings {
 	}
 
 	/**
-	 * return: int|'auto'|false
+	 * @param int|string $value
+	 * @return int|'auto'|false
 	 */
 	private static function getSizeValue( $value ) {
 
@@ -188,7 +189,8 @@ class GoogleAdvertisingSettings {
 	}
 
 	/**
-	 * return: false|array
+	 * @param array $array
+	 * @return false|array
 	 */
 	private static function getAdConfigArray( $array ) {
 
@@ -225,7 +227,9 @@ class GoogleAdvertisingSettings {
 	}
 
 	/**
-	 * return: string
+	 * @param array $general_data
+	 * @param array $ad_data
+	 * @return string
 	 */
 	private static function getAdCodePrivate( $general_data, $ad_data ) {
 		$script_pattern = '<script type="text/javascript"><!--
