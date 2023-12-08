@@ -123,6 +123,24 @@ class GoogleAdvertisingSettings {
 	}
 
 	/**
+	 * return: string|false
+	 */
+	public static function getJavaCode() {
+
+		$general_data = self::getInstance()->mConfigArray;
+		$javacode_date = $general_data['ad_src'];
+		$script_code = false;
+
+		if ( !empty( $javacode_date ) ) {
+			$script_pattern = '<script type="text/javascript" src="%1$s">
+</script>';
+			$script_code = sprintf( $script_pattern, $javacode_date );
+		}
+
+		return $script_code;
+	}
+
+	/**
 	 * @param bool $user_LoggedIn
 	 * @return bool
 	 */
@@ -241,8 +259,6 @@ google_ad_height = %5$d;
 google_language = "%6$s";
 google_encoding = "%7$s";
 // -->
-</script>
-<script type="text/javascript" src="%8$s">
 </script>';
 		$script_code = sprintf( $script_pattern,
 				$general_data['ad_client'],
@@ -251,8 +267,7 @@ google_encoding = "%7$s";
 				$ad_data['width'],
 				$ad_data['height'],
 				$general_data['ad_language'],
-				$general_data['ad_encoding'],
-				$general_data['ad_src']
+				$general_data['ad_encoding']
 			);
 
 		return $script_code;

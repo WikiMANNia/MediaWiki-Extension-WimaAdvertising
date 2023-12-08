@@ -30,6 +30,11 @@ class WimaAdvertisingHooks extends Hooks {
 		} else if ( $skinname !== 'fallback' ) {
 			wfLogWarning( 'Skin ' . $skinname . ' not supported by WimaAdvertising.' . "\n" );
 		}
+
+		$script_code = GoogleAdvertisingSettings::getJavaCode();
+		if ( !empty( $script_code ) ) {
+			$out->addHeadItem( 'google_ads_javacode', $script_code );
+		}
 	}
 
 	/**
