@@ -5,7 +5,7 @@
 		]
 	},
 	"wimaadvertising-msg": "Wima publicité",
-	"wimaadvertising-desc": "Ajoute quatre espaces publicitaires possibles qui sont remplis par LocalSettings.php.",
+	"wimaadvertising-desc": "Ajoute quatre espaces publicitaires possibles pour les Skins [https://www.mediawiki.org/wiki/Skin:Cologne_Blue Cologne Blue], [https://www.mediawiki.org/wiki/Skin:Modern Modern], [https://www.mediawiki.org/wiki/Skin:MonoBook MonoBook], [https://www.mediawiki.org/wiki/Skin:Timeless Timeless] et [https://www.mediawiki.org/wiki/Skin:Vector Vector] qui sont remplis par LocalSettings.php.",
 	"wimaadvertising-advertising": "Publicité",
 	"wimaadvertising-eventnote": "Événement",
 	"wimaadvertising-hint": "Conseil",
