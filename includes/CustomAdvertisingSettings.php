@@ -17,8 +17,8 @@ class CustomAdvertisingSettings {
  	private $mAnonOnly;
 
  	private $mDefaultType;
- 	private $mStyleArray;
- 	private $mTypeArray;
+ 	private $mStyleArray = [];
+ 	private $mTypeArray = [];
 
  	private $mCodeArray;
 
@@ -43,15 +43,16 @@ class CustomAdvertisingSettings {
 		global $wmSidebarAd1Style,   $wmSidebarAd1Type;
 		global $wmSidebarAd2Style,   $wmSidebarAd2Type;
 
-		$this->mDefaultType = 'advertising';
 		$this->mStyleArray['bottom'] = empty( $wmBannerBottomStyle ) ? '' : $wmBannerBottomStyle;
 		$this->mStyleArray['top']    = empty( $wmBannerTopStyle    ) ? '' : $wmBannerTopStyle;
 		$this->mStyleArray['side1']  = empty( $wmSidebarAd1Style   ) ? '' : $wmSidebarAd1Style;
 		$this->mStyleArray['side2']  = empty( $wmSidebarAd2Style   ) ? '' : $wmSidebarAd2Style;
-		$this->mTypeArray['bottom'] = empty( $wmBannerBottomType ) ? $this->mDefaultType : $wmBannerBottomType;
-		$this->mTypeArray['top']    = empty( $wmBannerTopType    ) ? $this->mDefaultType : $wmBannerTopType;
-		$this->mTypeArray['side1']  = empty( $wmSidebarAd1Type   ) ? $this->mDefaultType : $wmSidebarAd1Type;
-		$this->mTypeArray['side2']  = empty( $wmSidebarAd2Type   ) ? $this->mDefaultType : $wmSidebarAd2Type;
+		$this->mDefaultType = 'advertising';
+		$validTypes = [ 'blank', 'eventnote', 'hint', $this->mDefaultType ];
+		$this->mTypeArray['bottom'] = in_array( $wmBannerBottomType, $validTypes ) ? $wmBannerBottomType : $this->mDefaultType;
+		$this->mTypeArray['top']    = in_array( $wmBannerTopType,    $validTypes ) ? $wmBannerTopType    : $this->mDefaultType;
+		$this->mTypeArray['side1']  = in_array( $wmSidebarAd1Type,   $validTypes ) ? $wmSidebarAd1Type   : $this->mDefaultType;
+		$this->mTypeArray['side2']  = in_array( $wmSidebarAd2Type,   $validTypes ) ? $wmSidebarAd2Type   : $this->mDefaultType;
 
 
 		// HTML-Snippet für jeden Werbeblock, falls jedoch ungültige Parameter auf false setzen

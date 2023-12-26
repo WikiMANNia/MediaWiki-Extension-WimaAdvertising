@@ -3,7 +3,7 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.5.0",
+	"version": "2.6.0",
 	"requires": {
 		"MediaWiki": ">= 1.35.0"
 	},
