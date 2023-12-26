@@ -20,10 +20,10 @@ Enable advertising. Default is `false`.
 Disable advertising for logged-in users. Default is `false`.
 * `$wmWimaAdvertisingAnonOnly = true;`
 
-Two advertising spaces can also be used as event information. These variables have to be set:
+The slots can be labeled as Advert, Eventnote, Hint or let be blank. These variables have to be set:
 
 * `$wmBannerTopType = 'advertising';`
-* `$wmBannerBottomType = 'advertising';`
+* `$wmBannerBottomType = 'blank';`
 * `$wmSidebarAd1Type = 'eventnote';`
 * `$wmSidebarAd2Type = 'hint';`
 
@@ -142,3 +142,7 @@ This extension works from REL1_23 and has been tested up to MediaWiki version `1
 2.5.0
 
 - Place JavaScript for GoogleAdSense in `<head>` section.
+
+2.6.0
+
+- The label of Wima slots can be set as `blank`.

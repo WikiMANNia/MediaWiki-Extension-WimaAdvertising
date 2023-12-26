@@ -62,7 +62,7 @@ call_user_func(
 $wgExtensionCredits['specialpage'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'WimaAdvertising',
-	'version'        => '2.5.0',
+	'version'        => '2.6.0',
 	'author'         => 'WikiMANNia',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:WimaAdvertising',
 	'descriptionmsg' => 'wimaadvertising-desc',
@@ -155,22 +155,22 @@ $dtgScriptPath = $wgScriptPath . '/extensions/WimaAdvertising';
 ##
 
 // Global settings
-$wgBannerBottomCode = "";
-$wgBannerBottomStyle = "border:1px solid black; text-align:center;";
-$wgBannerBottomType = "advertising";
-$wgBannerTopCode = "";
-$wgBannerTopStyle = "border:1px solid black; text-align:center;";
-$wgBannerTopType = "advertising";
-$wgSidebarAd1Code = "";
-$wgSidebarAd1Type = "advertising";
-$wgSidebarAd2Code = "";
-$wgSidebarAd2Type = "advertising";
-$wgWimaAdvertisingAnonOnly = false;
-$wgWimaGoogleAdSenseClient = "none";
-$wgWimaGoogleAdSenseSlot = "none";
-$wgWimaGoogleAdSenseSrc = "//pagead2.googlesyndication.com/pagead/show_ads.js";
-$wgWimaGoogleAdSenseID = "none";
-$wgWimaGoogleAdSenseAnonOnly = false;
+$wmBannerBottomCode = "";
+$wmBannerBottomStyle = "border:1px solid black; text-align:center;";
+$wmBannerBottomType = "advertising";
+$wmBannerTopCode = "";
+$wmBannerTopStyle = "border:1px solid black; text-align:center;";
+$wmBannerTopType = "advertising";
+$wmSidebarAd1Code = "";
+$wmSidebarAd1Type = "advertising";
+$wmSidebarAd2Code = "";
+$wmSidebarAd2Type = "advertising";
+$wmWimaAdvertisingAnonOnly = false;
+$wmGoogleAdSenseClient = "none";
+$wmGoogleAdSenseSlot = "none";
+$wmGoogleAdSenseSrc = "//pagead2.googlesyndication.com/pagead/show_ads.js";
+$wmGoogleAdSenseID = "none";
+$wmGoogleAdSenseAnonOnly = false;
 ###
 
 
