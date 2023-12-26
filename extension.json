@@ -18,11 +18,11 @@
 		"SidebarAd2Code": "",
 		"SidebarAd2Type": "advertising",
 		"WimaAdvertisingAnonOnly": false,
-		"WimaGoogleAdSenseClient": "none",
-		"WimaGoogleAdSenseSlot": "none",
-		"WimaGoogleAdSenseSrc": "//pagead2.googlesyndication.com/pagead/show_ads.js",
-		"WimaGoogleAdSenseID": "none",
-		"WimaGoogleAdSenseAnonOnly": false
+		"GoogleAdSenseClient": "none",
+		"GoogleAdSenseSlot": "none",
+		"GoogleAdSenseSrc": "//pagead2.googlesyndication.com/pagead/show_ads.js",
+		"GoogleAdSenseID": "none",
+		"GoogleAdSenseAnonOnly": false
 	},
 	"manifest_version": 1,
 	"type": "other",

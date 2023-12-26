@@ -131,7 +131,7 @@ class GoogleAdvertisingSettings {
 		$javacode_date = $general_data['ad_src'];
 		$script_code = false;
 
-		if ( !empty( $javacode_date ) ) {
+		if ( self::getInstance()->mActive && !empty( $javacode_date ) ) {
 			$script_pattern = '<script type="text/javascript" src="%1$s">
 </script>';
 			$script_code = sprintf( $script_pattern, $javacode_date );

@@ -20,7 +20,7 @@ Enable advertising. Default is `false`.
 Disable advertising for logged-in users. Default is `false`.
 * `$wmWimaAdvertisingAnonOnly = true;`
 
-The slots can be labeled as Advert, Eventnote, Hint or let be blank. These variables have to be set:
+The slots can be labelled as Advert, Eventnote, Hint or let be blank. These variables have to be set:
 
 * `$wmBannerTopType = 'advertising';`
 * `$wmBannerBottomType = 'blank';`
