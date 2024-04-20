@@ -1,10 +1,10 @@
 # MediaWiki Wima-Advertising
 
-Die Pflege der MediaWiki-Erweiterung [WimaAdvertising](https://www.mediawiki.org/wiki/Extension:WimaAdvertising) wird von WikiMANNia verwaltet.
+Die Pflege der MediaWiki-Erweiterung [WimaAdvertising](https://www.mediawiki.org/wiki/Extension:WimaAdvertising/de) wird von WikiMANNia verwaltet.
 
 The maintenance of the MediaWiki extension [WimaAdvertising](https://www.mediawiki.org/wiki/Extension:WimaAdvertising) is managed by WikiMANNia.
 
-El mantenimiento de la extensión de MediaWiki [WimaAdvertising](https://www.mediawiki.org/wiki/Extension:WimaAdvertising) está gestionado por WikiMANNia.
+El mantenimiento de la extensión de MediaWiki [WimaAdvertising](https://www.mediawiki.org/wiki/Extension:WimaAdvertising/es) está gestionado por WikiMANNia.
 
 ## Description
 
@@ -151,3 +151,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 2.6.0
 
 - The label of Wima slots can be set as `blank`.
+
+2.7.0
+
+- Support added for Skin [Monaco](https://www.mediawiki.org/wiki/Skin:Monaco).

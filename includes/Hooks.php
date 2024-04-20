@@ -202,6 +202,32 @@ class WimaAdvertisingHooks implements
 		}
 	}
 
+	/**
+	 * Load sidebar ad for Monaco skin.
+	 *
+	 * @return bool
+	 */
+	public static function onMonacoSidebarEnd( $skin, &$html ) {
+
+		$user = RequestContext::getMain()->getUser();
+		$adCode1 = self::getAdCode( $user, 'side1' );
+		$adCode2 = self::getAdCode( $user, 'side2' );
+		if ( !empty( $adCode1 ) ) {
+			$adKey = 'wimaadvertising-' . self::getAdType( $user, 'side1' );
+			$adTitle = wfMessage( $adKey )->text();
+			$html .= "<p>$adTitle</p>";
+			$html .= self::getAdBox( $adCode1 );
+			if ( !empty( $adCode2 ) ) {
+				$adKey = 'wimaadvertising-' . self::getAdType( $user, 'side2' );
+				$adTitle = wfMessage( $adKey )->text();
+				$html .= "<p>$adTitle</p>";
+				$html .= self::getAdBox( $adCode2 );
+			}
+		}
+
+		return true;
+	}
+
 	private static function getAdBox( $html ) {
 		return Html::rawElement( 'div', [ 'class' => 'wima-adbox' ], $html );
 	}
