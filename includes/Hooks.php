@@ -207,22 +207,36 @@ class WimaAdvertisingHooks implements
 	 *
 	 * @return bool
 	 */
+	public static function onMonacoStaticboxEnd( $skin, &$html ) {
+
+		$user = RequestContext::getMain()->getUser();
+		$tag  = 'side1';
+		$adCode = self::getAdCode( $user, $tag );
+		if ( !empty( $adCode ) ) {
+			$adKey = 'wimaadvertising-' . self::getAdType( $user, $tag );
+			$adTitle = wfMessage( $adKey )->text();
+			$html .= "<p>$adTitle</p>";
+			$html .= self::getAdBox( $adCode );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Load sidebar ad for Monaco skin.
+	 *
+	 * @return bool
+	 */
 	public static function onMonacoSidebarEnd( $skin, &$html ) {
 
 		$user = RequestContext::getMain()->getUser();
-		$adCode1 = self::getAdCode( $user, 'side1' );
-		$adCode2 = self::getAdCode( $user, 'side2' );
-		if ( !empty( $adCode1 ) ) {
-			$adKey = 'wimaadvertising-' . self::getAdType( $user, 'side1' );
+		$tag  = 'side2';
+		$adCode = self::getAdCode( $user, $tag );
+		if ( !empty( $adCode ) ) {
+			$adKey = 'wimaadvertising-' . self::getAdType( $user, $tag );
 			$adTitle = wfMessage( $adKey )->text();
 			$html .= "<p>$adTitle</p>";
-			$html .= self::getAdBox( $adCode1 );
-			if ( !empty( $adCode2 ) ) {
-				$adKey = 'wimaadvertising-' . self::getAdType( $user, 'side2' );
-				$adTitle = wfMessage( $adKey )->text();
-				$html .= "<p>$adTitle</p>";
-				$html .= self::getAdBox( $adCode2 );
-			}
+			$html .= self::getAdBox( $adCode );
 		}
 
 		return true;

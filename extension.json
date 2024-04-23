@@ -86,6 +86,7 @@
 	"Hooks": {
 	    "BeforePageDisplay": "main",
 		"MonacoSidebarEnd": "main",
+		"MonacoStaticboxEnd": "main",
 		"SidebarBeforeOutput": "main",
 		"SiteNoticeAfter": "main",
 	    "SkinAfterContent": "main",
