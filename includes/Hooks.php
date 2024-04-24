@@ -60,19 +60,20 @@ class WimaAdvertisingHooks implements
 	 */
 	public function onSiteNoticeAfter( &$siteNotice, $skin ) {
 
+		$tag = 'top';
 		$issetSitenoticeBox    = !empty( $siteNotice );
-		$issetAdvertisementBox =  self::isPresentAd( $skin->getUser(), 'top' );
+		$issetAdvertisementBox =  self::isPresentAd( $skin->getUser(), $tag );
 
 		if ( $issetSitenoticeBox && $issetAdvertisementBox ) {
 			if ( rand(0, 1) ) {
 #				$siteNotice = self::getSitenoticeBox();
 			} else {
-				$siteNotice = self::getAdvertisementBox( 'top',  $skin );
+				$siteNotice = self::getAdvertisementBox( $skin, $tag );
 			}
 		} elseif ( $issetSitenoticeBox ) {
 #			$siteNotice = self::getSitenoticeBox();
 		} elseif ( $issetAdvertisementBox ) {
-			$siteNotice = self::getAdvertisementBox( 'top',  $skin );
+			$siteNotice = self::getAdvertisementBox( $skin, $tag );
 		}
 	}
 
@@ -88,8 +89,9 @@ class WimaAdvertisingHooks implements
 	 */
 	public function onSkinAfterContent( &$data, $skin ) {
 
-		if ( self::isPresentAd( $skin->getUser(), 'bottom' ) ) {
-			$data .= self::getAdvertisementBox( 'bottom', $skin );
+		$tag = 'bottom';
+		if ( self::isPresentAd( $skin->getUser(), $tag ) ) {
+			$data .= self::getAdvertisementBox( $skin, $tag );
 		}
 		return true;
 	}
@@ -209,28 +211,17 @@ class WimaAdvertisingHooks implements
 	 */
 	public static function onMonacoStaticboxEnd( $skin, &$html ) {
 
-		$user = RequestContext::getMain()->getUser();
-		$tag  = 'side1';
-		$adCode = self::getAdCode( $user, $tag );
-		if ( !empty( $adCode ) ) {
-			$adKey = 'wimaadvertising-' . self::getAdType( $user, $tag );
-			$adTitle = wfMessage( $adKey )->text();
-			$html .= "<p>$adTitle</p>";
-			$html .= self::getAdBox( $adCode );
-		}
-
-		return true;
+		return self::writeMonacoAd( $html, 'side1' );
 	}
 
-	/**
-	 * Load sidebar ad for Monaco skin.
-	 *
-	 * @return bool
-	 */
 	public static function onMonacoSidebarEnd( $skin, &$html ) {
 
+		return self::writeMonacoAd( $html, 'side2' );
+	}
+
+	private static function writeMonacoAd( &$html, $tag ) {
+
 		$user = RequestContext::getMain()->getUser();
-		$tag  = 'side2';
 		$adCode = self::getAdCode( $user, $tag );
 		if ( !empty( $adCode ) ) {
 			$adKey = 'wimaadvertising-' . self::getAdType( $user, $tag );
@@ -246,20 +237,20 @@ class WimaAdvertisingHooks implements
 		return Html::rawElement( 'div', [ 'class' => 'wima-adbox' ], $html );
 	}
 
-	private static function getAdvertisementBox( $type, $skin ) {
+	private static function getAdvertisementBox( $skin, $tag ) {
 
 		$user = $skin->getUser();
 
-		if ( self::isPresentAd( $user, $type ) ) {
+		if ( self::isPresentAd( $user, $tag ) ) {
 			$style1 = 'clear:both; margin-top:1em; text-align:left;';
-			$style2 = self::getAdStyle( $type );
-			$title  = self::getAdType( $user, $type );
+			$style2 = self::getAdStyle( $tag );
+			$title  = self::getAdType( $user, $tag );
 			$title  = $skin->msg( 'wimaadvertising-' . $title )->text();
 			$options['style'] = $style1;
-			if ( $type === 'bottom' ) {
+			if ( $tag === 'bottom' ) {
 				$options['id'] = 'siteNotice';
 			}
-			$html_code = self::getAdCode( $user, $type );
+			$html_code = self::getAdCode( $user, $tag );
 
 			return Html::rawElement( 'div', $options,
 						Html::rawElement( 'p', [], $title . ':' ).
@@ -275,63 +266,63 @@ class WimaAdvertisingHooks implements
 			GoogleAdvertisingSettings::isActive( $user ) );
 	}
 
-	private static function isPresentAd( $user, $type ) {
+	private static function isPresentAd( $user, $tag ) {
 
 		$present_ad_found = false;
 
 		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			// Defined ad should be only used, if custom ad is activated
-			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
+			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $tag );
 		}
 		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
-			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
+			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $tag );
 		}
 		return $present_ad_found;
 	}
 
-	private static function getAdCode( $user, $type ) {
+	private static function getAdCode( $user, $tag ) {
 
 		$return_value = '';
 		$present_ad_found = false;
 
 		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			// Defined ad should be only used, if custom ad is activated
-			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
+			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = CustomAdvertisingSettings::getAdCode( $type );
+				$return_value = CustomAdvertisingSettings::getAdCode( $tag );
 			}
 		}
 		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
-			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
+			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = GoogleAdvertisingSettings::getAdCode( $type );
+				$return_value = GoogleAdvertisingSettings::getAdCode( $tag );
 			}
 		}
 		return $return_value;
 	}
 
-	private static function getAdStyle( $type ) {
-		return CustomAdvertisingSettings::getAdStyle( $type );
+	private static function getAdStyle( $tag ) {
+		return CustomAdvertisingSettings::getAdStyle( $tag );
 	}
 
-	private static function getAdType( $user, $type ) {
+	private static function getAdType( $user, $tag ) {
 
 		$return_value = '';
 		$present_ad_found = false;
 
 		if ( CustomAdvertisingSettings::isActive( $user ) ) {
-			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $type );
+			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = CustomAdvertisingSettings::getAdType( $type );
+				$return_value = CustomAdvertisingSettings::getAdType( $tag );
 			}
 		}
 		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
-			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $type );
+			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = GoogleAdvertisingSettings::getAdType( $type );
+				$return_value = GoogleAdvertisingSettings::getAdType( $tag );
 			}
 		}
 		return $return_value;
