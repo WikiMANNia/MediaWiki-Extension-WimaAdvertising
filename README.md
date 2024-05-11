@@ -47,7 +47,7 @@ The advertising space 1 alternates randomly with Sitenotice. Advertising space 2
 
 Enable advertising. Default is `false`.
 
-* `$WimaAdvertising = true;`
+* `$wmWimaAdvertising = true;`
 
 Disable advertising for logged-in users. Default is `false`.
 
