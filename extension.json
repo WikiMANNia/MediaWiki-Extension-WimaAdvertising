@@ -3,10 +3,11 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.6.0",
+	"version": "2.7.0",
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
 	"config": {
+		"_prefix": "wm",
 		"BannerBottomCode": "",
 		"BannerBottomStyle": "border:1px solid black; text-align:center;",
 		"BannerBottomType": "advertising",
@@ -33,6 +34,8 @@
 	},
 	"Hooks": {
 	    "BeforePageDisplay": "WimaAdvertisingHooks::onBeforePageDisplay",
+		"MonacoSidebarEnd": "WimaAdvertisingHooks::onMonacoSidebarEnd",
+		"MonacoStaticboxEnd": "WimaAdvertisingHooks::onMonacoSidebarEnd",
 		"SidebarBeforeOutput": "WimaAdvertisingHooks::onSidebarBeforeOutput",
 		"SiteNoticeAfter": "WimaAdvertisingHooks::onSiteNoticeAfter",
 	    "SkinAfterContent": "WimaAdvertisingHooks::onSkinAfterContent"
@@ -55,6 +58,9 @@
 		},
 		"ext.wimaadvertising.modern": {
 			"styles": "css/Modern.css"
+		},
+		"ext.wimaadvertising.monaco": {
+			"styles": "css/Monaco.css"
 		},
 		"ext.wimaadvertising.monobook": {
 			"styles": "css/Monobook.css"

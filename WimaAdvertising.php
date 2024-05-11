@@ -140,6 +140,8 @@ $wgAutoloadClasses['CustomAdvertisingSettings'] = "$dtgIP/includes/CustomAdverti
 $wgAutoloadClasses['GoogleAdvertisingSettings'] = "$dtgIP/includes/GoogleAdvertisingSettings.php";
 $wgAutoloadClasses['WimaAdvertisingHooks'] = "$dtgIP/includes/Hooks.php";
 $wgHooks['BeforePageDisplay'][] = 'WimaAdvertisingHooks::onBeforePageDisplay';
+$wgHooks['MonacoSidebarEnd'][] = 'WimaAdvertisingHooks::onMonacoSidebarEnd';
+$wgHooks['MonacoStaticboxEnd'][] = 'WimaAdvertisingHooks::onMonacoStaticboxEnd';
 # Since the "SidebarBeforeOutput" hook was provided with REL1_25,
 # the hook "SkinBuildSidebar" is used as a workaround instead:
 $wgHooks['SkinBuildSidebar'][] = 'WimaAdvertisingHooks::onSidebarBeforeOutput';
@@ -177,12 +179,12 @@ $wmGoogleAdSenseAnonOnly = false;
 $wgExtensionFunctions[] = 'setupWimaAdvertisingExtension';
 
 function setupWimaAdvertisingExtension() {
-	global $wgDisableWimaAdvertising, $wgVersion;
+	global $wmDisableWimaAdvertising, $wgVersion;
 
 	if ( version_compare( $wgVersion, '1.23', '<' ) ) {
 		die( 'This extension requires MediaWiki 1.23+' );
 	}
-	elseif ( $wgDisableWimaAdvertising === false ) {
+	elseif ( $wmDisableWimaAdvertising === false ) {
 		global $wgAvailableRights, $wgGroupPermissions, $wgLogTypes, $wgLogActionsHandlers;
 	}
 

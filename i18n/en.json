@@ -5,7 +5,7 @@
 		]
 	},
 	"wimaadvertising-msg": "Wima Advertising",
-	"wimaadvertising-desc": "Adds four possible advertising spaces for the Skins [https://www.mediawiki.org/wiki/Skin:Cologne_Blue Cologne Blue], [https://www.mediawiki.org/wiki/Skin:Modern Modern], [https://www.mediawiki.org/wiki/Skin:MonoBook MonoBook], [https://www.mediawiki.org/wiki/Skin:Timeless Timeless], and [https://www.mediawiki.org/wiki/Skin:Vector Vector] that are filled by LocalSettings.php.",
+	"wimaadvertising-desc": "Adds four possible advertising spaces for the Skins [https://www.mediawiki.org/wiki/Skin:Cologne_Blue Cologne Blue], [https://www.mediawiki.org/wiki/Skin:Modern Modern], [https://www.mediawiki.org/wiki/Skin:Monaco Monaco], [https://www.mediawiki.org/wiki/Skin:MonoBook MonoBook], [https://www.mediawiki.org/wiki/Skin:Timeless Timeless], and [https://www.mediawiki.org/wiki/Skin:Vector Vector] that are filled by LocalSettings.php.",
 	"wimaadvertising-advertising": "Advertising",
 	"wimaadvertising-blank": "",
 	"wimaadvertising-eventnote": "Event",
