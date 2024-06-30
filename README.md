@@ -151,3 +151,7 @@ This extension works from REL1_23 and has been tested up to MediaWiki version `1
 2.7.0
 
 - Support added for Skin [Monaco](https://www.mediawiki.org/wiki/Skin:Monaco).
+
+2.7.1
+
+- Avoid new line with `:` shown if label of Wima slots is set as to `blank`.
