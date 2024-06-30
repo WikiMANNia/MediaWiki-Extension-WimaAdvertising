@@ -252,10 +252,12 @@ class WimaAdvertisingHooks implements
 			}
 			$html_code = self::getAdCode( $user, $tag );
 
-			return Html::rawElement( 'div', $options,
-						Html::rawElement( 'p', [], $title . ':' ).
-						Html::rawElement( 'div', [ 'style' => $style2 ], $html_code )
-					);
+			$elemets = Html::rawElement( 'div', [ 'style' => $style2 ], $html_code );
+			if ( !empty( $title ) ) {
+				// if lable not set to 'blank'
+				$elemets = Html::rawElement( 'p', [], $title . ':' ) . $elemets;
+			}
+			return Html::rawElement( 'div', $options, $elemets );
 		}
 		return '';
 	}
