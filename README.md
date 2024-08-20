@@ -68,8 +68,8 @@ Disable advertising for logged-in users. Default is `false`.
 
 ### Mandatory parameters
 Replace this with your own publisher ID (google_ad_client / data-ad-client)
-* `$wmGoogleAdSenseClient = 'none';` // Client ID for your AdSense script (example: ca-pub-1234546403419693)
-(You can get your publisher ID and ad unit ID from the "Get code" page: Get and copy the ad code.)
+* `$wmGoogleAdSenseClient = 'none';` // Client ID for your AdSense script
+* `$wmGoogleAdSenseHost = 'none';` // Host ID for your AdSense script
 
 ### Ad units
 Define up to four ad units:
@@ -84,21 +84,12 @@ Also specify the width and the height of the AdSense unit, specified in your AdS
 ### Optional parameters
 Add any of the optional settings below – if your settings deviate from the defaults:
 
-This can be anything you like. Default is `none`.
-* `$wmGoogleAdSenseID = 'none';`
-
 Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
-* `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/show_ads.js';`
-
-Text coding. Default is `utf8`.
-* `$wmGoogleAdSenseEncoding = 'utf8';`
-
-Advertising language. Default is `$wgLanguageCode`.
-* `$wmGoogleAdSenseLanguage = 'en';`
+* `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';`
 
 ## Compatibility
 
-This extension works from REL1_35 and has been tested up to MediaWiki version `1.35.14`, `1.39.7` and `1.41.1`.
+This extension works from REL1_35 and has been tested up to MediaWiki version `1.35.14`, `1.39.8` and `1.42.1`.
 
 ## Version history
 
