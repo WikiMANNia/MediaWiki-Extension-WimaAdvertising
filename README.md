@@ -162,5 +162,4 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 
 2.8.0
 
-- Change `Google AdSense` code:
-[Ad Units and Code Generation](version="t-devsite-webserver-20240815-r00-rc00.462815510744624789) version "20240815-r00-rc00.462815510744624789"
+- Change `Google AdSense` code: [Ad Units and Code Generation](https://developers.google.com/adsense/host/adunits) version "20240815-r00-rc00.462815510744624789"
