@@ -87,6 +87,18 @@ Add any of the optional settings below – if your settings deviate from the def
 Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
 * `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';`
 
+GoogleAdSenseMode. Default is `normal`.
+* `$wmGoogleAdSenseMode = 'responsive`
+
+Text coding. Default is `utf8`.
+* `$wmGoogleAdSenseEncoding = 'utf8';` (GoogleAdSenseMode `normal` only)
+
+Advertising language. Default is `$wgLanguageCode`.
+* `$wmGoogleAdSenseLanguage = 'en';` (GoogleAdSenseMode `normal` only)
+
+This can be anything you like. Default is `none`.
+* `$wmGoogleAdSenseID = 'none';` (GoogleAdSenseMode `normal` only)
+
 ## Compatibility
 
 This extension works from REL1_35 and has been tested up to MediaWiki version `1.35.14`, `1.39.8` and `1.42.1`.
@@ -154,3 +166,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 2.8.0
 
 - Change `Google AdSense` code: [Ad Units and Code Generation](https://developers.google.com/adsense/host/adunits) version "20240815-r00-rc00.462815510744624789"
+
+2.8.1/2.8.2
+
+- Add `$wmGoogleAdSenseMode`

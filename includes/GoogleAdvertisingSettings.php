@@ -44,22 +44,26 @@ class GoogleAdvertisingSettings {
 		global $wmGoogleAdSense_AD2;
 
 		$this->mDefaultType = 'advertising';
-		$Ad_Bottom = self::getAdConfigArray( $wmGoogleAdSense_Bottom );
-		$Ad_Top    = self::getAdConfigArray( $wmGoogleAdSense_Top );
-		$Ad_AD1    = self::getAdConfigArray( $wmGoogleAdSense_AD1 );
-		$Ad_AD2    = self::getAdConfigArray( $wmGoogleAdSense_AD2 );
+		$Ad_Bottom = self::getAdConfigArray( $wmGoogleAdSense_Bottom, 'horizontal' );
+		$Ad_Top    = self::getAdConfigArray( $wmGoogleAdSense_Top, 'horizontal' );
+		$Ad_AD1    = self::getAdConfigArray( $wmGoogleAdSense_AD1, 'vertical' );
+		$Ad_AD2    = self::getAdConfigArray( $wmGoogleAdSense_AD2, 'vertical' );
 
 
 		// 3. Allgemeine Variablen für alle Werbeblöcke
 		global $wmGoogleAdSenseClient;
 		global $wmGoogleAdSenseHost;
+		global $wmGoogleAdSenseMode;
 		global $wmGoogleAdSenseSrc;
+		global $wmGoogleAdSenseID;
 		global $wmGoogleAdSenseEncoding;
 		global $wmGoogleAdSenseLanguage;
 
 		$this->mConfigArray['ad_client']   = ( empty( $wmGoogleAdSenseClient ) || ( $wmGoogleAdSenseClient === 'none' ) ) ? false : $wmGoogleAdSenseClient;
 		$this->mConfigArray['ad_host']     = ( empty( $wmGoogleAdSenseHost )   || ( $wmGoogleAdSenseHost === 'none' )   ) ? false : $wmGoogleAdSenseHost;
+		$this->mConfigArray['ad_mode']     = ( $wmGoogleAdSenseMode === 'responsive' ) ? 'responsive' : 'normal';
 		$this->mConfigArray['ad_src']      = !empty( $wmGoogleAdSenseSrc      ) ? $wmGoogleAdSenseSrc      : false;
+		$this->mConfigArray['ad_clientId'] = !empty( $wmGoogleAdSenseID       ) ? $wmGoogleAdSenseID       : 'ID 007';
 		$this->mConfigArray['ad_encoding'] = !empty( $wmGoogleAdSenseEncoding ) ? $wmGoogleAdSenseEncoding : 'utf8';
 		$this->mConfigArray['ad_language'] = !empty( $wmGoogleAdSenseLanguage ) ? $wmGoogleAdSenseLanguage : $wgLanguageCode;
 
@@ -210,7 +214,7 @@ class GoogleAdvertisingSettings {
 	 * @param array $array
 	 * @return false|array
 	 */
-	private static function getAdConfigArray( $array ) {
+	private static function getAdConfigArray( $array, $format ) {
 
 		if ( is_array( $array ) ) {
 			if ( count( $array ) !== 3 ) {
@@ -241,7 +245,7 @@ class GoogleAdvertisingSettings {
 			return false;
 		}
 
-		return [ 'slot' => $slot, 'width' => $width, 'height' => $height ];
+		return [ 'slot' => $slot, 'width' => $width, 'height' => $height, 'format' => $format ];
 	}
 
 	/**
@@ -250,23 +254,42 @@ class GoogleAdvertisingSettings {
 	 * @return string
 	 */
 	private static function getAdCodePrivate( $general_data, $ad_data ) {
-		$script_pattern = '<ins class="adsbygoogle"
-    style="display:inline-block;width:%4$dpx;height:%5$dpx"
+
+		$script_code = '';
+		if ( $general_data['ad_mode'] === 'responsive' ) {
+			$script_pattern = '<ins class="adsbygoogle"
+    style="display:block;"
     data-ad-client="ca-pub-%1$s"
     data-ad-host="ca-host-pub-%2$s"
-    data-ad-slot="%3$s"></ins>
+    data-ad-slot="%3$s"
+    data-ad-format="auto"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>';
-		$script_code = sprintf( $script_pattern,
-				$general_data['ad_client'],
-				$general_data['ad_host'],
-				$ad_data['slot'],
-				$ad_data['width'],
-				$ad_data['height'],
-				$general_data['ad_language'],
-				$general_data['ad_encoding']
-			);
+			$script_code = sprintf( $script_pattern,
+					$general_data['ad_client'],
+					$general_data['ad_host'],
+					$ad_data['slot']
+				);
+		} else {
+			$script_pattern = '<ins class="adsbygoogle"
+    style="display:inline-block;width:%5$dpx;height:%6$dpx;"
+    data-ad-client="ca-pub-%1$s"
+    data-ad-host="ca-host-pub-%2$s"
+    data-ad-slot="%3$s"
+    data-ad-format="%4$s"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>';
+			$script_code = sprintf( $script_pattern,
+					$general_data['ad_client'],
+					$general_data['ad_host'],
+					$ad_data['slot'],
+					$ad_data['format'],
+					$ad_data['width'],
+					$ad_data['height']
+				);
+		}
 
 		return $script_code;
 	}
