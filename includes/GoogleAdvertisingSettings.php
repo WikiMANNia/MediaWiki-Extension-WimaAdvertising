@@ -55,17 +55,11 @@ class GoogleAdvertisingSettings {
 		global $wmGoogleAdSenseHost;
 		global $wmGoogleAdSenseMode;
 		global $wmGoogleAdSenseSrc;
-		global $wmGoogleAdSenseID;
-		global $wmGoogleAdSenseEncoding;
-		global $wmGoogleAdSenseLanguage;
 
-		$this->mConfigArray['ad_client']   = ( empty( $wmGoogleAdSenseClient ) || ( $wmGoogleAdSenseClient === 'none' ) ) ? false : $wmGoogleAdSenseClient;
-		$this->mConfigArray['ad_host']     = ( empty( $wmGoogleAdSenseHost )   || ( $wmGoogleAdSenseHost === 'none' )   ) ? false : $wmGoogleAdSenseHost;
-		$this->mConfigArray['ad_mode']     = ( $wmGoogleAdSenseMode === 'responsive' ) ? 'responsive' : 'normal';
-		$this->mConfigArray['ad_src']      = !empty( $wmGoogleAdSenseSrc      ) ? $wmGoogleAdSenseSrc      : false;
-		$this->mConfigArray['ad_clientId'] = !empty( $wmGoogleAdSenseID       ) ? $wmGoogleAdSenseID       : 'ID 007';
-		$this->mConfigArray['ad_encoding'] = !empty( $wmGoogleAdSenseEncoding ) ? $wmGoogleAdSenseEncoding : 'utf8';
-		$this->mConfigArray['ad_language'] = !empty( $wmGoogleAdSenseLanguage ) ? $wmGoogleAdSenseLanguage : $wgLanguageCode;
+		$this->mConfigArray['ad_client'] = ( empty( $wmGoogleAdSenseClient ) || ( $wmGoogleAdSenseClient === 'none' ) ) ? false : $wmGoogleAdSenseClient;
+		$this->mConfigArray['ad_host']   = ( empty( $wmGoogleAdSenseHost )   || ( $wmGoogleAdSenseHost === 'none' )   ) ? false : $wmGoogleAdSenseHost;
+		$this->mConfigArray['ad_mode']   = ( $wmGoogleAdSenseMode === 'responsive' ) ? 'responsive' : 'normal';
+		$this->mConfigArray['ad_src']    = !empty( $wmGoogleAdSenseSrc ) ? $wmGoogleAdSenseSrc : false;
 
 
 		// HTML-Snippet für jeden Werbeblock, falls ungültige Parameter auftreten sollten, auf false setzen
@@ -136,7 +130,7 @@ class GoogleAdvertisingSettings {
 		$script_code = false;
 
 		if ( self::getInstance()->mActive && !empty( $javacode_date ) ) {
-			$script_pattern = '<script type="text/javascript" async src="%1$s">
+			$script_pattern = '<script type="text/javascript" async src="%1$s" crossorigin="anonymous">
 </script>';
 			$script_code = sprintf( $script_pattern, $javacode_date );
 		}
