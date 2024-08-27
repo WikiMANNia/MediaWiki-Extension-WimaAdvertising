@@ -162,3 +162,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 2.8.2
 
 - Add `$wmGoogleAdSenseMode`: [Ad-Tags](https://developers.google.com/adsense/platforms/transparent/ad-tags)
+
+2.8.3
+
+- Solve an issue with global variable `$wmGoogleAdSenseHost` not set.

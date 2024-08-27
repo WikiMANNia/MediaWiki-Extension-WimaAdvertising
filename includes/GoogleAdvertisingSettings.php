@@ -250,12 +250,19 @@ class GoogleAdvertisingSettings {
 	private static function getAdCodePrivate( $general_data, $ad_data ) {
 
 		$script_code = '';
-		if ( $general_data['ad_mode'] === 'responsive' ) {
-			$script_pattern = '<ins class="adsbygoogle"
-    style="display:block;"
+		$scriptsnippet_client_host_slot =
+			empty( $general_data['ad_host'] )
+			? '
+    data-ad-client="ca-pub-%1$s"
+    data-ad-slot="%3$s"'
+			: '
     data-ad-client="ca-pub-%1$s"
     data-ad-host="ca-host-pub-%2$s"
-    data-ad-slot="%3$s"
+    data-ad-slot="%3$s"';
+
+		if ( $general_data['ad_mode'] === 'responsive' ) {
+			$script_pattern = '<ins class="adsbygoogle"
+    style="display:block;"' . $scriptsnippet_client_host_slot . '
     data-ad-format="auto"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
@@ -267,10 +274,7 @@ class GoogleAdvertisingSettings {
 				);
 		} else {
 			$script_pattern = '<ins class="adsbygoogle"
-    style="display:inline-block;width:%5$dpx;height:%6$dpx;"
-    data-ad-client="ca-pub-%1$s"
-    data-ad-host="ca-host-pub-%2$s"
-    data-ad-slot="%3$s"
+    style="display:inline-block;width:%5$dpx;height:%6$dpx;"' . $scriptsnippet_client_host_slot . '
     data-ad-format="%4$s"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
