@@ -44,10 +44,10 @@ class GoogleAdvertisingSettings {
 		global $wmGoogleAdSense_AD2;
 
 		$this->mDefaultType = 'advertising';
-		$Ad_Bottom = self::getAdConfigArray( $wmGoogleAdSense_Bottom, 'horizontal' );
-		$Ad_Top    = self::getAdConfigArray( $wmGoogleAdSense_Top, 'horizontal' );
-		$Ad_AD1    = self::getAdConfigArray( $wmGoogleAdSense_AD1, 'vertical' );
-		$Ad_AD2    = self::getAdConfigArray( $wmGoogleAdSense_AD2, 'vertical' );
+		$Ad_Bottom = self::getAdConfigArray( $wmGoogleAdSense_Bottom );
+		$Ad_Top    = self::getAdConfigArray( $wmGoogleAdSense_Top );
+		$Ad_AD1    = self::getAdConfigArray( $wmGoogleAdSense_AD1 );
+		$Ad_AD2    = self::getAdConfigArray( $wmGoogleAdSense_AD2 );
 
 
 		// 3. Allgemeine Variablen für alle Werbeblöcke
@@ -208,7 +208,7 @@ class GoogleAdvertisingSettings {
 	 * @param array $array
 	 * @return false|array
 	 */
-	private static function getAdConfigArray( $array, $format ) {
+	private static function getAdConfigArray( $array ) {
 
 		if ( is_array( $array ) ) {
 			if ( count( $array ) !== 3 ) {
@@ -239,7 +239,7 @@ class GoogleAdvertisingSettings {
 			return false;
 		}
 
-		return [ 'slot' => $slot, 'width' => $width, 'height' => $height, 'format' => $format ];
+		return [ 'slot' => $slot, 'width' => $width, 'height' => $height ];
 	}
 
 	/**
@@ -274,8 +274,7 @@ class GoogleAdvertisingSettings {
 				);
 		} else {
 			$script_pattern = '<ins class="adsbygoogle"
-    style="display:inline-block;width:%5$dpx;height:%6$dpx;"' . $scriptsnippet_client_host_slot . '
-    data-ad-format="%4$s"></ins>
+    style="display:inline-block;width:%4$dpx;height:%5$dpx"' . $scriptsnippet_client_host_slot . '></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>';
@@ -283,7 +282,6 @@ class GoogleAdvertisingSettings {
 					$general_data['ad_client'],
 					$general_data['ad_host'],
 					$ad_data['slot'],
-					$ad_data['format'],
 					$ad_data['width'],
 					$ad_data['height']
 				);
