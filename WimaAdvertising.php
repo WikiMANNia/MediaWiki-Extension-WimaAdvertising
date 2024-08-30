@@ -62,7 +62,7 @@ call_user_func(
 $wgExtensionCredits['specialpage'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'WimaAdvertising',
-	'version'        => '2.6.0',
+	'version'        => '2.8.0',
 	'author'         => 'WikiMANNia',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:WimaAdvertising',
 	'descriptionmsg' => 'wimaadvertising-desc',
@@ -169,9 +169,10 @@ $wmSidebarAd2Code = "";
 $wmSidebarAd2Type = "advertising";
 $wmWimaAdvertisingAnonOnly = false;
 $wmGoogleAdSenseClient = "none";
+$wmGoogleAdSenseHost = "none";
+$wmGoogleAdSenseMode = "normal";
 $wmGoogleAdSenseSlot = "none";
-$wmGoogleAdSenseSrc = "//pagead2.googlesyndication.com/pagead/show_ads.js";
-$wmGoogleAdSenseID = "none";
+$wmGoogleAdSenseSrc = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
 $wmGoogleAdSenseAnonOnly = false;
 ###
 

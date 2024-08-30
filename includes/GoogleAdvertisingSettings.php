@@ -33,8 +33,8 @@ class GoogleAdvertisingSettings {
 		global $wmGoogleAdSense;
 		global $wmGoogleAdSenseAnonOnly;
 
-		$this->mActive   = empty( $wmGoogleAdSense         ) ? false : ( ( $wmGoogleAdSense         === true ) || ( $wmGoogleAdSense         === 'true' ) );
-		$this->mAnonOnly = empty( $wmGoogleAdSenseAnonOnly ) ? false : ( ( $wmGoogleAdSenseAnonOnly === true ) || ( $wmGoogleAdSenseAnonOnly === 'true' ) );
+		$this->mActive   = empty( $wmGoogleAdSense         ) ? false : ( $wmGoogleAdSense         === true );
+		$this->mAnonOnly = empty( $wmGoogleAdSenseAnonOnly ) ? false : ( $wmGoogleAdSenseAnonOnly === true );
 
 
 		// 2. Spezifische Variablen für jeden Werbeblock
@@ -52,16 +52,14 @@ class GoogleAdvertisingSettings {
 
 		// 3. Allgemeine Variablen für alle Werbeblöcke
 		global $wmGoogleAdSenseClient;
+		global $wmGoogleAdSenseHost;
+		global $wmGoogleAdSenseMode;
 		global $wmGoogleAdSenseSrc;
-		global $wmGoogleAdSenseID;
-		global $wmGoogleAdSenseEncoding;
-		global $wmGoogleAdSenseLanguage;
 
-		$this->mConfigArray['ad_client']   = ( empty( $wmGoogleAdSenseClient ) || ( $wmGoogleAdSenseClient === 'none' ) ) ? false : $wmGoogleAdSenseClient;
-		$this->mConfigArray['ad_src']      = !empty( $wmGoogleAdSenseSrc      ) ? $wmGoogleAdSenseSrc      : false;
-		$this->mConfigArray['ad_clientId'] = !empty( $wmGoogleAdSenseID       ) ? $wmGoogleAdSenseID       : 'ID 007';
-		$this->mConfigArray['ad_encoding'] = !empty( $wmGoogleAdSenseEncoding ) ? $wmGoogleAdSenseEncoding : 'utf8';
-		$this->mConfigArray['ad_language'] = !empty( $wmGoogleAdSenseLanguage ) ? $wmGoogleAdSenseLanguage : $wgLanguageCode;
+		$this->mConfigArray['ad_client'] = ( empty( $wmGoogleAdSenseClient ) || ( $wmGoogleAdSenseClient === 'none' ) ) ? false : $wmGoogleAdSenseClient;
+		$this->mConfigArray['ad_host']   = ( empty( $wmGoogleAdSenseHost )   || ( $wmGoogleAdSenseHost === 'none' )   ) ? false : $wmGoogleAdSenseHost;
+		$this->mConfigArray['ad_mode']   = ( $wmGoogleAdSenseMode === 'responsive' ) ? 'responsive' : 'normal';
+		$this->mConfigArray['ad_src']    = !empty( $wmGoogleAdSenseSrc ) ? $wmGoogleAdSenseSrc : false;
 
 
 		// HTML-Snippet für jeden Werbeblock, falls ungültige Parameter auftreten sollten, auf false setzen
@@ -132,7 +130,7 @@ class GoogleAdvertisingSettings {
 		$script_code = false;
 
 		if ( self::getInstance()->mActive && !empty( $javacode_date ) ) {
-			$script_pattern = '<script type="text/javascript" src="%1$s">
+			$script_pattern = '<script type="text/javascript" async src="%1$s" crossorigin="anonymous">
 </script>';
 			$script_code = sprintf( $script_pattern, $javacode_date );
 		}
@@ -250,25 +248,44 @@ class GoogleAdvertisingSettings {
 	 * @return string
 	 */
 	private static function getAdCodePrivate( $general_data, $ad_data ) {
-		$script_pattern = '<script type="text/javascript"><!--
-google_ad_client = "%1$s";
-/* %2$s */
-google_ad_slot = "%3$s";
-google_ad_width = %4$d;
-google_ad_height = %5$d;
-google_language = "%6$s";
-google_encoding = "%7$s";
-// -->
+
+		$script_code = '';
+		$scriptsnippet_client_host_slot =
+			empty( $general_data['ad_host'] )
+			? '
+    data-ad-client="ca-pub-%1$s"
+    data-ad-slot="%3$s"'
+			: '
+    data-ad-client="ca-pub-%1$s"
+    data-ad-host="ca-host-pub-%2$s"
+    data-ad-slot="%3$s"';
+
+		if ( $general_data['ad_mode'] === 'responsive' ) {
+			$script_pattern = '<ins class="adsbygoogle"
+    style="display:block;"' . $scriptsnippet_client_host_slot . '
+    data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>';
-		$script_code = sprintf( $script_pattern,
-				$general_data['ad_client'],
-				$general_data['ad_clientId'],
-				$ad_data['slot'],
-				$ad_data['width'],
-				$ad_data['height'],
-				$general_data['ad_language'],
-				$general_data['ad_encoding']
-			);
+			$script_code = sprintf( $script_pattern,
+					$general_data['ad_client'],
+					$general_data['ad_host'],
+					$ad_data['slot']
+				);
+		} else {
+			$script_pattern = '<ins class="adsbygoogle"
+    style="display:inline-block;width:%4$dpx;height:%5$dpx"' . $scriptsnippet_client_host_slot . '></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>';
+			$script_code = sprintf( $script_pattern,
+					$general_data['ad_client'],
+					$general_data['ad_host'],
+					$ad_data['slot'],
+					$ad_data['width'],
+					$ad_data['height']
+				);
+		}
 
 		return $script_code;
 	}

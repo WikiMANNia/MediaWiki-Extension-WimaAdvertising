@@ -197,12 +197,12 @@ class WimaAdvertisingHooks extends Hooks {
 			}
 			$html_code = self::getAdCode( $user, $tag );
 
-			$elemets = Html::rawElement( 'div', [ 'style' => $style2 ], $html_code );
+			$elements = Html::rawElement( 'div', [ 'style' => $style2 ], $html_code );
 			if ( !empty( $title ) ) {
 				// if lable not set to 'blank'
-				$elemets = Html::rawElement( 'p', [], $title . ':' ) . $elemets;
+				 $elements = Html::rawElement( 'p', [], $title . ':' ) . $elements;
 			}
-			return Html::rawElement( 'div', $options, $elemets );
+			return Html::rawElement( 'div', $options, $elements );
 		}
 		return '';
 	}

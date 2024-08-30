@@ -33,8 +33,8 @@ class CustomAdvertisingSettings {
 		global $wmWimaAdvertising;
 		global $wmWimaAdvertisingAnonOnly;
 
-		$this->mActive   = empty( $wmWimaAdvertising         ) ? false : ( ( $wmWimaAdvertising         === true ) || ( $wmWimaAdvertising         === 'true' ) );
-		$this->mAnonOnly = empty( $wmWimaAdvertisingAnonOnly ) ? false : ( ( $wmWimaAdvertisingAnonOnly === true ) || ( $wmWimaAdvertisingAnonOnly === 'true' ) );
+		$this->mActive   = empty( $wmWimaAdvertising         ) ? false : ( $wmWimaAdvertising         === true );
+		$this->mAnonOnly = empty( $wmWimaAdvertisingAnonOnly ) ? false : ( $wmWimaAdvertisingAnonOnly === true );
 
 
 		// 2. Spezifische Variablen für jeden Werbeblock
