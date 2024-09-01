@@ -211,7 +211,7 @@ class GoogleAdvertisingSettings {
 	private static function getAdConfigArray( $array ) {
 
 		if ( is_array( $array ) ) {
-			if ( count( $array ) !== 3 ) {
+			if ( ( count( $array ) !== 3 ) && ( count( $array ) !== 4 ) ) {
 				wfLogWarning( 'Google::getAdConfigArray expected an array with three values, but got this: "' . implode( ', ', $array ) . '"' . "\n" );
 				return false;
 			}
@@ -239,7 +239,10 @@ class GoogleAdvertisingSettings {
 			return false;
 		}
 
-		return [ 'slot' => $slot, 'width' => $width, 'height' => $height ];
+		// Slot can be empty or 'auto', 'horizontal', 'vertical', 'rectangle'
+		$format = empty( $array[3] ) ? '' : $array[3];
+
+		return [ 'slot' => $slot, 'width' => $width, 'height' => $height, 'format' => $format ];
 	}
 
 	/**
@@ -259,10 +262,16 @@ class GoogleAdvertisingSettings {
     data-ad-client="ca-pub-%1$s"
     data-ad-host="ca-host-pub-%2$s"
     data-ad-slot="%3$s"';
+		$scriptsnippet_format =
+			empty( $ad_data['format'] )
+			? ''
+			: '
+    data-ad-format="%6$s"';
 
 		if ( $general_data['ad_mode'] === 'responsive' ) {
 			$script_pattern = '<ins class="adsbygoogle"
     style="display:block;"' . $scriptsnippet_client_host_slot . '
+    data-full-width-responsive="true"
     data-ad-format="auto"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
@@ -274,7 +283,9 @@ class GoogleAdvertisingSettings {
 				);
 		} else {
 			$script_pattern = '<ins class="adsbygoogle"
-    style="display:inline-block;width:%4$dpx;height:%5$dpx"' . $scriptsnippet_client_host_slot . '></ins>
+    style="display:inline-block;width:%4$dpx;height:%5$dpx"' .
+    	$scriptsnippet_client_host_slot .
+    	$scriptsnippet_format . '></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>';
@@ -283,7 +294,8 @@ class GoogleAdvertisingSettings {
 					$general_data['ad_host'],
 					$ad_data['slot'],
 					$ad_data['width'],
-					$ad_data['height']
+					$ad_data['height'],
+					$ad_data['format']
 				);
 		}
 

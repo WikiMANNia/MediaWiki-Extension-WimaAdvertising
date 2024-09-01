@@ -77,6 +77,11 @@ Define up to four ad units:
 * `$wmGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
 * `$wmGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
 * `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'auto' ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'rectangle' ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'horizontal' ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical' ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical, rectangle' ];`
 Replace the first value with your AdSense ad unit ID (google_ad_slot / data-ad-slot) for each ad unit. The Slot ID for your AdSense script is for example `1234580893`.
 
 Also specify the width and the height of the AdSense unit, specified in your AdSense account (google_ad_width / data-ad-width, google_ad_height / data-ad-height). Values such as 'auto', '100%', '60%' etc. are accepted.
@@ -166,3 +171,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 2.8.3
 
 - Solve an issue with global variable `$wmGoogleAdSenseHost` not set.
+
+2.8.4
+
+- Add optional `data-ad-format` setting.
