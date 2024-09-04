@@ -59,79 +59,79 @@ call_user_func(
 	}
 );
 
-$wgExtensionCredits['specialpage'][] = array(
+$wgExtensionCredits['specialpage'][] = [
 	'path'           => __FILE__,
 	'name'           => 'WimaAdvertising',
-	'version'        => '2.8.0',
+	'version'        => '2.8.4',
 	'author'         => 'WikiMANNia',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:WimaAdvertising',
 	'descriptionmsg' => 'wimaadvertising-desc',
-);
+];
 
-$wgResourceModules['ext.wimaadvertising.common'] = array(
+$wgResourceModules['ext.wimaadvertising.common'] = [
 	'styles' => 'resources/css/Common.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
-	'dependencies' => array(
+	'dependencies' => [
 		'jquery.makeCollapsible',
-	),
-);
-$wgResourceModules['ext.wimaadvertising.cologneblue'] = array(
+	[,
+];
+$wgResourceModules['ext.wimaadvertising.cologneblue'] = [
 	'styles' => 'resources/css/Cologneblue.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
-	'dependencies' => array(
+	'dependencies' => [
 		'jquery.makeCollapsible',
-	),
-);
-$wgResourceModules['ext.wimaadvertising.mobile'] = array(
+	[,
+];
+$wgResourceModules['ext.wimaadvertising.mobile'] = [
 	'styles' => 'resources/css/Mobile.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
-	'dependencies' => array(
+	'dependencies' => [
 		'jquery.makeCollapsible',
-	),
-);
-$wgResourceModules['ext.wimaadvertising.minerva'] = array(
+	[,
+];
+$wgResourceModules['ext.wimaadvertising.minerva'] = [
 	'styles' => 'resources/css/Minerva.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
-	'dependencies' => array(
+	'dependencies' => [
 		'jquery.makeCollapsible',
-	),
-);
-$wgResourceModules['ext.wimaadvertising.modern'] = array(
+	[,
+];
+$wgResourceModules['ext.wimaadvertising.modern'] = [
 	'styles' => 'resources/css/Modern.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
-	'dependencies' => array(
+	'dependencies' => [
 		'jquery.makeCollapsible',
-	),
-);
-$wgResourceModules['ext.wimaadvertising.monobook'] = array(
+	[,
+];
+$wgResourceModules['ext.wimaadvertising.monobook'] = [
 	'styles' => 'resources/css/Monobook.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
-	'dependencies' => array(
+	'dependencies' => [
 		'jquery.makeCollapsible',
-	),
-);
-$wgResourceModules['ext.wimaadvertising.timeless'] = array(
+	[,
+];
+$wgResourceModules['ext.wimaadvertising.timeless'] = [
 	'styles' => 'resources/css/Timeless.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
-	'dependencies' => array(
+	'dependencies' => [
 		'jquery.makeCollapsible',
-	),
-);
-$wgResourceModules['ext.wimaadvertising.vector'] = array(
+	[,
+];
+$wgResourceModules['ext.wimaadvertising.vector'] = [
 	'styles' => 'resources/css/Vector.css',
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'WimaAdvertising',
-	'dependencies' => array(
+	'dependencies' => [
 		'jquery.makeCollapsible',
-	),
-);
+	[,
+];
 
 // register all special pages and other classes
 $wgMessagesDirs['WimaAdvertising'] = "$dtgIP/i18n";

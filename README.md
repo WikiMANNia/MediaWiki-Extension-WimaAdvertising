@@ -68,8 +68,8 @@ Disable advertising for logged-in users. Default is `false`.
 
 ### Mandatory parameters
 Replace this with your own publisher ID (google_ad_client / data-ad-client)
-* `$wmGoogleAdSenseClient = 'none';` // Client ID for your AdSense script (example: ca-pub-1234546403419693)
-(You can get your publisher ID and ad unit ID from the "Get code" page: Get and copy the ad code.)
+* `$wmGoogleAdSenseClient = 'none';` // Client ID for your AdSense script
+* `$wmGoogleAdSenseHost = 'none';` // Host ID for your AdSense script
 
 ### Ad units
 Define up to four ad units:
@@ -77,6 +77,11 @@ Define up to four ad units:
 * `$wmGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
 * `$wmGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
 * `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'auto' ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'rectangle' ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'horizontal' ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical' ];`
+* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical, rectangle' ];`
 Replace the first value with your AdSense ad unit ID (google_ad_slot / data-ad-slot) for each ad unit. The Slot ID for your AdSense script is for example `1234580893`.
 
 Also specify the width and the height of the AdSense unit, specified in your AdSense account (google_ad_width / data-ad-width, google_ad_height / data-ad-height). Values such as 'auto', '100%', '60%' etc. are accepted.
@@ -84,17 +89,12 @@ Also specify the width and the height of the AdSense unit, specified in your AdS
 ### Optional parameters
 Add any of the optional settings below – if your settings deviate from the defaults:
 
-This can be anything you like. Default is `none`.
-* `$wmGoogleAdSenseID = 'none';`
-
 Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
-* `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/show_ads.js';`
+* `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';`
+* `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234&host=ca-host-pub-5678';`
 
-Text coding. Default is `utf8`.
-* `$wmGoogleAdSenseEncoding = 'utf8';`
-
-Advertising language. Default is `$wgLanguageCode`.
-* `$wmGoogleAdSenseLanguage = 'en';`
+GoogleAdSenseMode. Default is `normal`.
+* `$wmGoogleAdSenseMode = 'responsive`
 
 ## Compatibility
 
@@ -138,7 +138,7 @@ This extension works from REL1_23 and has been tested up to MediaWiki version `1
 
 2.4.1
 
-- Fix a css issue for skin [Timeless](https://www.mediawiki.org/wiki/Skin:Timeless).
+- Dirty hack for skin [Timeless](https://www.mediawiki.org/wiki/Skin:Timeless).
 
 2.5.0
 
@@ -155,3 +155,12 @@ This extension works from REL1_23 and has been tested up to MediaWiki version `1
 2.7.1
 
 - Avoid new line with `:` shown if label of Wima slots is set as to `blank`.
+
+2.8.0
+
+- Change `Google AdSense` code: [Ad Units and Code Generation](https://developers.google.com/adsense/host/adunits) version "20240815-r00-rc00.462815510744624789"
+- Add `$wmGoogleAdSenseMode`: [Ad-Tags](https://developers.google.com/adsense/platforms/transparent/ad-tags)
+
+2.8.4
+
+- Add optional `data-ad-format` setting.
