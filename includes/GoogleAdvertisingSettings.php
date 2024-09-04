@@ -212,7 +212,7 @@ class GoogleAdvertisingSettings {
 
 		if ( is_array( $array ) ) {
 			if ( ( count( $array ) !== 3 ) && ( count( $array ) !== 4 ) ) {
-				wfLogWarning( 'Google::getAdConfigArray expected an array with three values, but got this: "' . implode( ', ', $array ) . '"' . "\n" );
+				wfLogWarning( 'Google::getAdConfigArray expected an array with three or four values, but got this: "' . implode( ', ', $array ) . '"' . "\n" );
 				return false;
 			}
 		} else {
