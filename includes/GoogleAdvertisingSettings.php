@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Settings is a singleton - used as a store of values for a particular site.
  *
@@ -8,6 +7,8 @@
  * by the user - for instance, to store the amount of file space taken by
  * files uploaded for this wiki.
  */
+
+use MediaWiki\MediaWikiServices;
 
 class GoogleAdvertisingSettings {
 
@@ -29,37 +30,34 @@ class GoogleAdvertisingSettings {
 		 */
 		global $wgLanguageCode;
 
-		// 1. Steuerung
-		global $wmGoogleAdSense;
-		global $wmGoogleAdSenseAnonOnly;
+		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'wimaadvertising' );
 
-		$this->mActive   = empty( $wmGoogleAdSense         ) ? false : ( $wmGoogleAdSense         === true );
-		$this->mAnonOnly = empty( $wmGoogleAdSenseAnonOnly ) ? false : ( $wmGoogleAdSenseAnonOnly === true );
+		// 1. Steuerung
+		$_GoogleAdSense         = $config->get( 'GoogleAdSense' );
+		$_GoogleAdSenseAnonOnly = $config->get( 'GoogleAdSenseAnonOnly' );
+
+		$this->mActive   = empty( $_GoogleAdSense         ) ? false : ( $_GoogleAdSense         === true );
+		$this->mAnonOnly = empty( $_GoogleAdSenseAnonOnly ) ? false : ( $_GoogleAdSenseAnonOnly === true );
 
 
 		// 2. Spezifische Variablen für jeden Werbeblock
-		global $wmGoogleAdSense_Bottom;
-		global $wmGoogleAdSense_Top;
-		global $wmGoogleAdSense_AD1;
-		global $wmGoogleAdSense_AD2;
-
 		$this->mDefaultType = 'advertising';
-		$Ad_Bottom = self::getAdConfigArray( $wmGoogleAdSense_Bottom );
-		$Ad_Top    = self::getAdConfigArray( $wmGoogleAdSense_Top );
-		$Ad_AD1    = self::getAdConfigArray( $wmGoogleAdSense_AD1 );
-		$Ad_AD2    = self::getAdConfigArray( $wmGoogleAdSense_AD2 );
+		$Ad_Bottom = self::getAdConfigArray( $config->get( 'GoogleAdSense_Bottom' ) );
+		$Ad_Top    = self::getAdConfigArray( $config->get( 'GoogleAdSense_Top' ) );
+		$Ad_AD1    = self::getAdConfigArray( $config->get( 'GoogleAdSense_AD1' ) );
+		$Ad_AD2    = self::getAdConfigArray( $config->get( 'GoogleAdSense_AD2' ) );
 
 
 		// 3. Allgemeine Variablen für alle Werbeblöcke
-		global $wmGoogleAdSenseClient;
-		global $wmGoogleAdSenseHost;
-		global $wmGoogleAdSenseMode;
-		global $wmGoogleAdSenseSrc;
+		$_GoogleAdSenseClient = $config->get( 'GoogleAdSenseClient' );
+		$_GoogleAdSenseHost   = $config->get( 'GoogleAdSenseHost' );
+		$_GoogleAdSenseMode   = $config->get( 'GoogleAdSenseMode' );
+		$_GoogleAdSenseSrc    = $config->get( 'GoogleAdSenseSrc' );
 
-		$this->mConfigArray['ad_client'] = ( empty( $wmGoogleAdSenseClient ) || ( $wmGoogleAdSenseClient === 'none' ) ) ? false : $wmGoogleAdSenseClient;
-		$this->mConfigArray['ad_host']   = ( empty( $wmGoogleAdSenseHost )   || ( $wmGoogleAdSenseHost === 'none' )   ) ? false : $wmGoogleAdSenseHost;
-		$this->mConfigArray['ad_mode']   = ( $wmGoogleAdSenseMode === 'responsive' ) ? 'responsive' : 'normal';
-		$this->mConfigArray['ad_src']    = !empty( $wmGoogleAdSenseSrc ) ? $wmGoogleAdSenseSrc : false;
+		$this->mConfigArray['ad_client'] = ( empty( $_GoogleAdSenseClient ) || ( $_GoogleAdSenseClient === 'none' ) ) ? false : $_GoogleAdSenseClient;
+		$this->mConfigArray['ad_host']   = ( empty( $_GoogleAdSenseHost )   || ( $_GoogleAdSenseHost === 'none' )   ) ? false : $_GoogleAdSenseHost;
+		$this->mConfigArray['ad_mode']   = ( $_GoogleAdSenseMode === 'responsive' ) ? 'responsive' : 'normal';
+		$this->mConfigArray['ad_src']    = !empty( $_GoogleAdSenseSrc ) ? $_GoogleAdSenseSrc : false;
 
 
 		// HTML-Snippet für jeden Werbeblock, falls ungültige Parameter auftreten sollten, auf false setzen
@@ -211,9 +209,18 @@ class GoogleAdvertisingSettings {
 	private static function getAdConfigArray( $array ) {
 
 		if ( is_array( $array ) ) {
-			if ( ( count( $array ) !== 3 ) && ( count( $array ) !== 4 ) ) {
-				wfLogWarning( 'Google::getAdConfigArray expected an array with three or four values, but got this: "' . implode( ', ', $array ) . '"' . "\n" );
-				return false;
+			switch ( count( $array ) ) {
+				case 0:
+					// The array is empty.  This is NOT an error!
+					return false;
+					break;
+				case 3:
+				case 4: // the element #4 is optional
+					break;
+				default:
+					wfLogWarning( 'Google::getAdConfigArray expected an array with three or four values, but got this: "' . implode( ', ', $array ) . '"' . "\n" );
+					return false;
+					break;
 			}
 		} else {
 			// Because this is obviously not an array, the variable is very probably not set. This is NOT an error!

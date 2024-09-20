@@ -3,13 +3,15 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.8.4",
+	"version": "2.8.5",
 	"requires": {
 		"MediaWiki": ">= 1.35.0"
 	},
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
-	"config_prefix": "wm",
+	"ConfigRegistry": {
+		"wimaadvertising": "GlobalVarConfig::newInstance"
+	},
 	"config": {
 		"WimaAdvertising": {
 			"type": "boolean",
@@ -21,7 +23,8 @@
 		},
 		"BannerBottomCode": {
 			"type": "string",
-			"value": ""
+			"value": "",
+			"description": "Insert the HTML code for your Ad at the bottom in this variable."
 		},
 		"BannerBottomStyle": {
 			"type": "string",
@@ -33,7 +36,8 @@
 		},
 		"BannerTopCode": {
 			"type": "string",
-			"value": ""
+			"value": "",
+			"description": "Insert the HTML code for your Ad at the top in this variable."
 		},
 		"BannerTopStyle": {
 			"type": "string",
@@ -45,6 +49,11 @@
 		},
 		"SidebarAd1Code": {
 			"type": "string",
+			"value": "",
+			"description": "Insert the HTML code for your Ad 1 in the sidebar in this variable."
+		},
+		"SidebarAd1Style": {
+			"type": "string",
 			"value": ""
 		},
 		"SidebarAd1Type": {
@@ -52,6 +61,11 @@
 			"value": "advertising"
 		},
 		"SidebarAd2Code": {
+			"type": "string",
+			"value": "",
+			"description": "Insert the HTML code for your Ad 2 in the sidebar in this variable."
+		},
+		"SidebarAd2Style": {
 			"type": "string",
 			"value": ""
 		},
@@ -86,6 +100,26 @@
 		"GoogleAdSenseSrc": {
 			"type": "string",
 			"value": "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+		},
+		"GoogleAdSense_Bottom": {
+			"type": "array",
+			"value": [],
+			"description": "[ 'slotid' (string), width (int), height (int), 'auto, rectangle, vertical, rectangle' (optional) ], i.e.: [ 'slotid 1', 145, 260 ]"
+		},
+		"GoogleAdSense_Top": {
+			"type":  "array",
+			"value": [],
+			"description": "[ 'slotid', width, height, 'format' (optional) ], i.e.: [ 'slotid 2', 145, 260, 'rectangle' ]"
+		},
+		"GoogleAdSense_AD1": {
+			"type":  "array",
+			"value": [],
+			"description": "[ 'slotid', width, height, 'format' (optional) ], i.e.: [ 'slotid 3', 145, 260, 'horizontal' ]"
+		},
+		"GoogleAdSense_AD2": {
+			"type":  "array",
+			"value": [],
+			"description": "[ 'slotid', width, height, 'format' (optional) ], i.e.: [ 'slotid 4', 145, 260, 'vertical, rectangle' ]"
 		}
 	},
 	"manifest_version": 2,
