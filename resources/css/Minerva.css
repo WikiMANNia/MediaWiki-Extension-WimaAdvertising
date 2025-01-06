@@ -2,6 +2,8 @@
 
 #p-wimaadvertising-advertising .body,
 #p-wimaadvertising-advertising2 .body,
+#p-wimaadvertising-blank body,
+#p-wimaadvertising-blank2 body,
 #p-wimaadvertising-eventnote .body,
 #p-wimaadvertising-eventnote2 .body,
 #p-wimaadvertising-hint .body,
@@ -16,6 +18,8 @@
 }
 #p-wimaadvertising-advertising p,
 #p-wimaadvertising-advertising2 p,
+#p-wimaadvertising-blank p,
+#p-wimaadvertising-blank2 p,
 #p-wimaadvertising-eventnote p,
 #p-wimaadvertising-eventnote2 p,
 #p-wimaadvertising-hint p,

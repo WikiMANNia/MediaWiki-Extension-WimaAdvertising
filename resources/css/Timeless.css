@@ -2,6 +2,8 @@
 
 #p-wimaadvertising-advertising .portlet,
 #p-wimaadvertising-advertising2 .portlet,
+#p-wimaadvertising-blank portlet,
+#p-wimaadvertising-blank2 portlet,
 #p-wimaadvertising-eventnote .portlet,
 #p-wimaadvertising-eventnote2 .portlet,
 #p-wimaadvertising-hint .portlet,
@@ -11,6 +13,8 @@
 }
 #p-wimaadvertising-advertising .pBody,
 #p-wimaadvertising-advertising2 .pBody,
+#p-wimaadvertising-blank pBody,
+#p-wimaadvertising-blank2 pBody,
 #p-wimaadvertising-eventnote .pBody,
 #p-wimaadvertising-eventnote2 .pBody,
 #p-wimaadvertising-hint .pBody,
@@ -21,6 +25,8 @@
 }
 #p-wimaadvertising-advertising p,
 #p-wimaadvertising-advertising2 p,
+#p-wimaadvertising-blank p,
+#p-wimaadvertising-blank2 p,
 #p-wimaadvertising-eventnote p,
 #p-wimaadvertising-eventnote2 p,
 #p-wimaadvertising-hint p,

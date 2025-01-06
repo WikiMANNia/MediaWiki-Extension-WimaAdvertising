@@ -3,7 +3,7 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.8.5",
+	"version": "2.9.0",
 	"requires": {
 		"MediaWiki": ">= 1.35.0"
 	},
@@ -149,6 +149,9 @@
 	"ResourceModules": {
 		"ext.wimaadvertising.common": {
 			"styles": "css/Common.css"
+		},
+		"ext.wimaadvertising.citizen": {
+			"styles": "css/Citizen.css"
 		},
 		"ext.wimaadvertising.cologneblue": {
 			"styles": "css/Cologneblue.css"

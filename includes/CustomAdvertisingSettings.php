@@ -176,6 +176,6 @@ class CustomAdvertisingSettings {
 	 * @return bool
 	 */
 	public static function isSupportedSkin( $key ) {
-		return in_array( $key, [ 'cologneblue', 'minerva', 'modern', 'monaco', 'monobook', 'timeless', 'vector', 'vector-2022' ] );
+		return in_array( $key, [ 'citizen', 'cologneblue', 'minerva', 'modern', 'monaco', 'monobook', 'timeless', 'vector', 'vector-2022' ] );
 	}
 }

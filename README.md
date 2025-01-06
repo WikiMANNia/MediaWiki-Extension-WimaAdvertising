@@ -180,3 +180,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 
 - Handling global variables with ConfigRegistry and MediaWikiServices
 - Changed the prefix of the configuration variables back to `wg`.
+
+2.9.0
+
+* Support added for Skin [Citizen](https://www.mediawiki.org/wiki/Skin:Citizen).

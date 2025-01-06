@@ -2,6 +2,8 @@
 
 #p-wimaadvertising-advertising img,
 #p-wimaadvertising-advertising2 img,
+#p-wimaadvertising-blank img,
+#p-wimaadvertising-blank2 img,
 #p-wimaadvertising-eventnote img,
 #p-wimaadvertising-eventnote2 img,
 #p-wimaadvertising-hint img,
@@ -13,6 +15,8 @@
 }
 #p-wimaadvertising-advertising p.small,
 #p-wimaadvertising-advertising2 p.small,
+#p-wimaadvertising-blank p,
+#p-wimaadvertising-blank2 p,
 #p-wimaadvertising-eventnote p.small,
 #p-wimaadvertising-eventnote2 p.small,
 #p-wimaadvertising-hint p.small,
@@ -21,6 +25,8 @@
 }
 #p-wimaadvertising-advertising ul,
 #p-wimaadvertising-advertising2 ul,
+#p-wimaadvertising-blank ul,
+#p-wimaadvertising-blank2 ul,
 #p-wimaadvertising-eventnote ul,
 #p-wimaadvertising-eventnote2 ul,
 #p-wimaadvertising-hint ul,
