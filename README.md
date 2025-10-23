@@ -98,7 +98,7 @@ GoogleAdSenseMode. Default is `normal`.
 
 ## Compatibility
 
-This extension works from REL1_35 and has been tested up to MediaWiki version `1.35.14`, `1.39.11`, `1.42.3`, and `1.43.0`.
+This extension works from REL1_35 and has been tested up to MediaWiki version `1.35.14`, `1.39.15`, `1.42.3`, and `1.43.5`.
 
 ## Version history
 
