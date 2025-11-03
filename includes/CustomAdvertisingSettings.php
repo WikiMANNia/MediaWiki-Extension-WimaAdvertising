@@ -14,12 +14,12 @@ class CustomAdvertisingSettings {
 
 	private static $instance;
 
- 	private $mActive;
- 	private $mAnonOnly;
+ 	private bool $mActive;
+ 	private bool $mAnonOnly;
 
- 	private $mDefaultType;
- 	private $mStyleArray = [];
- 	private $mTypeArray = [];
+ 	private string $mDefaultType;
+ 	private array $mStyleArray = [];
+ 	private array $mTypeArray = [];
 
  	private $mCodeArray;
 
@@ -89,11 +89,7 @@ class CustomAdvertisingSettings {
 		return self::$instance;
 	}
 
-	/**
-	 * @param string $key
-	 * @return string
-	 */
-	public static function getAdCode( $key ) {
+	public static function getAdCode( string $key ): string {
 
 		$_array = self::getInstance()->mCodeArray;
 		$_return_value = '';
@@ -108,9 +104,8 @@ class CustomAdvertisingSettings {
 
 	/**
 	 * @param bool $user_LoggedIn
-	 * @return bool
 	 */
-	public static function isActive( $user ) {
+	public static function isActive( User $user ): bool {
 
  		if ( self::getInstance()->mActive ) {
 			return ( $user->isAnon() || !self::getInstance()->mAnonOnly );
@@ -122,7 +117,7 @@ class CustomAdvertisingSettings {
 	 * @param string $key
 	 * @return bool
 	 */
-	public static function isPresentAd( $key ) {
+	public static function isPresentAd( string $key ): bool  {
 
 		$_array = self::getInstance()->mCodeArray;
 		$_return_value = false;

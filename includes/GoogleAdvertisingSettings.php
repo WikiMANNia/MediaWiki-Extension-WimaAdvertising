@@ -138,9 +138,8 @@ class GoogleAdvertisingSettings {
 
 	/**
 	 * @param bool $user_LoggedIn
-	 * @return bool
 	 */
-	public static function isActive( $user ) {
+	public static function isActive( $user ): bool {
 
  		if ( self::getInstance()->mActive ) {
 			return ( $user->isAnon() || !self::getInstance()->mAnonOnly );
@@ -148,11 +147,7 @@ class GoogleAdvertisingSettings {
 		return false;
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
-	public static function isPresentAd( $key ) {
+	public static function isPresentAd( string $key ): bool {
 
 		$_array = self::getInstance()->mCodeArray;
 		$_return_value = false;
@@ -166,19 +161,11 @@ class GoogleAdvertisingSettings {
 		return $_return_value;
 	}
 
-	/**
-	 * @param string $type
-	 * @return string
-	 */
-	private static function getAdStyle( $type ) {
+	private static function getAdStyle( string $type ): string {
 		return '';
 	}
 
-	/**
-	 * @param string $type
-	 * @return string
-	 */
-	public static function getAdType( $type ) {
+	public static function getAdType( string $type ): string {
 
 		return self::getInstance()->mDefaultType;
 	}
@@ -203,10 +190,9 @@ class GoogleAdvertisingSettings {
 	}
 
 	/**
-	 * @param array $array
 	 * @return false|array
 	 */
-	private static function getAdConfigArray( $array ) {
+	private static function getAdConfigArray( array $array ) {
 
 		if ( is_array( $array ) ) {
 			switch ( count( $array ) ) {
@@ -252,12 +238,7 @@ class GoogleAdvertisingSettings {
 		return [ 'slot' => $slot, 'width' => $width, 'height' => $height, 'format' => $format ];
 	}
 
-	/**
-	 * @param array $general_data
-	 * @param array $ad_data
-	 * @return string
-	 */
-	private static function getAdCodePrivate( $general_data, $ad_data ) {
+	private static function getAdCodePrivate( array $general_data, array $ad_data ): string {
 
 		$script_code = '';
 		$scriptsnippet_client_host_slot =

@@ -22,27 +22,29 @@ class WimaAdvertisingHooks implements
 	SkinAfterPortletHook,
 	SidebarBeforeOutputHook
 {
+
 	/**
-	 * https://www.mediawiki.org/wiki/Manual:Hooks/BeforePageDisplay
-	 * 
+	 * include/Hook/BeforePageDisplayHook.php
+	 *
 	 * @param OutputPage $out
 	 * @param Skin $skin
+	 * @return void This hook must not abort, it must return no value
 	 */
 	public function onBeforePageDisplay( $out, $skin ): void {
 
-		if ( !self::isActive( $skin->getUser() ) )  return;
+		if ( !self::isActive( $skin->getUser() ) ) return;
 
-		$skinname = $skin->getSkinName();
+		$skinName = $skin->getSkinName();
 		$out->addModuleStyles( 'ext.wimaadvertising.common' );
 		$out->addModuleStyles( 'ext.wimaadvertising.mobile' );
-		if ( CustomAdvertisingSettings::isSupportedSkin( $skinname ) ) {
-			if ( $skinname === 'vector-2022' ) {
+		if ( CustomAdvertisingSettings::isSupportedSkin( $skinName ) ) {
+			if ( $skinName === 'vector-2022' ) {
 				$out->addModuleStyles( 'ext.wimaadvertising.vector' );
 			} else {
-				$out->addModuleStyles( 'ext.wimaadvertising.' . $skinname );
+				$out->addModuleStyles( 'ext.wimaadvertising.' . $skinName );
 			}
-		} else if ( $skinname !== 'fallback' ) {
-			wfLogWarning( 'Skin ' . $skinname . ' not supported by WimaAdvertising.' . "\n" );
+		} else if ( $skinName !== 'fallback' ) {
+			wfLogWarning( "Skin $skinName not supported by WimaAdvertising.\n" );
 		}
 
 		$script_code = GoogleAdvertisingSettings::getJavaCode();
@@ -65,7 +67,7 @@ class WimaAdvertisingHooks implements
 		$issetAdvertisementBox =  self::isPresentAd( $skin->getUser(), $tag );
 
 		if ( $issetSitenoticeBox && $issetAdvertisementBox ) {
-			if ( rand(0, 1) ) {
+			if ( rand (0, 1 ) ) {
 #				$siteNotice = self::getSitenoticeBox();
 			} else {
 				$siteNotice = self::getAdvertisementBox( $skin, $tag );
@@ -150,6 +152,8 @@ class WimaAdvertisingHooks implements
 	public function onSidebarBeforeOutput( $skin, &$sidebar ): void {
 
 		$user = $skin->getUser();
+		$skinName = $skin->getSkinName();
+		$needDirtyHack = ( $skinName === 'timeless' );
 		$_key1 = 'wimaadvertising-' . self::getAdType( $user, 'side1' );
 		$_key2 = 'wimaadvertising-' . self::getAdType( $user, 'side2' );
 		// Dirty hack:
@@ -177,7 +181,7 @@ class WimaAdvertisingHooks implements
 				case 'AD1' :
 					if ( self::isPresentAd( $user, 'side1' ) ) {
 						// Dirty hack for skin Timeless
-						if ( $skin->getSkinName() === 'timeless' ) {
+						if ( $needDirtyHack ) {
 							$value = [ $empty_item ];
 						}
 						$newbar[$_key1] = $value;
@@ -187,7 +191,7 @@ class WimaAdvertisingHooks implements
 				case 'AD2' :
 					if ( self::isPresentAd( $user, 'side2' ) ) {
 						// Dirty hack for skin Timeless
-						if ( $skin->getSkinName() === 'timeless' ) {
+						if ( $needDirtyHack ) {
 							$value = [ $empty_item ];
 						}
 						$newbar[$_key2] = $value;
