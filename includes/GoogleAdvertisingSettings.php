@@ -136,10 +136,7 @@ class GoogleAdvertisingSettings {
 		return $script_code;
 	}
 
-	/**
-	 * @param bool $user_LoggedIn
-	 */
-	public static function isActive( $user ): bool {
+	public static function isActive( Usere $user ): bool {
 
  		if ( self::getInstance()->mActive ) {
 			return ( $user->isAnon() || !self::getInstance()->mAnonOnly );
