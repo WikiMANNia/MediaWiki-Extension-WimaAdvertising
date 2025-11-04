@@ -216,19 +216,19 @@ class GoogleAdvertisingSettings {
 		// Slot must be defined, not empty or 'none'
 		$slot = empty( $array[0] ) ? 'none' : $array[0];
 		if ( ( $slot === 'none' ) || ( $slot === 'slot' ) ) {
-			wfLogWarning( 'Google::getAdConfigArray did not detect a (valid) slot: "' . $slot . '"' . "\n" );
+			wfLogWarning( "Google::getAdConfigArray did not detect a (valid) slot: slot \n" );
 			return false;
 		}
 
 		// width and height must be 'auto' or int
 		$width  = self::getSizeValue( $array[1] );
 		if ( $width === false ) {
-			wfLogWarning( 'Google::getAdConfigArray not recognize a valid width value: "' . $array[1] . '"' . "\n" );
+			wfLogWarning( "Google::getAdConfigArray not recognize a valid width value: $array[1] \n" );
 			return false;
 		}
 		$height = self::getSizeValue( $array[2] );
 		if ( $height === false ) {
-			wfLogWarning( 'Google::getAdConfigArray not recognize a valid height value: "' . $array[2] . '"' . "\n" );
+			wfLogWarning( "Google::getAdConfigArray not recognize a valid height value: $array[2] \n" );
 			return false;
 		}
 

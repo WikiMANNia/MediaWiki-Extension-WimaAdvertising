@@ -97,14 +97,11 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( 'Custom::getAdCode was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Custom::getAdCode was called for an unsupported key: $key  \n" );
 		}
 		return $_return_value;
 	}
 
-	/**
-	 * @param bool $user_LoggedIn
-	 */
 	public static function isActive( User $user ): bool {
 
  		if ( self::getInstance()->mActive ) {
@@ -113,10 +110,6 @@ class CustomAdvertisingSettings {
 		return false;
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	public static function isPresentAd( string $key ): bool  {
 
 		$_array = self::getInstance()->mCodeArray;
@@ -125,16 +118,12 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = ( $_array[ $key ] !== false );
 		} else {
-			wfLogWarning( 'Custom::isPresentAd was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Custom::isPresentAd was called for an unsupported key: $key \n" );
 		}
 		return $_return_value;
 	}
 
-	/**
-	 * @param string $key
-	 * @return string
-	 */
-	public static function getAdStyle( $key ) {
+	public static function getAdStyle( string $key ): string {
 
 		$_array = self::getInstance()->mStyleArray;
 		$_return_value = '';
@@ -142,17 +131,13 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( 'Custom::getAdStyle was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Custom::getAdStyle was called for an unsupported key: $key \n" );
 		}
 
 		return $_return_value;
 	}
 
-	/**
-	 * @param string $key
-	 * @return string
-	 */
-	public static function getAdType( $key ) {
+	public static function getAdType( string $key ): string {
 
 		$_array        = self::getInstance()->mTypeArray;
 		$_return_value = self::getInstance()->mDefaultType;
@@ -160,7 +145,7 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( 'Custom::getAdType was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Custom::getAdType was called for an unsupported key: $key \n" );
 		}
 
 		return $_return_value;
