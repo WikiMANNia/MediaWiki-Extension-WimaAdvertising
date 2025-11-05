@@ -98,7 +98,7 @@ GoogleAdSenseMode. Default is `normal`.
 
 ## Compatibility
 
-This extension works from REL1_35 and has been tested up to MediaWiki version `1.35.14`, `1.39.15`, `1.42.3`, and `1.43.5`.
+This extension works from REL1_43 and has been tested up to MediaWiki version `1.43.5` and `1.44.2`.
 
 ## Version history
 
@@ -184,3 +184,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki version `1
 2.9.0
 
 * Support added for Skin [Citizen](https://www.mediawiki.org/wiki/Skin:Citizen).
+
+2.9.1
+
+* Added compatibility to MediaWiki v1.44.
