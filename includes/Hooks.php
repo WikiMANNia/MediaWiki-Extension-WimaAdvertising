@@ -6,17 +6,35 @@
  * @ingroup Extensions
  */
 
+namespace MediaWiki\Extension\WimaAdvertising;
+
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\SiteNoticeAfterHook;
 use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Skins\Hook\SkinAfterPortletHook;
 use MediaWiki\Hook\SidebarBeforeOutputHook;
+
 use MediaWiki\Html\Html;
+use MediaWiki\Skin\SkinTemplate;
+use MediaWiki\User\User;
+
+// Class aliases for multi-version compatibility.
+// These need to be in global scope so phan can pick up on them,
+// and before any use statements that make use of the namespaced names.
+if ( version_compare( MW_VERSION, '1.40', '<' ) ) {
+	if ( !class_exists('MediaWiki\Html\Html') )  class_alias( '\Html', '\MediaWiki\Html\Html' );
+}
+if ( version_compare( MW_VERSION, '1.41', '<' ) ) {
+	if ( !class_exists('MediaWiki\User\User') )  class_alias( '\User', '\MediaWiki\User\User' );
+}
+if ( version_compare( MW_VERSION, '1.44', '<' ) ) {
+	if ( !class_exists('MediaWiki\Skin\SkinTemplate') )  class_alias( '\SkinTemplate', '\MediaWiki\Skin\SkinTemplate' );
+}
 
 /**
  * @phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
  */
-class WimaAdvertisingHooks implements
+class Hooks implements
 	BeforePageDisplayHook,
 	SiteNoticeAfterHook,
 	SkinAfterContentHook,
@@ -44,7 +62,7 @@ class WimaAdvertisingHooks implements
 			} else {
 				$out->addModuleStyles( 'ext.wimaadvertising.' . $skinName );
 			}
-		} else if ( $skinName !== 'fallback' ) {
+		} else if ( ( $skinName !== 'apioutput' ) AND ( $skinName !== 'fallback' ) ) {
 			wfLogWarning( "Skin $skinName not supported by WimaAdvertising.\n" );
 		}
 
@@ -211,8 +229,6 @@ class WimaAdvertisingHooks implements
 
 	/**
 	 * Load sidebar ad for Monaco skin.
-	 *
-	 * @return bool
 	 */
 	public static function onMonacoStaticboxEnd( $skin, &$html ) {
 
@@ -224,7 +240,7 @@ class WimaAdvertisingHooks implements
 		return self::writeMonacoAd( $html, 'side2' );
 	}
 
-	private static function writeMonacoAd( &$html, $tag ) {
+	private static function writeMonacoAd( string &$html, string $tag ): bool {
 
 		$user = RequestContext::getMain()->getUser();
 		$adCode = self::getAdCode( $user, $tag );
@@ -238,11 +254,11 @@ class WimaAdvertisingHooks implements
 		return true;
 	}
 
-	private static function getAdBox( $html ) {
+	private static function getAdBox( string $html ): string  {
 		return Html::rawElement( 'div', [ 'class' => 'wima-adbox' ], $html );
 	}
 
-	private static function getAdvertisementBox( $skin, $tag ) {
+	private static function getAdvertisementBox( SkinTemplate $skin, string $tag ): string  {
 
 		$user = $skin->getUser();
 
@@ -260,20 +276,20 @@ class WimaAdvertisingHooks implements
 			$elements = Html::rawElement( 'div', [ 'style' => $style2 ], $html_code );
 			if ( !empty( $title ) ) {
 				// if lable not set to 'blank'
-				 $elements = Html::rawElement( 'p', [], $title . ':' ) . $elements;
+				$elements = Html::rawElement( 'p', [], $title . ':' ) . $elements;
 			}
 			return Html::rawElement( 'div', $options, $elements );
 		}
 		return '';
 	}
 
-	private static function isActive( $user ) {
+	private static function isActive( User $user ) {
 		return ( CustomAdvertisingSettings::isActive( $user ) ||
 			// If custom ad is not active, give google a chance
 			GoogleAdvertisingSettings::isActive( $user ) );
 	}
 
-	private static function isPresentAd( $user, $tag ) {
+	private static function isPresentAd( User $user, string $tag ): bool {
 
 		$present_ad_found = false;
 
@@ -288,7 +304,7 @@ class WimaAdvertisingHooks implements
 		return $present_ad_found;
 	}
 
-	private static function getAdCode( $user, $tag ) {
+	private static function getAdCode( User $user, string $tag ): string {
 
 		$return_value = '';
 		$present_ad_found = false;
@@ -310,11 +326,11 @@ class WimaAdvertisingHooks implements
 		return $return_value;
 	}
 
-	private static function getAdStyle( $tag ) {
+	private static function getAdStyle( string $tag ): string {
 		return CustomAdvertisingSettings::getAdStyle( $tag );
 	}
 
-	private static function getAdType( $user, $tag ) {
+	private static function getAdType( User $user, string $tag ): string {
 
 		$return_value = '';
 		$present_ad_found = false;

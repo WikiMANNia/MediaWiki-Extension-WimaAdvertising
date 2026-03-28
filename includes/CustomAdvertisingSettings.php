@@ -8,7 +8,17 @@
  * files uploaded for this wiki.
  */
 
+namespace MediaWiki\Extension\WimaAdvertising;
+
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
+
+// Class aliases for multi-version compatibility.
+// These need to be in global scope so phan can pick up on them,
+// and before any use statements that make use of the namespaced names.
+if ( version_compare( MW_VERSION, '1.41', '<' ) ) {
+	if ( !class_exists('MediaWiki\User\User') )  class_alias( '\User', '\MediaWiki\User\User' );
+}
 
 class CustomAdvertisingSettings {
 
@@ -21,7 +31,7 @@ class CustomAdvertisingSettings {
  	private array $mStyleArray = [];
  	private array $mTypeArray = [];
 
- 	private $mCodeArray;
+ 	private array $mCodeArray = [];
 
 	private function __construct() {
 
@@ -155,7 +165,7 @@ class CustomAdvertisingSettings {
 	 * $param string $key (skinname)
 	 * @return bool
 	 */
-	public static function isSupportedSkin( $key ) {
+	public static function isSupportedSkin( string $key ): bool {
 		return in_array( $key, [ 'citizen', 'cologneblue', 'minerva', 'modern', 'monaco', 'monobook', 'timeless', 'vector', 'vector-2022' ] );
 	}
 }

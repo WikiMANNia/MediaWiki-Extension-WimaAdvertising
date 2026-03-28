@@ -3,9 +3,9 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.9.1",
+	"version": "2.10.0",
 	"requires": {
-		"MediaWiki": ">= 1.42.0"
+		"MediaWiki": ">= 1.35.0"
 	},
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
@@ -124,10 +124,13 @@
 	},
 	"manifest_version": 2,
 	"type": "other",
-	"AutoloadClasses": {
-		"CustomAdvertisingSettings": "includes/CustomAdvertisingSettings.php",
-		"GoogleAdvertisingSettings": "includes/GoogleAdvertisingSettings.php",
-		"WimaAdvertisingHooks": "includes/Hooks.php"
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\WimaAdvertising\\": "includes/"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\WimaAdvertising\\Hooks"
+		}
 	},
 	"Hooks": {
 	    "BeforePageDisplay": "main",
@@ -137,11 +140,6 @@
 		"SiteNoticeAfter": "main",
 	    "SkinAfterContent": "main",
 	    "SkinAfterPortlet": "main"
-	},
-	"HookHandlers": {
-		"main": {
-			"class": "WimaAdvertisingHooks"
-		}
 	},
 	"MessagesDirs": {
 		"WimaAdvertising": [ "i18n" ]

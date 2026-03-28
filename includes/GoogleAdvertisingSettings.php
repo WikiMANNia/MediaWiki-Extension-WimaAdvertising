@@ -8,19 +8,29 @@
  * files uploaded for this wiki.
  */
 
+namespace MediaWiki\Extension\WimaAdvertising;
+
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
+
+// Class aliases for multi-version compatibility.
+// These need to be in global scope so phan can pick up on them,
+// and before any use statements that make use of the namespaced names.
+if ( version_compare( MW_VERSION, '1.41', '<' ) ) {
+	if ( !class_exists('MediaWiki\User\User') )  class_alias( '\User', '\MediaWiki\User\User' );
+}
 
 class GoogleAdvertisingSettings {
 
 	private static $instance;
 
- 	private $mActive;
- 	private $mAnonOnly;
+ 	private bool $mActive;
+ 	private bool $mAnonOnly;
 
- 	private $mDefaultType;
- 	private $mConfigArray;
+ 	private string $mDefaultType;
+ 	private array $mConfigArray = [];
 
- 	private $mCodeArray;
+ 	private array $mCodeArray = [];
 
 	private function __construct() {
 
@@ -28,16 +38,11 @@ class GoogleAdvertisingSettings {
 		 * Global variables are set in 'extension.json' and
 		 * also can be set in the 'LocalSettings.php'.
 		 */
-		global $wgLanguageCode;
-
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'wimaadvertising' );
 
 		// 1. Steuerung
-		$_GoogleAdSense         = $config->get( 'GoogleAdSense' );
-		$_GoogleAdSenseAnonOnly = $config->get( 'GoogleAdSenseAnonOnly' );
-
-		$this->mActive   = empty( $_GoogleAdSense         ) ? false : ( $_GoogleAdSense         === true );
-		$this->mAnonOnly = empty( $_GoogleAdSenseAnonOnly ) ? false : ( $_GoogleAdSenseAnonOnly === true );
+		$this->mActive   = $config->get( 'GoogleAdSense' );
+		$this->mAnonOnly = $config->get( 'GoogleAdSenseAnonOnly' );
 
 
 		// 2. Spezifische Variablen für jeden Werbeblock
@@ -102,9 +107,9 @@ class GoogleAdvertisingSettings {
 
 	/**
 	 * @param string $key
-	 * @return string
+	 * @return string|false
 	 */
-	public static function getAdCode( $key ) {
+	public static function getAdCode( string $key ): string {
 
 		$_array = self::getInstance()->mCodeArray;
 		$_return_value = '';
