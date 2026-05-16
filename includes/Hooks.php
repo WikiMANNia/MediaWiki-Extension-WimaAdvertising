@@ -18,17 +18,17 @@ class WimaAdvertisingHooks extends Hooks {
 
 		if ( !self::isActive( $skin->getUser() ) )  return;
 
-		$skinname = $skin->getSkinName();
+		$skinName = $skin->getSkinName();
 		$out->addModuleStyles( 'ext.wimaadvertising.common' );
 		$out->addModuleStyles( 'ext.wimaadvertising.mobile' );
-		if ( CustomAdvertisingSettings::isSupportedSkin( $skinname ) ) {
-			if ( $skinname === 'vector-2022' ) {
+		if ( CustomAdvertisingSettings::isSupportedSkin( $skinName ) ) {
+			if ( $skinName === 'vector-2022' ) {
 				$out->addModuleStyles( 'ext.wimaadvertising.vector' );
 			} else {
-				$out->addModuleStyles( 'ext.wimaadvertising.' . $skinname );
+				$out->addModuleStyles( 'ext.wimaadvertising.' . $skinName );
 			}
-		} else if ( $skinname !== 'fallback' ) {
-			wfLogWarning( 'Skin ' . $skinname . ' not supported by WimaAdvertising.' . "\n" );
+		} else if ( ( $skinName !== 'apioutput' ) AND ( $skinName !== 'fallback' ) ) {
+			wfLogWarning( "Skin $skinName not supported by WimaAdvertising.\n" );
 		}
 
 		$script_code = GoogleAdvertisingSettings::getJavaCode();

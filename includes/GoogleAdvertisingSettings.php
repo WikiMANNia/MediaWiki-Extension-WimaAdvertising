@@ -30,36 +30,36 @@ class GoogleAdvertisingSettings {
 		global $wgLanguageCode;
 
 		// 1. Steuerung
-		global $wmGoogleAdSense;
-		global $wmGoogleAdSenseAnonOnly;
+		global $wgGoogleAdSense;
+		global $wgGoogleAdSenseAnonOnly;
 
-		$this->mActive   = empty( $wmGoogleAdSense         ) ? false : ( $wmGoogleAdSense         === true );
-		$this->mAnonOnly = empty( $wmGoogleAdSenseAnonOnly ) ? false : ( $wmGoogleAdSenseAnonOnly === true );
+		$this->mActive   = empty( $wgGoogleAdSense         ) ? false : ( $wgGoogleAdSense         === true );
+		$this->mAnonOnly = empty( $wgGoogleAdSenseAnonOnly ) ? false : ( $wgGoogleAdSenseAnonOnly === true );
 
 
 		// 2. Spezifische Variablen für jeden Werbeblock
-		global $wmGoogleAdSense_Bottom;
-		global $wmGoogleAdSense_Top;
-		global $wmGoogleAdSense_AD1;
-		global $wmGoogleAdSense_AD2;
+		global $wgGoogleAdSense_Bottom;
+		global $wgGoogleAdSense_Top;
+		global $wgGoogleAdSense_AD1;
+		global $wgGoogleAdSense_AD2;
 
 		$this->mDefaultType = 'advertising';
-		$Ad_Bottom = self::getAdConfigArray( $wmGoogleAdSense_Bottom );
-		$Ad_Top    = self::getAdConfigArray( $wmGoogleAdSense_Top );
-		$Ad_AD1    = self::getAdConfigArray( $wmGoogleAdSense_AD1 );
-		$Ad_AD2    = self::getAdConfigArray( $wmGoogleAdSense_AD2 );
+		$Ad_Bottom = self::getAdConfigArray( $wgGoogleAdSense_Bottom );
+		$Ad_Top    = self::getAdConfigArray( $wgGoogleAdSense_Top );
+		$Ad_AD1    = self::getAdConfigArray( $wgGoogleAdSense_AD1 );
+		$Ad_AD2    = self::getAdConfigArray( $wgGoogleAdSense_AD2 );
 
 
 		// 3. Allgemeine Variablen für alle Werbeblöcke
-		global $wmGoogleAdSenseClient;
-		global $wmGoogleAdSenseHost;
-		global $wmGoogleAdSenseMode;
-		global $wmGoogleAdSenseSrc;
+		global $wgGoogleAdSenseClient;
+		global $wgGoogleAdSenseHost;
+		global $wgGoogleAdSenseMode;
+		global $wgGoogleAdSenseSrc;
 
-		$this->mConfigArray['ad_client'] = ( empty( $wmGoogleAdSenseClient ) || ( $wmGoogleAdSenseClient === 'none' ) ) ? false : $wmGoogleAdSenseClient;
-		$this->mConfigArray['ad_host']   = ( empty( $wmGoogleAdSenseHost )   || ( $wmGoogleAdSenseHost === 'none' )   ) ? false : $wmGoogleAdSenseHost;
-		$this->mConfigArray['ad_mode']   = ( $wmGoogleAdSenseMode === 'responsive' ) ? 'responsive' : 'normal';
-		$this->mConfigArray['ad_src']    = !empty( $wmGoogleAdSenseSrc ) ? $wmGoogleAdSenseSrc : false;
+		$this->mConfigArray['ad_client'] = ( empty( $wgGoogleAdSenseClient ) || ( $wgGoogleAdSenseClient === 'none' ) ) ? false : $wgGoogleAdSenseClient;
+		$this->mConfigArray['ad_host']   = ( empty( $wgGoogleAdSenseHost )   || ( $wgGoogleAdSenseHost === 'none' )   ) ? false : $wgGoogleAdSenseHost;
+		$this->mConfigArray['ad_mode']   = ( $wgGoogleAdSenseMode === 'responsive' ) ? 'responsive' : 'normal';
+		$this->mConfigArray['ad_src']    = !empty( $wgGoogleAdSenseSrc ) ? $wgGoogleAdSenseSrc : false;
 
 
 		// HTML-Snippet für jeden Werbeblock, falls ungültige Parameter auftreten sollten, auf false setzen

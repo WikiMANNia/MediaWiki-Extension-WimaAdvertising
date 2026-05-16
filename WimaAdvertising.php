@@ -62,7 +62,7 @@ call_user_func(
 $wgExtensionCredits['specialpage'][] = [
 	'path'           => __FILE__,
 	'name'           => 'WimaAdvertising',
-	'version'        => '2.8.4',
+	'version'        => '2.8.5',
 	'author'         => 'WikiMANNia',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:WimaAdvertising',
 	'descriptionmsg' => 'wimaadvertising-desc',
@@ -157,35 +157,35 @@ $dtgScriptPath = $wgScriptPath . '/extensions/WimaAdvertising';
 ##
 
 // Global settings
-$wmBannerBottomCode = "";
-$wmBannerBottomStyle = "border:1px solid black; text-align:center;";
-$wmBannerBottomType = "advertising";
-$wmBannerTopCode = "";
-$wmBannerTopStyle = "border:1px solid black; text-align:center;";
-$wmBannerTopType = "advertising";
-$wmSidebarAd1Code = "";
-$wmSidebarAd1Type = "advertising";
-$wmSidebarAd2Code = "";
-$wmSidebarAd2Type = "advertising";
-$wmWimaAdvertisingAnonOnly = false;
-$wmGoogleAdSenseClient = "none";
-$wmGoogleAdSenseHost = "none";
-$wmGoogleAdSenseMode = "normal";
-$wmGoogleAdSenseSlot = "none";
-$wmGoogleAdSenseSrc = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-$wmGoogleAdSenseAnonOnly = false;
+$wgBannerBottomCode = "";
+$wgBannerBottomStyle = "border:1px solid black; text-align:center;";
+$wgBannerBottomType = "advertising";
+$wgBannerTopCode = "";
+$wgBannerTopStyle = "border:1px solid black; text-align:center;";
+$wgBannerTopType = "advertising";
+$wgSidebarAd1Code = "";
+$wgSidebarAd1Type = "advertising";
+$wgSidebarAd2Code = "";
+$wgSidebarAd2Type = "advertising";
+$wgWimaAdvertisingAnonOnly = false;
+$wgGoogleAdSenseClient = "none";
+$wgGoogleAdSenseHost = "none";
+$wgGoogleAdSenseMode = "normal";
+$wgGoogleAdSenseSlot = "none";
+$wgGoogleAdSenseSrc = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+$wgGoogleAdSenseAnonOnly = false;
 ###
 
 
 $wgExtensionFunctions[] = 'setupWimaAdvertisingExtension';
 
 function setupWimaAdvertisingExtension() {
-	global $wmDisableWimaAdvertising, $wgVersion;
+	global $wgDisableWimaAdvertising, $wgVersion;
 
 	if ( version_compare( $wgVersion, '1.23', '<' ) ) {
 		die( 'This extension requires MediaWiki 1.23+' );
 	}
-	elseif ( $wmDisableWimaAdvertising === false ) {
+	elseif ( $wgDisableWimaAdvertising === false ) {
 		global $wgAvailableRights, $wgGroupPermissions, $wgLogTypes, $wgLogActionsHandlers;
 	}
 

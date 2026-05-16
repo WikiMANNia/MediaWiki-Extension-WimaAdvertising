@@ -30,39 +30,39 @@ class CustomAdvertisingSettings {
 		 */
 
 		// 1. Steuerung
-		global $wmWimaAdvertising;
-		global $wmWimaAdvertisingAnonOnly;
+		global $wgWimaAdvertising;
+		global $wgWimaAdvertisingAnonOnly;
 
-		$this->mActive   = empty( $wmWimaAdvertising         ) ? false : ( $wmWimaAdvertising         === true );
-		$this->mAnonOnly = empty( $wmWimaAdvertisingAnonOnly ) ? false : ( $wmWimaAdvertisingAnonOnly === true );
+		$this->mActive   = empty( $wgWimaAdvertising         ) ? false : ( $wgWimaAdvertising         === true );
+		$this->mAnonOnly = empty( $wgWimaAdvertisingAnonOnly ) ? false : ( $wgWimaAdvertisingAnonOnly === true );
 
 
 		// 2. Spezifische Variablen für jeden Werbeblock
-		global $wmBannerBottomStyle, $wmBannerBottomType;
-		global $wmBannerTopStyle,    $wmBannerTopType;
-		global $wmSidebarAd1Style,   $wmSidebarAd1Type;
-		global $wmSidebarAd2Style,   $wmSidebarAd2Type;
+		global $wgBannerBottomStyle, $wgBannerBottomType;
+		global $wgBannerTopStyle,    $wgBannerTopType;
+		global $wgSidebarAd1Style,   $wgSidebarAd1Type;
+		global $wgSidebarAd2Style,   $wgSidebarAd2Type;
 
-		$this->mStyleArray['bottom'] = empty( $wmBannerBottomStyle ) ? '' : $wmBannerBottomStyle;
-		$this->mStyleArray['top']    = empty( $wmBannerTopStyle    ) ? '' : $wmBannerTopStyle;
-		$this->mStyleArray['side1']  = empty( $wmSidebarAd1Style   ) ? '' : $wmSidebarAd1Style;
-		$this->mStyleArray['side2']  = empty( $wmSidebarAd2Style   ) ? '' : $wmSidebarAd2Style;
+		$this->mStyleArray['bottom'] = empty( $wgBannerBottomStyle ) ? '' : $wgBannerBottomStyle;
+		$this->mStyleArray['top']    = empty( $wgBannerTopStyle    ) ? '' : $wgBannerTopStyle;
+		$this->mStyleArray['side1']  = empty( $wgSidebarAd1Style   ) ? '' : $wgSidebarAd1Style;
+		$this->mStyleArray['side2']  = empty( $wgSidebarAd2Style   ) ? '' : $wgSidebarAd2Style;
 		$this->mDefaultType = 'advertising';
 		$validTypes = [ 'blank', 'eventnote', 'hint', $this->mDefaultType ];
-		$this->mTypeArray['bottom'] = in_array( $wmBannerBottomType, $validTypes ) ? $wmBannerBottomType : $this->mDefaultType;
-		$this->mTypeArray['top']    = in_array( $wmBannerTopType,    $validTypes ) ? $wmBannerTopType    : $this->mDefaultType;
-		$this->mTypeArray['side1']  = in_array( $wmSidebarAd1Type,   $validTypes ) ? $wmSidebarAd1Type   : $this->mDefaultType;
-		$this->mTypeArray['side2']  = in_array( $wmSidebarAd2Type,   $validTypes ) ? $wmSidebarAd2Type   : $this->mDefaultType;
+		$this->mTypeArray['bottom'] = in_array( $wgBannerBottomType, $validTypes ) ? $wgBannerBottomType : $this->mDefaultType;
+		$this->mTypeArray['top']    = in_array( $wgBannerTopType,    $validTypes ) ? $wgBannerTopType    : $this->mDefaultType;
+		$this->mTypeArray['side1']  = in_array( $wgSidebarAd1Type,   $validTypes ) ? $wgSidebarAd1Type   : $this->mDefaultType;
+		$this->mTypeArray['side2']  = in_array( $wgSidebarAd2Type,   $validTypes ) ? $wgSidebarAd2Type   : $this->mDefaultType;
 
 
 		// HTML-Snippet für jeden Werbeblock, falls jedoch ungültige Parameter auf false setzen
-		global $wmSidebarAd1Code, $wmBannerBottomCode;
-		global $wmSidebarAd2Code, $wmBannerTopCode;
+		global $wgSidebarAd1Code, $wgBannerBottomCode;
+		global $wgSidebarAd2Code, $wgBannerTopCode;
 
-		$this->mCodeArray['bottom'] = empty( $wmBannerBottomCode ) ? false : $wmBannerBottomCode;
-		$this->mCodeArray['top']    = empty( $wmBannerTopCode    ) ? false : $wmBannerTopCode;
-		$this->mCodeArray['side1']  = empty( $wmSidebarAd1Code   ) ? false : $wmSidebarAd1Code;
-		$this->mCodeArray['side2']  = empty( $wmSidebarAd2Code   ) ? false : $wmSidebarAd2Code;
+		$this->mCodeArray['bottom'] = empty( $wgBannerBottomCode ) ? false : $wgBannerBottomCode;
+		$this->mCodeArray['top']    = empty( $wgBannerTopCode    ) ? false : $wgBannerTopCode;
+		$this->mCodeArray['side1']  = empty( $wgSidebarAd1Code   ) ? false : $wgSidebarAd1Code;
+		$this->mCodeArray['side2']  = empty( $wgSidebarAd2Code   ) ? false : $wgSidebarAd2Code;
 	}
 
 	private function __clone() { }

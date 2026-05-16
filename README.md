@@ -15,43 +15,43 @@ The advertising space 1 alternates randomly with Sitenotice. Advertising space 2
 ## Custom Advertising
 
 Enable advertising. Default is `false`.
-* `$wmWimaAdvertising = true;`
+* `$wgWimaAdvertising = true;`
 
 Disable advertising for logged-in users. Default is `false`.
-* `$wmWimaAdvertisingAnonOnly = true;`
+* `$wgWimaAdvertisingAnonOnly = true;`
 
 The slots can be labelled as Advert, Eventnote, Hint or let be blank. These variables have to be set:
 
-* `$wmBannerTopType = 'advertising';`
-* `$wmBannerBottomType = 'blank';`
-* `$wmSidebarAd1Type = 'eventnote';`
-* `$wmSidebarAd2Type = 'hint';`
+* `$wgBannerTopType = 'advertising';`
+* `$wgBannerBottomType = 'blank';`
+* `$wgSidebarAd1Type = 'eventnote';`
+* `$wgSidebarAd2Type = 'hint';`
 
 The default value is `advertising`. These variables can therefore be omitted for advertising insertions.
 
 HTML code must be assigned to these variables:
 
-* `$wmBannerTopCode = '';`
-* `$wmBannerBottomCode = '';`
-* `$wmSidebarAd1Code = '';`
-* `$wmSidebarAd2Code = '';`
+* `$wgBannerTopCode = '';`
+* `$wgBannerBottomCode = '';`
+* `$wgSidebarAd1Code = '';`
+* `$wgSidebarAd2Code = '';`
 
 If a variable is not set or contains its string of zero length, the corresponding ad space remains unoccupied.
 
 These variables must be assigned CSS style specifications, for example:
 
-* `$wmBannerTopStyle = 'text-align:center;border:1px solid blue;';`
-* `$wmBannerBottomStyle = 'text-align:center;border:1px dotted red;';`
+* `$wgBannerTopStyle = 'text-align:center;border:1px solid blue;';`
+* `$wgBannerBottomStyle = 'text-align:center;border:1px dotted red;';`
 
 The advertising space 1 alternates randomly with Sitenotice. Advertising space 2 is located at the bottom of the article content. The advertising spaces 3 and 4 are located in the sitenotice. The exact positioning is determined with the entries `* AD1` and `* AD2` in the [Sidebar](https://www.mediawiki.org/wiki/MediaWiki:Sidebar).
 
 Enable advertising. Default is `false`.
 
-* `$wmWimaAdvertising = true;`
+* `$wgWimaAdvertising = true;`
 
 Disable advertising for logged-in users. Default is `false`.
 
-* `$wmWimaAdvertisingAnonOnly = true;`
+* `$wgWimaAdvertisingAnonOnly = true;`
 
 The extension is localized for the languages "de", "en", "es", "fr", "it", "nl", "pt", and "ru".
 
@@ -61,27 +61,27 @@ Further skins may require additional adjustments, which would have to be made in
 ## Google AdSense
 
 Enable advertising. Default is `false`.
-* `$wmGoogleAdSense = true;`
+* `$wgGoogleAdSense = true;`
 
 Disable advertising for logged-in users. Default is `false`.
-* `$wmGoogleAdSenseAnonOnly = true;`
+* `$wgGoogleAdSenseAnonOnly = true;`
 
 ### Mandatory parameters
 Replace this with your own publisher ID (google_ad_client / data-ad-client)
-* `$wmGoogleAdSenseClient = 'none';` // Client ID for your AdSense script
-* `$wmGoogleAdSenseHost = 'none';` // Host ID for your AdSense script
+* `$wgGoogleAdSenseClient = 'none';` // Client ID for your AdSense script
+* `$wgGoogleAdSenseHost = 'none';` // Host ID for your AdSense script
 
 ### Ad units
 Define up to four ad units:
-* `$wmGoogleAdSense_AD1= [ 'slotid 1', 145, 260 ];`
-* `$wmGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
-* `$wmGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
-* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
-* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'auto' ];`
-* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'rectangle' ];`
-* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'horizontal' ];`
-* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical' ];`
-* `$wmGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical, rectangle' ];`
+* `$wgGoogleAdSense_AD1= [ 'slotid 1', 145, 260 ];`
+* `$wgGoogleAdSense_AD2= [ 'slotid 2', 145, 260 ];`
+* `$wgGoogleAdSense_Top= [ 'slotid 3', 145, 260 ];`
+* `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
+* `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'auto' ];`
+* `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'rectangle' ];`
+* `$wgGoogleAdSense_Bottom = [ 'slotid 4', 600, 160, 'horizontal' ];`
+* `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical' ];`
+* `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical, rectangle' ];`
 Replace the first value with your AdSense ad unit ID (google_ad_slot / data-ad-slot) for each ad unit. The Slot ID for your AdSense script is for example `1234580893`.
 
 Also specify the width and the height of the AdSense unit, specified in your AdSense account (google_ad_width / data-ad-width, google_ad_height / data-ad-height). Values such as 'auto', '100%', '60%' etc. are accepted.
@@ -90,11 +90,11 @@ Also specify the width and the height of the AdSense unit, specified in your AdS
 Add any of the optional settings below – if your settings deviate from the defaults:
 
 Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
-* `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';`
-* `$wmGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234&host=ca-host-pub-5678';`
+* `$wgGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';`
+* `$wgGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234&host=ca-host-pub-5678';`
 
 GoogleAdSenseMode. Default is `normal`.
-* `$wmGoogleAdSenseMode = 'responsive`
+* `$wgGoogleAdSenseMode = 'responsive`
 
 ## Compatibility
 
@@ -159,8 +159,12 @@ This extension works from REL1_23 and has been tested up to MediaWiki version `1
 2.8.0
 
 - Change `Google AdSense` code: [Ad Units and Code Generation](https://developers.google.com/adsense/host/adunits) version "20240815-r00-rc00.462815510744624789"
-- Add `$wmGoogleAdSenseMode`: [Ad-Tags](https://developers.google.com/adsense/platforms/transparent/ad-tags)
+- Add `$wgGoogleAdSenseMode`: [Ad-Tags](https://developers.google.com/adsense/platforms/transparent/ad-tags)
 
 2.8.4
 
 - Add optional `data-ad-format` setting.
+
+2.8.5
+
+- Changed the prefix of the configuration variables back to `wg`.
