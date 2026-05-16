@@ -3,7 +3,7 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.10.0",
+	"version": "2.11.0",
 	"requires": {
 		"MediaWiki": ">= 1.35.0"
 	},
@@ -114,7 +114,7 @@
 		"GoogleAdSense_AD1": {
 			"type":  "array",
 			"value": [],
-			"description": "[ 'slotid', width, height, 'format' (optional) ], i.e.: [ 'slotid 3', 145, 260, 'horizontal' ]"
+			"description": "[ 'slotid', width, height, 'format' (optional) ], i.e.: [ 'slotid 3', 600, 160, 'horizontal' ]"
 		},
 		"GoogleAdSense_AD2": {
 			"type":  "array",

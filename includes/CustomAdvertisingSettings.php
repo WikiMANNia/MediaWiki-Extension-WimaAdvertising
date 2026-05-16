@@ -13,13 +13,6 @@ namespace MediaWiki\Extension\WimaAdvertising;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 
-// Class aliases for multi-version compatibility.
-// These need to be in global scope so phan can pick up on them,
-// and before any use statements that make use of the namespaced names.
-if ( version_compare( MW_VERSION, '1.41', '<' ) ) {
-	if ( !class_exists('MediaWiki\User\User') )  class_alias( '\User', '\MediaWiki\User\User' );
-}
-
 class CustomAdvertisingSettings {
 
 	private static $instance;
@@ -27,7 +20,7 @@ class CustomAdvertisingSettings {
  	private bool $mActive;
  	private bool $mAnonOnly;
 
- 	private string $mDefaultType;
+ 	private string $mDefaultType = 'advertising';
  	private array $mStyleArray = [];
  	private array $mTypeArray = [];
 
@@ -64,7 +57,6 @@ class CustomAdvertisingSettings {
 		$this->mStyleArray['top']    = empty( $_BannerTopStyle    ) ? '' : $_BannerTopStyle;
 		$this->mStyleArray['side1']  = empty( $_SidebarAd1Style   ) ? '' : $_SidebarAd1Style;
 		$this->mStyleArray['side2']  = empty( $_SidebarAd2Style   ) ? '' : $_SidebarAd2Style;
-		$this->mDefaultType = 'advertising';
 		$validTypes = [ 'blank', 'eventnote', 'hint', $this->mDefaultType ];
 		$this->mTypeArray['bottom'] = in_array( $_BannerBottomType, $validTypes ) ? $_BannerBottomType : $this->mDefaultType;
 		$this->mTypeArray['top']    = in_array( $_BannerTopType,    $validTypes ) ? $_BannerTopType    : $this->mDefaultType;
@@ -107,7 +99,7 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( "Custom::getAdCode was called for an unsupported key: $key  \n" );
+			wfLogWarning( "Custom::getAdCode was called for an unsupported key: $key \n" );
 		}
 		return $_return_value;
 	}

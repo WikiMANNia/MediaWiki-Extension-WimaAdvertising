@@ -53,7 +53,7 @@ Disable advertising for logged-in users. Default is `false`.
 
 * `$wgWimaAdvertisingAnonOnly = true;`
 
-The extension is localized for the languages "de", "en", "es", "fr", "it", "nl", "pt", and "ru".
+The extension is localized for the languages "de", "en", "es", "fr", "he", "it", "nl", "pt", and "ru".
 
 Currently, this extension supports the skins Cologne Blue, Modern, MonoBook and Vector.
 Further skins may require additional adjustments, which would have to be made in `resources/css/myskin.css`.
@@ -79,7 +79,7 @@ Define up to four ad units:
 * `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260 ];`
 * `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'auto' ];`
 * `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'rectangle' ];`
-* `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'horizontal' ];`
+* `$wgGoogleAdSense_Bottom = [ 'slotid 4', 600, 160, 'horizontal' ];`
 * `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical' ];`
 * `$wgGoogleAdSense_Bottom = [ 'slotid 4', 145, 260, 'vertical, rectangle' ];`
 Replace the first value with your AdSense ad unit ID (google_ad_slot / data-ad-slot) for each ad unit. The Slot ID for your AdSense script is for example `1234580893`.
@@ -91,14 +91,16 @@ Add any of the optional settings below – if your settings deviate from the def
 
 Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
 * `$wgGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';`
-* `$wgGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234&host=ca-host-pub-5678';`
+
+Internally, `$wgGoogleAdSenseSrc` will be expanded to
+`"$wgGoogleAdSenseSrc?client=ca-pub-$wgGoogleAdSenseClient&host=ca-host-pub-$wgGoogleAdSenseHost"`
 
 GoogleAdSenseMode. Default is `normal`.
 * `$wgGoogleAdSenseMode = 'responsive`
 
 ## Compatibility
 
-This extension works from REL1_35 and has been tested up to MediaWiki versions `1.35.14`, `1.39.17`, `1.41.2`, `1.42.3`, `1.43.6`, `1.44.2`, and `1.45.1`.
+This extension works from REL1_35 and has been tested up to MediaWiki versions `1.35.14`, `1.39.17`, `1.41.2`, `1.42.3`, `1.43.8`, `1.44.2`, and `1.45.3`.
 
 ## Version history
 
@@ -192,3 +194,8 @@ This extension works from REL1_35 and has been tested up to MediaWiki versions `
 2.10.0
 
 * Refactoring classes, namespace and backward compatibility.
+
+2.11.0
+
+* Add support for ´he´
+* Change handling of `$wgGoogleAdSenseSrc`

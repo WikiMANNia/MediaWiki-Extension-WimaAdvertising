@@ -13,13 +13,6 @@ namespace MediaWiki\Extension\WimaAdvertising;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 
-// Class aliases for multi-version compatibility.
-// These need to be in global scope so phan can pick up on them,
-// and before any use statements that make use of the namespaced names.
-if ( version_compare( MW_VERSION, '1.41', '<' ) ) {
-	if ( !class_exists('MediaWiki\User\User') )  class_alias( '\User', '\MediaWiki\User\User' );
-}
-
 class GoogleAdvertisingSettings {
 
 	private static $instance;
@@ -27,7 +20,8 @@ class GoogleAdvertisingSettings {
  	private bool $mActive;
  	private bool $mAnonOnly;
 
- 	private string $mDefaultType;
+ 	private string $mDefaultType = 'advertising';
+ 	private string $mScriptPattern = '';
  	private array $mConfigArray = [];
 
  	private array $mCodeArray = [];
@@ -46,7 +40,6 @@ class GoogleAdvertisingSettings {
 
 
 		// 2. Spezifische Variablen für jeden Werbeblock
-		$this->mDefaultType = 'advertising';
 		$Ad_Bottom = self::getAdConfigArray( $config->get( 'GoogleAdSense_Bottom' ) );
 		$Ad_Top    = self::getAdConfigArray( $config->get( 'GoogleAdSense_Top' ) );
 		$Ad_AD1    = self::getAdConfigArray( $config->get( 'GoogleAdSense_AD1' ) );
@@ -75,6 +68,15 @@ class GoogleAdvertisingSettings {
 		if ( ( $this->mConfigArray['ad_src'] !== false ) &&
 			 ( $this->mConfigArray['ad_client'] !== false ) ) {
 
+			// 4. Script Pattern
+			$this->mScriptPattern = '<script type="text/javascript" async src="%1$s?client=ca-pub-%2$s';
+			if ( !empty( $general_data['ad_host'] ) ) {
+				$this->mScriptPattern .= '&host=ca-host-pub-%3$s';
+			}
+			$this->mScriptPattern .= '" crossorigin="anonymous">
+</script>';
+
+			// 5. HTML-Snippets
 			if ( $Ad_Bottom !== false ) {
 				$this->mCodeArray['bottom'] = self::getAdCodePrivate( $this->mConfigArray, $Ad_Bottom );
 			}
@@ -107,7 +109,7 @@ class GoogleAdvertisingSettings {
 
 	/**
 	 * @param string $key
-	 * @return string|false
+	 * @return string
 	 */
 	public static function getAdCode( string $key ): string {
 
@@ -117,7 +119,7 @@ class GoogleAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( 'Google::getAdCode was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Google::getAdCode was called for an unsupported key: $key \n" );
 		}
 
 		return $_return_value;
@@ -133,9 +135,12 @@ class GoogleAdvertisingSettings {
 		$script_code = false;
 
 		if ( self::getInstance()->mActive && !empty( $javacode_date ) ) {
-			$script_pattern = '<script type="text/javascript" async src="%1$s" crossorigin="anonymous">
-</script>';
-			$script_code = sprintf( $script_pattern, $javacode_date );
+			$script_code = sprintf(
+					self::getInstance()->mScriptPattern,
+					$javacode_date,
+					$general_data['ad_client'],
+					$general_data['ad_host']
+				);
 		}
 
 		return $script_code;
@@ -157,7 +162,7 @@ class GoogleAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = ( $_array[ $key ] !== false );
 		} else {
-			wfLogWarning( 'Google::isPresentAd was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Google::isPresentAd was called for an unsupported key: $key \n" );
 		}
 
 		return $_return_value;
@@ -218,7 +223,7 @@ class GoogleAdvertisingSettings {
 		// Slot must be defined, not empty or 'none'
 		$slot = empty( $array[0] ) ? 'none' : $array[0];
 		if ( ( $slot === 'none' ) || ( $slot === 'slot' ) ) {
-			wfLogWarning( "Google::getAdConfigArray did not detect a (valid) slot: slot \n" );
+			wfLogWarning( "Google::getAdConfigArray did not detect a (valid) slot: $slot \n" );
 			return false;
 		}
 

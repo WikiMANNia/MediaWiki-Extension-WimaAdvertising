@@ -14,22 +14,22 @@ use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Skins\Hook\SkinAfterPortletHook;
 use MediaWiki\Hook\SidebarBeforeOutputHook;
 
-use MediaWiki\Html\Html;
-use MediaWiki\Skin\SkinTemplate;
-use MediaWiki\User\User;
-
 // Class aliases for multi-version compatibility.
 // These need to be in global scope so phan can pick up on them,
 // and before any use statements that make use of the namespaced names.
 if ( version_compare( MW_VERSION, '1.40', '<' ) ) {
-	if ( !class_exists('MediaWiki\Html\Html') )  class_alias( '\Html', '\MediaWiki\Html\Html' );
+	class_exists( 'MediaWiki\Html\Html' ) or class_alias( '\Html', '\MediaWiki\Html\Html' );
 }
 if ( version_compare( MW_VERSION, '1.41', '<' ) ) {
-	if ( !class_exists('MediaWiki\User\User') )  class_alias( '\User', '\MediaWiki\User\User' );
+	class_exists( 'MediaWiki\User\User' ) or class_alias( '\User', '\MediaWiki\User\User' );
 }
 if ( version_compare( MW_VERSION, '1.44', '<' ) ) {
-	if ( !class_exists('MediaWiki\Skin\SkinTemplate') )  class_alias( '\SkinTemplate', '\MediaWiki\Skin\SkinTemplate' );
+	class_exists( 'MediaWiki\Skin\SkinTemplate' ) or class_alias( '\SkinTemplate', '\MediaWiki\Skin\SkinTemplate' );
 }
+
+use MediaWiki\Html\Html;
+use MediaWiki\Skin\SkinTemplate;
+use MediaWiki\User\User;
 
 /**
  * @phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
@@ -86,7 +86,7 @@ class Hooks implements
 		$issetAdvertisementBox =  self::isPresentAd( $skin->getUser(), $tag );
 
 		if ( $issetSitenoticeBox && $issetAdvertisementBox ) {
-			if ( rand (0, 1 ) ) {
+			if ( rand( 0, 1 ) ) {
 #				$siteNotice = self::getSitenoticeBox();
 			} else {
 				$siteNotice = self::getAdvertisementBox( $skin, $tag );
@@ -306,24 +306,21 @@ class Hooks implements
 
 	private static function getAdCode( User $user, string $tag ): string {
 
-		$return_value = '';
-		$present_ad_found = false;
-
 		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			// Defined ad should be only used, if custom ad is activated
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = CustomAdvertisingSettings::getAdCode( $tag );
+				return CustomAdvertisingSettings::getAdCode( $tag );
 			}
 		}
-		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
+		if ( GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
 			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = GoogleAdvertisingSettings::getAdCode( $tag );
+				return GoogleAdvertisingSettings::getAdCode( $tag );
 			}
 		}
-		return $return_value;
+		return '';
 	}
 
 	private static function getAdStyle( string $tag ): string {
@@ -332,22 +329,19 @@ class Hooks implements
 
 	private static function getAdType( User $user, string $tag ): string {
 
-		$return_value = '';
-		$present_ad_found = false;
-
 		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = CustomAdvertisingSettings::getAdType( $tag );
+				return CustomAdvertisingSettings::getAdType( $tag );
 			}
 		}
-		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
+		if ( GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
 			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = GoogleAdvertisingSettings::getAdType( $tag );
+				return GoogleAdvertisingSettings::getAdType( $tag );
 			}
 		}
-		return $return_value;
+		return '';
 	}
 }
