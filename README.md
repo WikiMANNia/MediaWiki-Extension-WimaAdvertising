@@ -173,5 +173,5 @@ This extension works from REL1_23 and has been tested up to MediaWiki version `1
 
 2.11.0
 
-* Add suport form ´he´
+* Add support for ´he´
 * Change handling of `$wgGoogleAdSenseSrc`
