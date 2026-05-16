@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Settings is a singleton - used as a store of values for a particular site.
  *
@@ -16,10 +15,11 @@ class GoogleAdvertisingSettings {
  	private $mActive;
  	private $mAnonOnly;
 
- 	private $mDefaultType;
- 	private $mConfigArray;
+ 	private $mDefaultType = 'advertising';
+ 	private $mScriptPattern = '';
+ 	private $mConfigArray = [];
 
- 	private $mCodeArray;
+ 	private $mCodeArray = [];
 
 	private function __construct() {
 
@@ -27,8 +27,6 @@ class GoogleAdvertisingSettings {
 		 * Global variables are set in 'extension.json' and
 		 * also can be set in the 'LocalSettings.php'.
 		 */
-		global $wgLanguageCode;
-
 		// 1. Steuerung
 		global $wgGoogleAdSense;
 		global $wgGoogleAdSenseAnonOnly;
@@ -72,6 +70,15 @@ class GoogleAdvertisingSettings {
 		if ( ( $this->mConfigArray['ad_src'] !== false ) &&
 			 ( $this->mConfigArray['ad_client'] !== false ) ) {
 
+			// 4. Script Pattern
+			$this->mScriptPattern = '<script type="text/javascript" async src="%1$s?client=ca-pub-%2$s';
+			if ( !empty( $general_data['ad_host'] ) ) {
+				$this->mScriptPattern .= '&host=ca-host-pub-%3$s';
+			}
+			$this->mScriptPattern .= '" crossorigin="anonymous">
+</script>';
+
+			// 5. HTML-Snippets
 			if ( $Ad_Bottom !== false ) {
 				$this->mCodeArray['bottom'] = self::getAdCodePrivate( $this->mConfigArray, $Ad_Bottom );
 			}
@@ -114,7 +121,7 @@ class GoogleAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( 'Google::getAdCode was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Google::getAdCode was called for an unsupported key: $key \n" );
 		}
 
 		return $_return_value;
@@ -130,9 +137,12 @@ class GoogleAdvertisingSettings {
 		$script_code = false;
 
 		if ( self::getInstance()->mActive && !empty( $javacode_date ) ) {
-			$script_pattern = '<script type="text/javascript" async src="%1$s" crossorigin="anonymous">
-</script>';
-			$script_code = sprintf( $script_pattern, $javacode_date );
+			$script_code = sprintf(
+					self::getInstance()->mScriptPattern,
+					$javacode_date,
+					$general_data['ad_client'],
+					$general_data['ad_host']
+				);
 		}
 
 		return $script_code;
@@ -162,7 +172,7 @@ class GoogleAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = ( $_array[ $key ] !== false );
 		} else {
-			wfLogWarning( 'Google::isPresentAd was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Google::isPresentAd was called for an unsupported key: $key \n" );
 		}
 
 		return $_return_value;
@@ -211,9 +221,18 @@ class GoogleAdvertisingSettings {
 	private static function getAdConfigArray( $array ) {
 
 		if ( is_array( $array ) ) {
-			if ( ( count( $array ) !== 3 ) && ( count( $array ) !== 4 ) ) {
-				wfLogWarning( 'Google::getAdConfigArray expected an array with three or four values, but got this: "' . implode( ', ', $array ) . '"' . "\n" );
-				return false;
+			switch ( count( $array ) ) {
+				case 0:
+					// The array is empty.  This is NOT an error!
+					return false;
+					break;
+				case 3:
+				case 4: // the element #4 is optional
+					break;
+				default:
+					wfLogWarning( 'Google::getAdConfigArray expected an array with three or four values, but got this: "' . implode( ', ', $array ) . '"' . "\n" );
+					return false;
+					break;
 			}
 		} else {
 			// Because this is obviously not an array, the variable is very probably not set. This is NOT an error!
@@ -223,19 +242,19 @@ class GoogleAdvertisingSettings {
 		// Slot must be defined, not empty or 'none'
 		$slot = empty( $array[0] ) ? 'none' : $array[0];
 		if ( ( $slot === 'none' ) || ( $slot === 'slot' ) ) {
-			wfLogWarning( 'Google::getAdConfigArray did not detect a (valid) slot: "' . $slot . '"' . "\n" );
+			wfLogWarning( "Google::getAdConfigArray did not detect a (valid) slot: $slot \n" );
 			return false;
 		}
 
 		// width and height must be 'auto' or int
 		$width  = self::getSizeValue( $array[1] );
 		if ( $width === false ) {
-			wfLogWarning( 'Google::getAdConfigArray not recognize a valid width value: "' . $array[1] . '"' . "\n" );
+			wfLogWarning( "Google::getAdConfigArray not recognize a valid width value: $array[1] \n" );
 			return false;
 		}
 		$height = self::getSizeValue( $array[2] );
 		if ( $height === false ) {
-			wfLogWarning( 'Google::getAdConfigArray not recognize a valid height value: "' . $array[2] . '"' . "\n" );
+			wfLogWarning( "Google::getAdConfigArray not recognize a valid height value: $array[2] \n" );
 			return false;
 		}
 

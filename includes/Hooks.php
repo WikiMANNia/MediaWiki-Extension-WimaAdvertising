@@ -51,7 +51,7 @@ class WimaAdvertisingHooks extends Hooks {
 		$issetAdvertisementBox =  self::isPresentAd( $skin->getUser(), $tag );
 
 		if ( $issetSitenoticeBox && $issetAdvertisementBox ) {
-			if ( rand(0, 1) ) {
+			if ( rand( 0, 1 ) ) {
 #				$siteNotice = self::getSitenoticeBox();
 			} else {
 				$siteNotice = self::getAdvertisementBox( $skin, $tag );
@@ -200,7 +200,7 @@ class WimaAdvertisingHooks extends Hooks {
 			$elements = Html::rawElement( 'div', [ 'style' => $style2 ], $html_code );
 			if ( !empty( $title ) ) {
 				// if lable not set to 'blank'
-				 $elements = Html::rawElement( 'p', [], $title . ':' ) . $elements;
+				$elements = Html::rawElement( 'p', [], $title . ':' ) . $elements;
 			}
 			return Html::rawElement( 'div', $options, $elements );
 		}
@@ -230,24 +230,21 @@ class WimaAdvertisingHooks extends Hooks {
 
 	private static function getAdCode( $user, $tag ) {
 
-		$return_value = '';
-		$present_ad_found = false;
-
 		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			// Defined ad should be only used, if custom ad is activated
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = CustomAdvertisingSettings::getAdCode( $tag );
+				return CustomAdvertisingSettings::getAdCode( $tag );
 			}
 		}
-		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
+		if ( GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
 			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = GoogleAdvertisingSettings::getAdCode( $tag );
+				return GoogleAdvertisingSettings::getAdCode( $tag );
 			}
 		}
-		return $return_value;
+		return '';
 	}
 
 	private static function getAdStyle( $tag ) {
@@ -256,22 +253,19 @@ class WimaAdvertisingHooks extends Hooks {
 
 	private static function getAdType( $user, $tag ) {
 
-		$return_value = '';
-		$present_ad_found = false;
-
 		if ( CustomAdvertisingSettings::isActive( $user ) ) {
 			$present_ad_found = CustomAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = CustomAdvertisingSettings::getAdType( $tag );
+				return CustomAdvertisingSettings::getAdType( $tag );
 			}
 		}
-		if ( !$present_ad_found && GoogleAdvertisingSettings::isActive( $user ) ) {
+		if ( GoogleAdvertisingSettings::isActive( $user ) ) {
 			// If custom ad is not defined or not activated, give google a chance
 			$present_ad_found = GoogleAdvertisingSettings::isPresentAd( $tag );
 			if ( $present_ad_found ) {
-				$return_value = GoogleAdvertisingSettings::getAdType( $tag );
+				return GoogleAdvertisingSettings::getAdType( $tag );
 			}
 		}
-		return $return_value;
+		return '';
 	}
 }

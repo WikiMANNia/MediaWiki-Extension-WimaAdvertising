@@ -53,7 +53,7 @@ Disable advertising for logged-in users. Default is `false`.
 
 * `$wgWimaAdvertisingAnonOnly = true;`
 
-The extension is localized for the languages "de", "en", "es", "fr", "it", "nl", "pt", and "ru".
+The extension is localized for the languages "de", "en", "es", "fr", "he", "it", "nl", "pt", and "ru".
 
 Currently, this extension supports the skins Cologne Blue, Modern, MonoBook and Vector.
 Further skins may require additional adjustments, which would have to be made in `resources/css/myskin.css`.
@@ -91,7 +91,9 @@ Add any of the optional settings below – if your settings deviate from the def
 
 Source URL of the AdSense script. No need to change – it can't deviate from the defaults.
 * `$wgGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';`
-* `$wgGoogleAdSenseSrc = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234&host=ca-host-pub-5678';`
+
+Internally, `$wgGoogleAdSenseSrc` will be expanded to
+`"$wgGoogleAdSenseSrc?client=ca-pub-$wgGoogleAdSenseClient&host=ca-host-pub-$wgGoogleAdSenseHost"`
 
 GoogleAdSenseMode. Default is `normal`.
 * `$wgGoogleAdSenseMode = 'responsive`
@@ -168,3 +170,8 @@ This extension works from REL1_23 and has been tested up to MediaWiki version `1
 2.8.5
 
 - Changed the prefix of the configuration variables back to `wg`.
+
+2.11.0
+
+* Add suport form ´he´
+* Change handling of `$wgGoogleAdSenseSrc`

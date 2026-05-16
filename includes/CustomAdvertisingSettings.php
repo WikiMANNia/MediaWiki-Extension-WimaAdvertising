@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Settings is a singleton - used as a store of values for a particular site.
  *
@@ -16,11 +15,11 @@ class CustomAdvertisingSettings {
  	private $mActive;
  	private $mAnonOnly;
 
- 	private $mDefaultType;
+ 	private $mDefaultType = 'advertising';
  	private $mStyleArray = [];
  	private $mTypeArray = [];
 
- 	private $mCodeArray;
+ 	private $mCodeArray = [];
 
 	private function __construct() {
 
@@ -92,7 +91,7 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( 'Custom::getAdCode was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Custom::getAdCode was called for an unsupported key: $key \n" );
 		}
 		return $_return_value;
 	}
@@ -121,7 +120,7 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = ( $_array[ $key ] !== false );
 		} else {
-			wfLogWarning( 'Custom::isPresentAd was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Custom::isPresentAd was called for an unsupported key: $key \n" );
 		}
 		return $_return_value;
 	}
@@ -138,7 +137,7 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( 'Custom::getAdStyle was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Custom::getAdStyle was called for an unsupported key: $key \n" );
 		}
 
 		return $_return_value;
@@ -156,7 +155,7 @@ class CustomAdvertisingSettings {
 		if ( array_key_exists( $key, $_array ) ) {
 			$_return_value = $_array[ $key ];
 		} else {
-			wfLogWarning( 'Custom::getAdType was called for an unsupported key: "' . $key . '"' . "\n" );
+			wfLogWarning( "Custom::getAdType was called for an unsupported key: $key \n" );
 		}
 
 		return $_return_value;

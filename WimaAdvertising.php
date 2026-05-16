@@ -62,7 +62,7 @@ call_user_func(
 $wgExtensionCredits['specialpage'][] = [
 	'path'           => __FILE__,
 	'name'           => 'WimaAdvertising',
-	'version'        => '2.8.5',
+	'version'        => '2.11.0',
 	'author'         => 'WikiMANNia',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:WimaAdvertising',
 	'descriptionmsg' => 'wimaadvertising-desc',

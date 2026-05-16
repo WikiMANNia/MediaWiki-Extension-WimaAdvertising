@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiMANNia"
+		]
+	},
+	"wimaadvertising-msg": "Wima פרסום",
+	"wimaadvertising-desc": "Adds four possible advertising spaces for the Skins [https://www.mediawiki.org/wiki/Skin:Cologne_Blue Cologne Blue], [https://www.mediawiki.org/wiki/Skin:Modern Modern], [https://www.mediawiki.org/wiki/Skin:Monaco Monaco], [https://www.mediawiki.org/wiki/Skin:MonoBook MonoBook], [https://www.mediawiki.org/wiki/Skin:Timeless Timeless], and [https://www.mediawiki.org/wiki/Skin:Vector Vector] that are filled by LocalSettings.php.",
+	"wimaadvertising-advertising": "פרסום",
+	"wimaadvertising-blank": "",
+	"wimaadvertising-eventnote": "אירוע",
+	"wimaadvertising-hint": "רמז",
+	"wimaadvertising-advertising2": "פרסום",
+	"wimaadvertising-blank2": "",
+	"wimaadvertising-eventnote2": "אירוע",
+	"wimaadvertising-hint2": "רמז"
+}
