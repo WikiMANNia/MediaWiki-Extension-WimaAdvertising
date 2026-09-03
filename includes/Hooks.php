@@ -14,19 +14,6 @@ use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Skins\Hook\SkinAfterPortletHook;
 use MediaWiki\Hook\SidebarBeforeOutputHook;
 
-// Class aliases for multi-version compatibility.
-// These need to be in global scope so phan can pick up on them,
-// and before any use statements that make use of the namespaced names.
-if ( version_compare( MW_VERSION, '1.40', '<' ) ) {
-	class_exists( 'MediaWiki\Html\Html' ) or class_alias( '\Html', '\MediaWiki\Html\Html' );
-}
-if ( version_compare( MW_VERSION, '1.41', '<' ) ) {
-	class_exists( 'MediaWiki\User\User' ) or class_alias( '\User', '\MediaWiki\User\User' );
-}
-if ( version_compare( MW_VERSION, '1.44', '<' ) ) {
-	class_exists( 'MediaWiki\Skin\SkinTemplate' ) or class_alias( '\SkinTemplate', '\MediaWiki\Skin\SkinTemplate' );
-}
-
 use MediaWiki\Html\Html;
 use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\User\User;
@@ -41,6 +28,9 @@ class Hooks implements
 	SkinAfterPortletHook,
 	SidebarBeforeOutputHook
 {
+    public static function onRegistration() {
+        Compat::init();
+    }
 
 	/**
 	 * include/Hook/BeforePageDisplayHook.php

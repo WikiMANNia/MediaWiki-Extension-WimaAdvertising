@@ -9,6 +9,7 @@
 	},
 	"namemsg": "wimaadvertising-msg",
 	"descriptionmsg": "wimaadvertising-desc",
+	"callback": "MediaWiki\\Extension\\WimaAdvertising\\Hooks::onRegistration",
 	"ConfigRegistry": {
 		"wimaadvertising": "GlobalVarConfig::newInstance"
 	},
