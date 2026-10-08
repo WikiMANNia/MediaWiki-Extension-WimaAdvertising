@@ -26,6 +26,13 @@ class Compat {
 				\User::class,
 				\MediaWiki\User\User::class );
 		}
+		if ( class_exists( \RequestContext::class ) && /* < 1.42 */
+			!class_exists( \MediaWiki\Context\RequestContext::class, false ) ) {
+			class_alias(
+				\RequestContext::class,
+				\MediaWiki\Context\RequestContext::class
+			);
+		}
 		if ( class_exists( \SkinTemplate::class ) && /* < 1.44 */
 			!class_exists( \MediaWiki\Skin\SkinTemplate::class, false ) ) {
 			class_alias(

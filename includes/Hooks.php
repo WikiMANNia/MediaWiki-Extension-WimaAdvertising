@@ -14,6 +14,7 @@ use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\Skins\Hook\SkinAfterPortletHook;
 use MediaWiki\Hook\SidebarBeforeOutputHook;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\User\User;

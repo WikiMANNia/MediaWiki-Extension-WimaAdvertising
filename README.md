@@ -100,7 +100,7 @@ GoogleAdSenseMode. Default is `normal`.
 
 ## Compatibility
 
-This extension works from REL1_35 and has been tested up to MediaWiki versions `1.35.14`, `1.39.17`, `1.41.2`, `1.42.3`, `1.43.8`, `1.44.2`, and `1.45.3`.
+This extension works from REL1_35 and has been tested up to MediaWiki versions `1.35.14`, `1.39.17`, `1.41.2`, `1.42.3`, `1.43.9`, `1.44.2`, `1.45.4`, and 1.47.0-alpha.
 
 ## Version history
 
@@ -199,3 +199,4 @@ This extension works from REL1_35 and has been tested up to MediaWiki versions `
 
 * Add support for ´he´
 * Change handling of `$wgGoogleAdSenseSrc`
+* Added compatibility to MediaWiki v1.47.
