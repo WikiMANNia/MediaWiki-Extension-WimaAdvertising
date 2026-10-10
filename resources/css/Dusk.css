@@ -1,0 +1,58 @@
+/* CSS for Dusk skin */
+
+.wima-adbox {
+	border: #c0758b solid 2px;
+	background: rgb(255 255 255 / 50%);
+	padding: 4px;
+}
+.wima-adbox img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4pt;
+}
+.wima-adbox p {
+	color: #000;
+	font-weight: normal;
+	line-height: 1.2em;
+	margin: 2pt 2pt 0 5pt;
+	word-wrap: break-word;
+}
+
+/* WimaAdvertising: überflüssigen Abstand unter dem Portlet beseitigen */
+#p-wimaadvertising-advertising,
+#p-wimaadvertising-advertising2,
+#p-wimaadvertising-blank,
+#p-wimaadvertising-blank2,
+#p-wimaadvertising-eventnote,
+#p-wimaadvertising-eventnote2,
+#p-wimaadvertising-hint,
+#p-wimaadvertising-hint2 {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Gewünschten Abstand zwischen Überschrift und Bild erhalten */
+#p-wimaadvertising-advertising,
+#p-wimaadvertising-advertising2,
+#p-wimaadvertising-blank,
+#p-wimaadvertising-blank2,
+#p-wimaadvertising-eventnote,
+#p-wimaadvertising-eventnote2,
+#p-wimaadvertising-hint,
+#p-wimaadvertising-hint2 .widget-title {
+    margin-bottom: 1em !important;
+}
+
+/* Nach dem Bild den üblichen Abstand wiederherstellen */
+#p-wimaadvertising-advertising + #after-portlet-wimaadvertising,
+#p-wimaadvertising-advertising2 + #after-portlet-wimaadvertising2,
+#p-wimaadvertising-blank + .after-portlet-blank,
+#p-wimaadvertising-blank2 + .after-portlet-blank2,
+#p-wimaadvertising-eventnote + .after-portlet-eventnote,
+#p-wimaadvertising-eventnote2 + .after-portlet-eventnote2,
+#p-wimaadvertising-hint + .after-portlet-hint,
+#p-wimaadvertising-hint2 + .after-portlet-hint2 {
+    margin-top: 0 !important;
+    margin-bottom: 1.7em !important;
+}

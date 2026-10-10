@@ -200,3 +200,7 @@ This extension works from REL1_35 and has been tested up to MediaWiki versions `
 * Add support for ´he´
 * Change handling of `$wgGoogleAdSenseSrc`
 * Added compatibility to MediaWiki v1.47.
+
+2.12.0
+
+* Support added for Skins [Bouquet](https://www.mediawiki.org/wiki/Skin:Bouquet), [Dusk](https://www.mediawiki.org/wiki/Skin:Dusk), and [Gamepress](https://www.mediawiki.org/wiki/Skin:Gamepress).

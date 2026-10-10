@@ -3,7 +3,7 @@
 	"author": "[//wikimannia.org WikiMANNia]",
 	"url": "https://www.mediawiki.org/wiki/Extension:WimaAdvertising",
 	"license-name": "GPL-2.0-or-later",
-	"version": "2.11.0",
+	"version": "2.12.0",
 	"requires": {
 		"MediaWiki": ">= 1.35.0"
 	},
@@ -149,11 +149,20 @@
 		"ext.wimaadvertising.common": {
 			"styles": "css/Common.css"
 		},
+		"ext.wimaadvertising.bouquet": {
+			"styles": "css/Bouquet.css"
+		},
 		"ext.wimaadvertising.citizen": {
 			"styles": "css/Citizen.css"
 		},
 		"ext.wimaadvertising.cologneblue": {
 			"styles": "css/Cologneblue.css"
+		},
+		"ext.wimaadvertising.dusk": {
+			"styles": "css/Dusk.css"
+		},
+		"ext.wimaadvertising.gamepress": {
+			"styles": "css/Gamepress.css"
 		},
 		"ext.wimaadvertising.mobile": {
 			"styles": "css/Mobile.css"

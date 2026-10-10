@@ -133,7 +133,10 @@ class Hooks implements
 		 * Sonderbehandlung gemäß Skin.
 		 */
 		switch ( $skin->getSkinName() ) {
+			case 'bouquet' :
 			case 'cologneblue' :
+			case 'dusk' :
+			case 'gamepress' :
 			case 'vector' :
 				$_html1 = self::getAdBox( $_html1 );
 				$_html2 = self::getAdBox( $_html2 );

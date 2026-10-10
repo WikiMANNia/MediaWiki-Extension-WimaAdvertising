@@ -1,0 +1,46 @@
+/* CSS for Gamepress skin */
+
+.wima-adbox {
+	border: 1px solid rgb(216 27 33) !important;
+	background: rgb(216 27 33 / 50%);
+    margin: 0 0 18px 0 !important;
+	padding: 4px 6px;
+}
+.wima-adbox img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4pt;
+}
+.wima-adbox p {
+	color: #000;
+	font-weight: normal;
+	line-height: 1.2em;
+	margin: 2pt 2pt 0 5pt;
+	word-wrap: break-word;
+}
+
+/* WimaAdvertising: überflüssigen Abstand unter dem Portlet beseitigen */
+#p-wimaadvertising-advertising,
+#p-wimaadvertising-advertising2,
+#p-wimaadvertising-blank,
+#p-wimaadvertising-blank2,
+#p-wimaadvertising-eventnote,
+#p-wimaadvertising-eventnote2,
+#p-wimaadvertising-hint,
+#p-wimaadvertising-hint2 {
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
+}
+
+/* Gewünschten Abstand zwischen Überschrift und Bild erhalten */
+#p-wimaadvertising-advertising,
+#p-wimaadvertising-advertising2,
+#p-wimaadvertising-blank,
+#p-wimaadvertising-blank2,
+#p-wimaadvertising-eventnote,
+#p-wimaadvertising-eventnote2,
+#p-wimaadvertising-hint,
+#p-wimaadvertising-hint2 .widget-title {
+    margin: 0 0 6px 0; !important;
+}
